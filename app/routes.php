@@ -13,5 +13,8 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	return View::make('main');
 });
+Route::get("login",array("prefix" => "admin","as"=>"login","uses"=>"AdminController@get_login"));
+
+Route::post("login",array("prefix" => "admin","as"=>"login","uses"=>"AdminController@post_login"));

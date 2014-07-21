@@ -1,0 +1,24 @@
+/* Login- Cuong */
+.view-login{
+	background: #FBFBFB;
+	box-shadow: 2px 2px 2px 2px #888888;
+	margin-top: 100px;
+	margin-bottom: 70px;
+}
+.form-login{
+	margin-top: 50px;
+}
+.form-login input{
+	margin-left: 20px;
+	width: 260px;
+
+}
+.form-login button{
+	margin-left: 20px;
+}
+.title{
+	height: 128px;
+	display: block;
+	background: url(http://www.admin-magazine.com/extension/adminmag/design/admin_fe/images/admin-magazine-og.png) no-repeat;
+	background-size: 360px 128px;
+}
