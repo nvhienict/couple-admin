@@ -11,10 +11,17 @@
 |
 */
 
-Route::get('/', function()
+Route::group(array("prefix" => "admin"),function()
 {
-	return View::make('main');
-});
-Route::get("login",array("prefix" => "admin","as"=>"login","uses"=>"AdminController@get_login"));
+	Route::get("main",array("as"=>"main","uses"=>"AdminController@index"));
 
-Route::post("login",array("prefix" => "admin","as"=>"login","uses"=>"AdminController@post_login"));
+	Route::get("login",array("as"=>"login","uses"=>"AdminController@get_login"));
+
+	Route::post("login",array("as"=>"login","uses"=>"AdminController@post_login"));
+
+	Route::get("vendors",array("as"=>"vendor",function(){
+		return View::make('vendors');
+	}));
+});
+
+
