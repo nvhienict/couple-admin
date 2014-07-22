@@ -6,7 +6,7 @@
 <div class="container vendor">
 <div class="row">
 	<div class="col-xs-6">
-		<h1>Vendors <a class="add-vendor" href="{{Asset('add-vendor')}}">Add Vendor</a></h1>
+		<h1>Vendors <a class="add-vendor" href="{{URL::route('add-vendor')}}">Add Vendor</a></h1>
 	</div>
 	<div class="col-xs-4 search">
 		<form action="{{URL::route('search')}}" method="post">
@@ -20,18 +20,22 @@
 	</div>
 </div>
 <div class="row">
-    <div class="col-xs-6">
+    <div class="col-xs-10">
     	<ol class="breadcrumb">
             <li>
-                <i class="fa fa-dashboard"></i>  <a href="{{Asset('main')}}">Dashboard</a>
+                <i class="fa fa-dashboard"></i>  <a href="{{URL::route('main')}}">Dashboard</a>
             </li>
             <li class="active">
                 <i class="fa fa-edit"></i> Vendors
             </li>
         </ol>
+    </div>      
+</div>
+<div class="row">
+    <div class="col-xs-10">
+        @if(Session::has('messages')) <p class="alert alert-success">{{Session::get('messages')}}</p> 
+        @endif    
     </div>
-        @if(Session::has('messages')) <p class="alert alert-success">{{Session::get('messages')}}</p>
-        @endif      
 </div>
     <div class="row">
     	<div class="col-xs-10">
@@ -50,11 +54,21 @@
                     <tbody>
                     	@foreach($vendors as $vendor)
                         <tr>
-                            <td>{{$vendor->name}}</td>
+                            <td>{{$vendor->name}}
                             <ul class="menu list-unstyled" role="menu">
                             	<li><a href="">View</a></li>
-                            	<li><a href="">Edit</a></li>
-                            	<li><a href="">Delete</a></li>
+                            	<li><a href="{{URL::route('edit-vendor',array($vendor->id))}}">Edit</a></li>
+                            	<li><a class="confirm" href="{{URL::route('delete-vendor',array($vendor->id))}}">Delete</a></li>
+                                <script>
+                                $(".confirm").click(function(){
+                                    if(confirm("Are you sure you want to delete this?")){
+                                        return true;
+                                    }
+                                    else{
+                                        return false;
+                                    }
+                                });
+                                </script>
                             </ul>
                             </td>
                             <td>{{$vendor->address}}</td>

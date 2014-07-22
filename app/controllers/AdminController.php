@@ -107,5 +107,10 @@ class AdminController extends \BaseController {
 		Session::flush();
 		return Redirect::to("login");
 	}
+	public function search(){
+		$name=Input::get('name');
+		$vendors=Vendor::where('name', 'LIKE', "%$name%")->get();
+		return View::make('vendors')->with('vendors',$vendors);
+	}
 
 }
