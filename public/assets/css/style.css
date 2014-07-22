@@ -22,3 +22,46 @@
 	background: url(http://www.admin-magazine.com/extension/adminmag/design/admin_fe/images/admin-magazine-og.png) no-repeat;
 	background-size: 360px 128px;
 }
+/*Vendors*/
+.vendor h1{
+}
+.vendor .search{
+	margin-top: 20px;
+}
+.vendor h1 a.add-vendor{
+	font-size: 20px;
+	background: #DDDDDD;
+	padding: 5px 10px 0px 10px;
+}
+.vendor h1 a.add-vendor:hover{
+	text-decoration: none;
+	color: #D54E21;
+}
+.breadcrumb{
+	clear: both;
+}
+.table-responsive tbody tr ul{
+	display: none;
+}
+.table-responsive tbody tr ul.menu li{
+	float: left;
+}
+.table-responsive tbody tr ul.menu li a{
+	border-right: 1px solid #767676;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+.table-responsive tbody tr ul.menu li:last-child a{
+	border:none;
+}
+.table-responsive tbody tr ul.menu li a:hover{
+	text-decoration: none;
+	color: #D54E21;
+}
+.table-responsive tbody tr:hover ul.menu{
+	display: block;
+}
+.register-vendor p.alert-danger{
+	margin-top: 10px;
+	padding:5px;
+}
