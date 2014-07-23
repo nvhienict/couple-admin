@@ -171,7 +171,7 @@
                         <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Vendors</a>
                     </li>
                     <li>
-                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Categories</a>
+                        <a href="{{Aset('admin/categories')}}"><i class="fa fa-fw fa-dashboard"></i> Categories</a>
                     </li>
                     <li>
                         <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Location</a>

@@ -65,3 +65,12 @@
 	margin-top: 10px;
 	padding:5px;
 }
+/*hover*/
+div#menu ul.list-unstyled span{
+	display: block;
+	padding: 5px;
+	cursor: pointer;
+}
+div#menu ul.list-unstyled span:hover{
+	color: #3399FF;
+}

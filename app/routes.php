@@ -34,6 +34,18 @@ Route::group(array("prefix" => "admin"),function()
 	Route::post("vendors/{id}",array("as"=>"update-vendor","uses"=>"VendorController@update"));
 
 	Route::post("vendors/search",array("as"=>"search","uses"=>"AdminController@search"));
+	// Thuy-category
+	Route::get('categories', array('as' => 'categories', 'uses'=>'CategoriesController@ListCategory' ));
+
+	Route::get('category/{id}/edit', array('uses'=>'CategoriesController@edit'));
+
+	Route::get('category/add', array('uses'=>'CategoriesController@AddCategory'));
+
+	Route::post('NewCategory', array('uses'=>'CategoriesController@NewCategory'));
+
+	Route::post('UpdateCategory', array('uses'=>'CategoriesController@UpdateCategory'));
+	
+	Route::get('category/{id}/delete', array('uses'=>'CategoriesController@DeleteCategory'));
 });
 
 
