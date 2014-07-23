@@ -173,7 +173,7 @@
                         <a href="{{Asset('admin/categories')}}"><i class="fa fa-fw fa-dashboard"></i> Categories</a>
                     </li>
                     <li>
-                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Location</a>
+                        <a href="{{Asset('admin/location')}}"><i class="fa fa-fw fa-dashboard"></i> Location</a>
                     </li>
 
                 </ul>
