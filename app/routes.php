@@ -14,12 +14,12 @@
 Route::group(array("prefix" => "admin"),function()
 {
 	Route::get("main",array("as"=>"main","uses"=>"AdminController@index"));
-
+	//Cuong
 	Route::get("login",array("as"=>"login","uses"=>"AdminController@get_login"));
 
 	Route::post("login",array("as"=>"login","uses"=>"AdminController@post_login"));
 
-	Route::get("vendors",array("as"=>"vendor",function(){
+	Route::get("vendors",array("as"=>"vendors",function(){
 		return View::make('vendors')->with("vendors",Vendor::get());
 	}));
 	Route::get("vendors/create",array("as"=>"add-vendor",function(){
@@ -34,6 +34,14 @@ Route::group(array("prefix" => "admin"),function()
 	Route::post("vendors/{id}",array("as"=>"update-vendor","uses"=>"VendorController@update"));
 
 	Route::post("vendors/search",array("as"=>"search","uses"=>"AdminController@search"));
+
+	Route::post("check-vendor",array("as"=>"check-vendor","uses"=>"VendorController@check_vendor"));
+
+	Route::post("check-vendor-email",array("as"=>"check-vendor-email","uses"=>"VendorController@check_vendor_email"));
+
+	Route::post("edit-check-vendor/{id}",array("as"=>"edit-check-vendor","uses"=>"VendorController@edit_check_vendor"));
+
+	Route::post("edit-check-vendor-email/{id}",array("as"=>"edit-check-vendor-email","uses"=>"VendorController@edit_check_vendor_email"));
 	// Thuy-category
 	Route::get('categories', array('as' => 'categories', 'uses'=>'CategoriesController@ListCategory' ));
 

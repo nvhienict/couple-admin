@@ -37,30 +37,23 @@ class VendorController extends \BaseController {
 			"email"=>"required|email",
 			"phone"=>"required|min:9",
 			"avatar"=>"required|image",
-			"input"=>"required|min:10"
+			"editor4"=>"required|min:10"
 			);
 		$validator=Validator::make(Input::all(),$rules);
 		if($validator->passes())
 		{
-			if(Vendor::where("name",Input::get('name'))->count()==1)
-			{
-				return View::make('vendors/create')->with('messages',"Vendor da ton tai");
-			}
-			else
-			{
-				$vendor=new Vendor();
-				$vendor->name=Input::get('name');
-				$vendor->address=Input::get('address');
-				$vendor->email=Input::get('email');
-				$vendor->phone=Input::get('phone');
-				$vendor->website=Input::get('website');
-				$vendor->category=Input::get('category');
-				$vendor->location=Input::get('location');
-				$vendor->avatar=Image::make(Input::file('avatar')->getRealPath())->encode('jpg',80);
-            	$vendor->about=Input::get('input');
-            	$vendor->save();
-            	return Redirect::to('admin/vendors')->with('messages',"Tao Vendor thanh cong");
-			}
+			$vendor=new Vendor();
+			$vendor->name=Input::get('name');
+			$vendor->address=Input::get('address');
+			$vendor->email=Input::get('email');
+			$vendor->phone=Input::get('phone');
+			$vendor->website=Input::get('website');
+			$vendor->category=Input::get('category');
+			$vendor->location=Input::get('location');
+			$vendor->avatar=Image::make(Input::file('avatar')->getRealPath())->encode('jpg',80);
+        	$vendor->about=Input::get('editor4');
+        	$vendor->save();
+        	return Redirect::to('admin/vendors')->with('messages',"Tao Vendor thanh cong");
 		}
 		else
 		{
@@ -109,30 +102,23 @@ class VendorController extends \BaseController {
 			"address"=>"required|min:5",
 			"email"=>"required|email",
 			"phone"=>"required|min:9",
-			"input"=>"required|min:10"
+			"editor4"=>"required|min:10"
 			);
 		$validator=Validator::make(Input::all(),$rules);
 		if($validator->passes())
 		{
-			if(Vendor::where("name",Input::get('name'))->count()==1&&Input::get('name')!=Input::get('name_old'))
-			{
-				return View::make('edit-vendor')->with('messages',"Vendor da ton tai");
-			}
-			else
-			{
-				$vendor=Vendor::find($id);
-				$vendor->name=Input::get('name');
-				$vendor->address=Input::get('address');
-				$vendor->email=Input::get('email');
-				$vendor->phone=Input::get('phone');
-				$vendor->website=Input::get('website');
-				$vendor->category=Input::get('category');
-				$vendor->location=Input::get('location');
-				if(Input::hasFile('avatar')) $vendor->avatar=Image::make(Input::file('avatar')->getRealPath())->encode('jpg',80);
-            	$vendor->about=Input::get('input');
-            	$vendor->save();
-            	return Redirect::to('admin/vendors')->with('messages',"Edit Vendor thanh cong");
-			}
+			$vendor=Vendor::find($id);
+			$vendor->name=Input::get('name');
+			$vendor->address=Input::get('address');
+			$vendor->email=Input::get('email');
+			$vendor->phone=Input::get('phone');
+			$vendor->website=Input::get('website');
+			$vendor->category=Input::get('category');
+			$vendor->location=Input::get('location');
+			if(Input::hasFile('avatar')) $vendor->avatar=Image::make(Input::file('avatar')->getRealPath())->encode('jpg',80);
+        	$vendor->about=Input::get('editor4');
+        	$vendor->save();
+        	return Redirect::to('admin/vendors')->with('messages',"Edit Vendor thanh cong");
 		}
 		else
 		{
@@ -154,6 +140,36 @@ class VendorController extends \BaseController {
 	{
 		Vendor::find($id)->delete();
 		return Redirect::to('admin/vendors')->with('messages',"Xoa vendor thanh cong");
+	}
+	public function check_vendor(){
+		return (Vendor::where("name",Input::get('name'))->count()==0? "true": "false");
+	}
+	public function edit_check_vendor($id){
+		//return (Vendor::where("name",Input::get('name'))->count()==0&&Input::get('name')==Input::get('name_old'))? "true": "false";
+		if(Input::get('name')==Vendor::find($id)->get()->first()->name){
+			return "true";
+		}
+		else{
+			if(Vendor::where("name",Input::get('name'))->count()==0){
+				return "true";
+			}
+			else return "false";
+		} 
+	}
+	public function check_vendor_email(){
+		return (Vendor::where("email",Input::get('email'))->count()==0? "true": "false");
+	}
+
+	public function edit_check_vendor_email($id){
+		if(Input::get('email')==Vendor::find($id)->get()->first()->email){
+			return "true";
+		}
+		else{
+			if(Vendor::where("email",Input::get('email'))->count()==0){
+				return "true";
+			}
+			else return "false";
+		} 
 	}
 
 

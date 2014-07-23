@@ -21,8 +21,11 @@
 
     <link href="{{Asset('assets/css/style.css')}}" rel="stylesheet" type="text/css">
 
-    <script type="text/javascript" src="{{Asset('assets/js/jquery.wysiwyg.js')}}"></script>
+    <script src="{{Asset('assets/js/jquery-1.11.0.js')}}"></script>
 
+   <script src="//cdn.ckeditor.com/4.4.3/full/ckeditor.js"></script>
+
+   <script src="{{Asset('assets/js/jquery-validate/jquery.validate.js')}}"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,16 +34,12 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <script src="{{Asset('assets/js/jquery-1.11.0.js')}}"></script>
+    
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{{Asset('assets/js/bootstrap.min.js')}}"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="{{Asset('assets/js/plugins/morris/raphael.min.js')}}"></script>
-    <script src="{{Asset('assets/js/plugins/morris/morris.min.js')}}"></script>
-    <script src="{{Asset('assets/js/plugins/morris/morris-data.js')}}"></script>
-    
 </head>
 
 <body>
@@ -168,7 +167,7 @@
                         <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Users</a>
                     </li>
                     <li>
-                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Vendors</a>
+                        <a href="{{URL::route('vendors')}}"><i class="fa fa-fw fa-dashboard"></i> Vendors</a>
                     </li>
                     <li>
                         <a href="{{Asset('admin/categories')}}"><i class="fa fa-fw fa-dashboard"></i> Categories</a>
