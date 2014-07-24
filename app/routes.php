@@ -65,7 +65,7 @@ Route::group(array("prefix" => "admin"),function()
 		return View::make("edit-location");
 	});
 	
-	Route::post("location/add", array("as"=>"location/add", "uses"=>"LocationController@addLocation"));
+	Route::post("location/add", array( "uses"=>"LocationController@addLocation"));
 	
 	Route::get("location/edit-location/{id}", array( "uses"=>"LocationController@editLocation"));
 	
