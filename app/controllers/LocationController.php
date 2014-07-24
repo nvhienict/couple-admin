@@ -32,7 +32,7 @@ class LocationController extends BaseController {
 
 	
 	public function listLocation(){
-		$results= Location::where('id',">",0)->get();
+		$results= Location::where('id',">",0)->paginate(2);
 		return View::make('location')->with("results",$results);
 	}
 	public function editLocation($id)

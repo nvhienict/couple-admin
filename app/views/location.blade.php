@@ -69,10 +69,11 @@
                         @endforeach
                         @else <p class="empty">Không tìm thấy kết quả</div>
                         @endif
-                            
+                        
                       
                     </tbody>
                 </table>
+                {{$results->links()}}
             </div><!-- /.table-responsive -->
     	</div><!-- /.col-xs-10 -->
     	<div class="col-xs-2">
