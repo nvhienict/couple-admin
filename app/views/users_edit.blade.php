@@ -19,7 +19,11 @@ Admin > User > Edit | Thuna.vn
 		@foreach($users as $user)
 		<tr>
 			<td class="danger">1</td>
-			<td class="danger"><input class="form-control" type="email" name="email" id="email" value="{{$user->email}}"></td>
+			<td class="danger"><input class="form-control" type="email" name="email" id="email" value="{{$user->email}}">
+				@if(isset($msg_check_email))
+			    	<label class="error">{{$msg_check_email}}</label>
+			    @endif
+			</td>
 			<td class="danger"><input class="form-control" type="number" name="role" id="role" value="{{$user->role_id}}"></td>
 			<td class="danger"><input class="form-control" type="date" name="weddingdate" id="weddingdate" value="{{$user->weddingdate}}"></td>
 			<td class="danger"><input class="form-control" type="text" name="firstname" id="firstname" value="{{$user->firstname}}"></td>
@@ -49,6 +53,13 @@ Admin > User > Edit | Thuna.vn
 <script type="text/javascript">
 	$("#form_edit").validate({
 		rules:{
+			email:{
+				email:true,
+				remote:{
+					url:"{{URL::route('check_email')}}",
+					type:"post"
+				}
+			},
 			password_old:{
 				required:true,
 				minlength:3
@@ -59,6 +70,10 @@ Admin > User > Edit | Thuna.vn
 			}
 		},
 		messages:{
+			email:{
+				email: "Format email not true!",
+				remote: "Email had!"
+			},
 			password_old:{
 				required:"Please, enter password of user and lenght than 3 word!",
 				minlength:"Length than 3 word!"
