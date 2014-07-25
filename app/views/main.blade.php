@@ -161,31 +161,25 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                        <a href="{{URL::to('admin/main')}}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="#" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-user"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li>
-                                <a href="{{URL::to('admin/users')}}"> All Users</a>
-                            </li>
-                        </ul>
+                        <a href="{{URL::to('admin/users')}}"><i class="glyphicon glyphicon-user"></i> Users</a>
                     </li>
                     <li>
-                        <a href="{{URL::route('vendors')}}"><i class="fa fa-fw fa-dashboard"></i> Vendors</a>
+                        <a href="{{URL::route('vendors')}}"><i class="glyphicon glyphicon-th-list"></i> Vendors</a>
                     </li>
                     <li>
-                        <a href="{{Asset('admin/categories')}}"><i class="fa fa-fw fa-dashboard"></i> Categories</a>
+                        <a href="{{Asset('admin/categories')}}"><i class="glyphicon glyphicon-th-large"></i> Categories</a>
                     </li>
                     <li>
-                        <a href="{{Asset('admin/location')}}"><i class="fa fa-fw fa-dashboard"></i> Location</a>
+                        <a href="{{Asset('admin/location')}}"><i class="glyphicon glyphicon-map-marker"></i> Location</a>
                     </li>
 
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
         </nav>
-
         <div id="page-wrapper">
         @yield('content')
         </div>

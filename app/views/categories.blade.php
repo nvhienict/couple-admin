@@ -15,14 +15,14 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-8"> 
-					<a href="{{URL::route('category/add')}}"><button type="button" class="btn btn-primary" onclick="PageAdd">Thêm mới</button></a>
-					<button id="del_category" class="btn btn-danger" type="submit"> Xoá </button>
+					<a href="{{URL::route('category/add')}}"><button type="button" class="btn btn-primary" onclick="PageAdd">Add Category</button></a>
+					<button id="del_category" class="btn btn-danger" type="submit"> Delete Category </button>
 				</div>
 				<div class="col-xs-4">
 					<div class="input-group">
 						<input type="text" class="form-control" name="search" >
 						<div class="input-group-btn">
-							<button class="btn btn-primary"> Tìm kiếm </button>
+							<button class="btn btn-primary"> Search </button>
 						</div>
 					</div>
 				</div>
@@ -39,8 +39,8 @@
 						<tr>
 							<th> <input type="checkbox" class="checkbox select-all " > </th>
 							<th> ID </th>
-							<th> Tên </th>
-							<th> Mô tả </th>
+							<th> Name </th>
+							<th> Description </th>
 						</tr>
 					</thead>
 						<tbody>
@@ -78,13 +78,6 @@
 						@else <p class="empty">Không tìm thấy kết quả</div>
 						@endif
 					</tbody>
-						<tr>
-							<th> <input type="checkbox" class="checkbox select-all" > </th>
-							<th> ID </th>
-							<th> Tên </th>
-							<th> Mô tả </th>
-
-						</tr>
 						<script type="text/javascript">
 						$('.select-all').click(function(event) {
 							  if(this.checked) {
@@ -103,7 +96,7 @@
 					</script><!-- -Script select all -->
 					</table>
 				</form>
-				{{$results->links()}}	
+				<div class="per_page">{{$results->links()}}	</div>
 				</div>
 
 		</div>

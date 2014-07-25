@@ -5,14 +5,39 @@ Admin > User | Thuna.vn
 @endsection
 @section('content')
 <div class="row">
+	<div class="col-xs-12 col-md-8 col-lg-6">
+		<h1>User</h1>
+	</div>
+	<div class="col-xs-12 col-md-6 col-lg-4 search">
+		<form action="{{URL::to('admin/users/search')}}" method="post">
+			<div class="input-group">
+		      <input type="text" class="form-control" name="key" placeholder="Enter user need search">
+		      <span class="input-group-btn">
+		        <button class="btn btn-default" type="submit">Search!</button>
+		      </span>
+		    </div><!-- /input-group -->
+		</form>
+	</div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+    	<ol class="breadcrumb">
+            <li>
+                <i class="fa fa-dashboard"></i><a href="{{Asset('admin/main')}}">Dashboard</a>
+            </li>
+            <li class="active">
+                <i class="fa fa-edit"></i> User
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="row">
 	<div class="col-xs-4">
 		<a href="#" class="btn btn-info" data-toggle="modal" data-target="#myModalCreatUser">Create User</a>
 		<button id="del_user" class="btn btn-danger" type="submit">Delete User</button>
 	</div>
 	<div class="col-xs-8">
-		<form action="{{URL::to('admin/users/search')}}" method="post">
-			<input type="text" class="form-control" name="key" placeholder="Enter user need search">
-		</form>
+		
 	</div>
 </div>
 <div class="row">

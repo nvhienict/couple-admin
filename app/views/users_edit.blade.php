@@ -56,7 +56,7 @@ Admin > User > Edit | Thuna.vn
 			email:{
 				email:true,
 				remote:{
-					url:"{{URL::route('check_email')}}",
+					url:"{{URL::route('check_email_edit',array($user->id))}}",
 					type:"post"
 				}
 			},

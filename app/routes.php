@@ -52,7 +52,7 @@ Route::group(array("prefix" => "admin"),function()
 
 	Route::post("edit-check-vendor-email/{id}",array("as"=>"edit-check-vendor-email","uses"=>"VendorController@edit_check_vendor_email"));
 	// Thuy-category
-	Route::get('categories', array('as' => 'categories', 'uses'=>'CategoriesController@ListCategory' ));
+	Route::get('categories', array("before"=>"check_login",'as' => 'categories', 'uses'=>'CategoriesController@ListCategory' ));
 
 	Route::get('category/{id}/edit', array('uses'=>'CategoriesController@edit'));
 
@@ -71,7 +71,7 @@ Route::group(array("prefix" => "admin"),function()
 	Route::post('dels_category',array("as"=>"dels_category", "uses"=>"CategoriesController@dels_category"));
 	
 // --Location
-	Route::get("location", array("as"=>"location","uses"=>"LocationController@listLocation"));
+	Route::get("location", array("before"=>"check_login","as"=>"location","uses"=>"LocationController@listLocation"));
 	
 	Route::get("location/add-location", array("as"=>"location/add-location","uses"=>"LocationController@showAdd"));
 	
@@ -98,6 +98,7 @@ Route::group(array("prefix" => "admin"),function()
 	Route::post("users", array("as"=>"users","uses"=>"AdminController@post_users"));
 	
 	Route::post('check_email', array("as"=>"check_email", "uses"=>"AdminController@check_email"));
+	Route::post('check_email_edit/{id}', array("as"=>"check_email_edit", "uses"=>"AdminController@check_email_edit"));
 
 	// ----delete user
 	Route::get("users/delete/{id}", array("as"=>"users/delete","uses"=>"AdminController@del_users"))

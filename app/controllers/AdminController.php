@@ -130,6 +130,19 @@ class AdminController extends \BaseController {
 		}
 		else{return "true";}
 	}
+
+	public function check_email_edit($id){
+		$email=Input::get('email');
+		if($email==User::where("id",$id)->get()->first()->email){
+			return "true";
+		}
+		else{
+			if(User::where("email", "=", $email)->count()>0){
+			return "false";
+			}
+			else{return "true";}
+		} 
+	}
 	// ---search user
 	public function postSearchUser(){
 		$keyword=Input::get('key');

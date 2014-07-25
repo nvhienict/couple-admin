@@ -142,7 +142,7 @@
                     </tbody>
                 </table>
             </div><!-- /.table-responsive -->
-    	   {{$vendors->links()}}
+    	   <div class="per_page">{{ $vendors->links() }}</div>
         </div><!-- /.col-xs-10 -->
     </div><!-- /.row -->
     </form>

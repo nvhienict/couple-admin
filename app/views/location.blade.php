@@ -5,7 +5,22 @@
 @section('content')
 <div class="container location">
 <div class="row">
-    <div class="col-xs-6">
+    <div class="col-xs-12 col-md-8 col-lg-6">
+        <h1>Location</h1>
+    </div>
+    <div class="col-xs-10 col-md-6 col-lg-4 search">
+        <form id="search-vendor" role="form" action="" method="post">
+            <div class="input-group">
+              <input type="text" name="search_name" class="form-control">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">Search!</button>
+              </span>
+            </div><!-- /input-group -->
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-10">
     	<ol class="breadcrumb">
             <li>
                 <i class="fa fa-dashboard"></i><a href="{{Asset('admin/main')}}">Dashboard</a>
@@ -19,9 +34,9 @@
 </div>
     <div class="row">
     	<div class="col-xs-10">
-            <button type="submit" class="btn btn-danger" id="del_user">Delete Select</button>
             <a href="{{URL::route('location/add-location')}}"><button type="submit" class="btn btn-primary" >Add Location</button></a>
-    		
+            <button type="submit" class="btn btn-danger" id="del_user">Delete Location</button>
+
             <div class="table-responsive">
               <form action="delSelect" method="post" id="delSelect">
                 <table class="table table-hover">
@@ -88,7 +103,7 @@
                     </tbody>
                 </table>
             </form>
-                {{$results->links()}}
+            <div class="per_page">{{$results->links()}}</div>
             </div><!-- /.table-responsive -->
     	</div><!-- /.col-xs-10 -->
     	<div class="col-xs-2">
