@@ -13,6 +13,7 @@
 </div>
 	<div class="row">
 		<div class="col-xs-8">
+        @if(isset($vendor))
 			<form id="edit-vendor" method="post" action="{{URL::route('update-vendor',array($vendor->id))}}" accept-charset="UTF-8" enctype="multipart/form-data" role="form">
 
                 <div class="form-group">
@@ -93,6 +94,7 @@
                 <button class="btn btn-default" type="submit">Edit Vendor</button>
                 
             </form>
+            @endif
             <script type="text/javascript">
                 $('#edit-vendor').validate({
                 rules:{

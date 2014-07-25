@@ -67,6 +67,9 @@ label.error{
 	margin-top: 10px;
 	color: #e95b4c;
 }
+.menu-vendor{
+	margin-bottom: 20px;
+}
 /*hover- Cuong*/
 div#menu ul.list-unstyled span{
 	display: block;

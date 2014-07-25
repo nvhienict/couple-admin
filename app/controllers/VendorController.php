@@ -9,7 +9,7 @@ class VendorController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		return View::make('vendors')->with("vendors",Vendor::paginate(5));
 	}
 
 
@@ -58,7 +58,7 @@ class VendorController extends \BaseController {
 		else
 		{
 			$errors=$validator->messages();
-			return View::make('vendors/create')
+			return View::make('add-vendor')
 			->with("errors",$errors);
 		}
 	}
@@ -141,12 +141,20 @@ class VendorController extends \BaseController {
 		Vendor::find($id)->delete();
 		return Redirect::to('admin/vendors')->with('messages',"Xoa vendor thanh cong");
 	}
+	public function delete_vendors(){
+		foreach(Vendor::get() as $vendor){
+			if(Input::get('checkbox-'.$vendor->id)==$vendor->id){
+				Vendor::find($vendor->id)->delete();
+				return Redirect::to('admin/vendors')->with('messages',"Xoa vendor thanh cong");
+			}
+		}
+	}
 	public function check_vendor(){
 		return (Vendor::where("name",Input::get('name'))->count()==0? "true": "false");
 	}
 	public function edit_check_vendor($id){
 		//return (Vendor::where("name",Input::get('name'))->count()==0&&Input::get('name')==Input::get('name_old'))? "true": "false";
-		if(Input::get('name')==Vendor::find($id)->get()->first()->name){
+		if(Input::get('name')==Vendor::where("id",$id)->get()->first()->name){
 			return "true";
 		}
 		else{
@@ -161,7 +169,7 @@ class VendorController extends \BaseController {
 	}
 
 	public function edit_check_vendor_email($id){
-		if(Input::get('email')==Vendor::find($id)->get()->first()->email){
+		if(Input::get('email')==Vendor::where("id",$id)->get()->first()->email){
 			return "true";
 		}
 		else{
@@ -170,6 +178,11 @@ class VendorController extends \BaseController {
 			}
 			else return "false";
 		} 
+	}
+	public function search(){
+		$name=Input::get('search_name');
+		$vendors=Vendor::where('name', 'LIKE', "%$name%")->paginate(5);
+		return View::make('vendors')->with('vendors',$vendors);
 	}
 
 

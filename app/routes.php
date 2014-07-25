@@ -24,23 +24,25 @@ Route::group(array("prefix" => "admin"),function()
 	//Cuong
 	Route::get("login",array("as"=>"login","uses"=>"AdminController@get_login"));
 
+	Route::get("logout",array("as"=>"logout","uses"=>"AdminController@get_logout"));
+
 	Route::post("login",array("as"=>"login","uses"=>"AdminController@post_login"));
 
-	Route::get("vendors",array("as"=>"vendors",function(){
-		return View::make('vendors')->with("vendors",Vendor::get());
-	}));
-	Route::get("vendors/create",array("as"=>"add-vendor",function(){
+	Route::get("vendors",array("as"=>"vendors","before"=>"check_login","uses"=>"VendorController@index"));
+	Route::get("vendors/create",array("as"=>"add-vendor","before"=>"check_login",function(){
 		return View::make('add-vendor');
 	}));
 	Route::post("vendors/create",array("as"=>"add-vendor","uses"=>"VendorController@store"));
 
-	Route::get("vendors/{id}",array("as"=>"delete-vendor","uses"=>"VendorController@destroy"));
+	Route::get("vendors/{id}",array("as"=>"delete-vendor","before"=>"check_login","uses"=>"VendorController@destroy"));
 	
-	Route::get("vendors/{id}/edit",array("as"=>"edit-vendor","uses"=>"VendorController@edit"));
+	Route::post("vendors/delete-vendors",array("as"=>"delete-vendors","uses"=>"VendorController@delete_vendors"));
+
+	Route::get("vendors/{id}/edit",array("as"=>"edit-vendor","before"=>"check_login","uses"=>"VendorController@edit"));
 
 	Route::post("vendors/{id}",array("as"=>"update-vendor","uses"=>"VendorController@update"));
 
-	Route::post("vendors/search",array("as"=>"search","uses"=>"AdminController@search"));
+	Route::post("search",array("as"=>"search","uses"=>"VendorController@search"));
 
 	Route::post("check-vendor",array("as"=>"check-vendor","uses"=>"VendorController@check_vendor"));
 

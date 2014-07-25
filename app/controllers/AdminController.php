@@ -105,7 +105,7 @@ class AdminController extends \BaseController {
 	public function get_logout()
 	{
 		Session::flush();
-		return Redirect::to("login");
+		return Redirect::route("login");
 	}
 	public function search(){
 		$name=Input::get('name');
