@@ -29,13 +29,15 @@
 				rules:{
 					NameLocation:{
 						required:true,
-						minlength:3
+						minlength:3,
+						
 					}
 				},
 				messages:{
 					NameLocation:{
 						required:"Please, enter name of location!",
-						minlength:"Length than 3 word!"
+						minlength:"Length than 3 word!",
+						
 						}
 					}
 			});

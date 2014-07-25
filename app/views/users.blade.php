@@ -201,22 +201,15 @@ Admin > User | Thuna.vn
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		var mybtn = document.getElementById('edit_user');
 		var $i=0;
 		$('input[type="checkbox"]').click(function(){
 			if($(this).is(':checked')) {
 				var id= $(this).val();
 			 	$(this).next().val(id);
 				$i++;
-				if($i>1){
-					mybtn.style.display = 'none';
-				}
 			}else{
 				$(this).next().val("");
 				$i--;
-				if($i<=1){
-					mybtn.style.display = 'inline-block';
-				}
 			}
 		});
 		$('#del_user').click(function(){

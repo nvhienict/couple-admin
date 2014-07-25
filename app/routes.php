@@ -65,20 +65,22 @@ Route::group(array("prefix" => "admin"),function()
 // --Location
 	Route::get("location", array("as"=>"location","uses"=>"LocationController@listLocation"));
 	
-	Route::get("location/add-location",function(){
-		return View::make("add-location");
-	});
-	Route::get("location/edit-location",function(){
-		return View::make("edit-location");
-	});
+	Route::get("location/add-location", array("as"=>"location/add-location","uses"=>"LocationController@showAdd"));
+	
+	Route::get("location/edit-location", array("as"=>"location/edit-location","uses"=>"LocationController@showEdit"));
 	
 	Route::post("location/add", array( "uses"=>"LocationController@addLocation"));
 	
 	Route::get("location/edit-location/{id}", array( "uses"=>"LocationController@editLocation"));
 	
 	Route::post("location/update/{id}", array("as"=>"update","uses"=>"LocationController@updateLocation"));
+	
 	Route::get("location/delete/{id}",array("uses"=>"LocationController@deleteLocation"));
-
+	
+	Route::post('delSelect',array("as"=>"'delSelect", "uses"=>"LocationController@delSelect"));
+	Route::post("check-location",array("as"=>"check-location","uses"=>"LocationController@check_location"));
+	
+	Route::post("edit-check-location/{id}",array("as"=>"edit-check-location","uses"=>"LocationController@edit_check_location"));
 
 	// Giang -----User
 	Route::post("users/search",array("as"=>"SearchUser","uses"=>"AdminController@postSearchUser"));

@@ -28,13 +28,19 @@
 				rules:{
 					locationname:{
 						required:true,
-						minlength:3
+						minlength:3,
+						remote:{
+                                url:'{{URL::route('check-location')}}',
+                                type:"POST"
+                            }
+                  
 					}
 				},
 				messages:{
 					locationname:{
 						required:"Please, enter name of location!",
-						minlength:"Length than 3 word!"
+						minlength:"Length than 3 word!",
+						remote:"Location existing!"
 						}
 					}
 			});

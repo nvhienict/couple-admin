@@ -97,7 +97,7 @@ class AdminController extends \BaseController {
 		if($auth)
 		{
 			Session::put("email",Input::get('inputEmail'));
-			return Redirect::to("main");
+			return Redirect::to("admin/main");
 		}	 
 		
 		else return View::make('login')->with("messages","Tên tài khoản hay mật khẩu không đúng hoặc bạn ko phải là admin");	
