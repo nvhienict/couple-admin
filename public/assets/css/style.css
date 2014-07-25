@@ -76,3 +76,24 @@ div#menu ul.list-unstyled span{
 div#menu ul.list-unstyled span:hover{
 	color: #3399FF;
 }
+
+
+/* Giang -> User */
+#email-user p{
+	display: none;
+}
+#email-user:hover p{
+	display: block;
+}
+label.error{
+	color: #d8142b;
+}
+input[type="date"]::-webkit-calendar-picker-indicator{
+    display:inline-block;
+}
+
+.per_page{
+	width: 100%;
+	height: 50px;
+	text-align: center;
+}

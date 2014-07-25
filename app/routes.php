@@ -13,7 +13,14 @@
 
 Route::group(array("prefix" => "admin"),function()
 {
-	Route::get("main",array("as"=>"main","uses"=>"AdminController@index"));
+
+	// Giang
+	Route::filter("check_login", function(){
+		if(!Session::has("email"))
+			return Redirect::to("admin/login");
+	});
+
+	Route::get("main",array("before"=>"check_login", "as"=>"main","uses"=>"AdminController@index"));
 	//Cuong
 	Route::get("login",array("as"=>"login","uses"=>"AdminController@get_login"));
 
@@ -71,6 +78,27 @@ Route::group(array("prefix" => "admin"),function()
 	
 	Route::post("location/update/{id}", array("as"=>"update","uses"=>"LocationController@updateLocation"));
 	Route::get("location/delete/{id}",array("uses"=>"LocationController@deleteLocation"));
+
+
+	// Giang -----User
+	Route::post("users/search",array("as"=>"SearchUser","uses"=>"AdminController@postSearchUser"));
+
+	Route::get("users",array("before"=>"check_login","as"=>"users","uses"=>"AdminController@get_users"));
+	// ---add user
+	Route::post("users", array("as"=>"users","uses"=>"AdminController@post_users"));
+	
+	Route::post('check_email', array("as"=>"check_email", "uses"=>"AdminController@check_email"));
+
+	// ----delete user
+	Route::get("users/delete/{id}", array("as"=>"users/delete","uses"=>"AdminController@del_users"))
+				->where(array('id'=>'[0-9]+'));
+	Route::post('dels',array("as"=>"dels", "uses"=>"AdminController@dels"));
+
+	// -----edit user
+	Route::get("users/edit/{id}", array("as"=>"users/edit","uses"=>"AdminController@get_edit_users"))
+				->where(array('id'=>'[0-9]+'));
+	Route::post("users/edit/{id}", array("as"=>"users/edit","uses"=>"AdminController@post_edit_users"))
+				->where(array('id'=>'[0-9]+'));
 
 });
 

@@ -152,7 +152,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="{{URL::to('admin/logout')}}"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -164,7 +164,12 @@
                         <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Users</a>
+                        <a href="#" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-user"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse">
+                            <li>
+                                <a href="{{URL::to('admin/users')}}"> All Users</a>
+                            </li>
+                        </ul>
                     </li>
                     <li>
                         <a href="{{URL::route('vendors')}}"><i class="fa fa-fw fa-dashboard"></i> Vendors</a>
