@@ -82,13 +82,28 @@ class CategoriesController extends \BaseController {
 		//
 	}
 	public function UpdateCategory(){
+		$rules=array(
+			"NameCategory"=>"required|min:3",
+			"editor4"=>"required|min:15"
+			);
+		$validator=Validator::make(Input::all(),$rules);
 		$id=Input::get('IdCategory');
 		$name = Input::get('NameCategory');
-		Category::where('id',$id)->update(array('name' => $name));
+		$descreption=Input::get('editor4');
+		if($validator->passes()){
+			Category::where('id',$id)->update(array('name' => $name,'description'=>$descreption));
 		return Redirect::to("admin/categories")->with('message','Đã lưu thành công');
+		}
+		else
+		{
+			$category=Category::where("id","=",$id)->get()->first();
+			$errors=$validator->messages();
+			return View::make('CategoryEdit')->with('category',$category)->with("errors",$errors);
+		}
+		
 	}
 	public function ListCategory(){
-		$results= Category::where('id',">",0)->get();
+		$results= Category::where('id',">",0)->paginate(10);
 		return View::make('categories')->with("results",$results);
 	}
 	public function AddCategory(){
@@ -97,20 +112,46 @@ class CategoriesController extends \BaseController {
 	}
 	public function NewCategory(){
 		$name = Input::get('NameCategory');
-		$count=Category::where('name','=',$name)->count();
-		if($count>0){
-			return Redirect::to("admin/category/add")->with('message','Đã tồn tại Category '.$name);
+		$description = Input::get('editor4');
+		$rules=array(
+			"NameCategory"=>"required|min:3",
+			"editor4"=>"required|min:15"
+			);
+		$validator=Validator::make(Input::all(),$rules);
+		if($validator->passes()){
+		Category::insert(array('name' => $name,'description'=>$description));
+		return Redirect::to("admin/categories")->with('message','Đã thêm thành công');
 		}
 		else
 		{
-			Category::insert(array('name' => $name));
-		return Redirect::to("admin/categories")->with('message','Đã thêm thành công');
+			$errors=$validator->messages();
+			return View::make('AddCategory')->with("errors",$errors);
 		}
-		
 	}
 	public function DeleteCategory($id){
 		Category::find($id)->delete();
 		return Redirect::to("admin/categories")->with('message','Đã xoá thành công');
 	}
+	public function check_Categories(){
+		return (Category::where("name",Input::get('NameCategory'))->count()==0? "true": "false");
+	}
+	public function dels_category(){
+		$ids=array();
+		foreach(Category::get() as $category){
+			if(Input::get('chk-'.$category->id)==$category->id){
+				$ids[]=Input::get('chk-'.$category->id);
+			} //end if
+		} //end foreach
 
+		foreach ($ids as $id=>$key){
+			foreach (Category::get() as $category){
+				if($category->id==$key){
+					Category::where("id", "=", $category->id)->delete();
+				}
+			} // end foreach
+		} //end foreach
+		
+		$msg="Delete Categry Success!";
+		return Redirect::route("categories")->with('message',$msg);
+	} //end function
 }

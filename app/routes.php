@@ -54,13 +54,19 @@ Route::group(array("prefix" => "admin"),function()
 
 	Route::get('category/{id}/edit', array('uses'=>'CategoriesController@edit'));
 
-	Route::get('category/add', array('uses'=>'CategoriesController@AddCategory'));
+	Route::get('category/add', array('as'=>'category/add','uses'=>'CategoriesController@AddCategory'));
 
 	Route::post('NewCategory', array('uses'=>'CategoriesController@NewCategory'));
 
 	Route::post('UpdateCategory', array('uses'=>'CategoriesController@UpdateCategory'));
 	
+	Route::post('check_category/{id}', array('uses'=>'CategoriesController@check_category'));
+
+	Route::post('check_Categories', array('as' => 'check_Categories','uses'=>'CategoriesController@check_Categories'));
+	
 	Route::get('category/{id}/delete', array('uses'=>'CategoriesController@DeleteCategory'));
+
+	Route::post('dels_category',array("as"=>"dels_category", "uses"=>"CategoriesController@dels_category"));
 	
 // --Location
 	Route::get("location", array("as"=>"location","uses"=>"LocationController@listLocation"));
