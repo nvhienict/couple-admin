@@ -35,7 +35,7 @@
 <div class="row">
     <div class="col-xs-4 menu-vendor">
         <a href="{{URL::route('add-vendor')}}" class="btn btn-primary">Add Vendor</a>
-        <button id="button-submit" type"submit" class="btn btn-danger" data-toggle="modal" >Delete</button>
+        <button id="button-submit" type"submit" class="btn btn-danger" data-toggle="modal" >Delete Vendors</button>
         <div class="modal fade" id="no-selected" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
