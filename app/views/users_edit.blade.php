@@ -24,8 +24,20 @@ Admin > User > Edit | Thuna.vn
 			    	<label class="error">{{$msg_check_email}}</label>
 			    @endif
 			</td>
-			<td class="danger"><input class="form-control" type="number" name="role" id="role" value="{{$user->role_id}}"></td>
-			<td class="danger"><input class="form-control" type="date" name="weddingdate" id="weddingdate" value="{{$user->weddingdate}}"></td>
+			<td class="danger">
+				<select name="role" class="form-control">
+					<option value="2">User</option>
+					<option value="1">Admin</option>
+				</select>
+			</td>
+			<td class="danger">
+				<input class="form-control" type="text" name="weddingdate" id="weddingdate" value="{{$user->weddingdate}}">
+				<script type="text/javascript">
+					$(document).ready(function () {
+						$('#weddingdate').datepicker();
+					});
+				</script>
+			</td>
 			<td class="danger"><input class="form-control" type="text" name="firstname" id="firstname" value="{{$user->firstname}}"></td>
 			<td class="danger"><input class="form-control" type="text" name="lastname" id="lastname" value="{{$user->lastname}}"></td>
 			<input type="hidden" name="id" value="{{$user->id}}">

@@ -155,16 +155,22 @@ Admin > User | Thuna.vn
 			<div class="row form-group">
 		        <div class='col-sm-6'>
 		            <div class='input-group date' id='datetimepicker5' data-date-format="YYYY/MM/DD">
-		                <input type='date' class="form-control" name="weddingdate" id="weddingdate" placeholder="Weddingdate" />
-		                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-		                </span>
+		                <input type="text" class="form-control" name="weddingdate" id="weddingdate" placeholder="Weddingdate" />
+		                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+						<script type="text/javascript">
+							$(document).ready(function () {
+								$('#weddingdate').datepicker();
+							});
+						</script>
 		            </div>
 		        </div>
 		    </div>
 		  	<div class="row form-group">
 				<div class="col-xs-6">
-				    <input type="number" class="form-control" name="role" placeholder="Role">
-				    <p><h5>1: admin, 2: user, 3: guess</h5></p>
+				    <select name="role" class="form-control">
+						<option value="2">User</option>
+						<option value="1">Admin</option>
+					</select>
 				</div>
 			</div>
 		  	<div class="row form-group">

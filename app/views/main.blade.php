@@ -39,7 +39,7 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="{{Asset('assets/js/bootstrap.min.js')}}"></script>
 
-    <!-- Morris Charts JavaScript -->
+    <script src="{{Asset('assets/js/bootstrap-datepicker.js')}}"></script>
 </head>
 
 <body>
