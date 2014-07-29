@@ -1,12 +1,12 @@
 @extends('main')
 @section('title')
-	Locations
+	Task
 @endsection
 @section('content')
-<div class="container location">
+<div class="container task">
 <div class="row">
     <div class="col-xs-12 col-md-8 col-lg-6">
-        <h1>Location</h1>
+        <h1>Task</h1>
     </div>
     <div class="col-xs-10 col-md-6 col-lg-4 search">
         <form id="search-vendor" role="form" action="" method="post">
@@ -26,7 +26,7 @@
                 <i class="fa fa-dashboard"></i><a href="{{Asset('admin/main')}}">Dashboard</a>
             </li>
             <li class="active">
-                <i class="fa fa-edit"></i> Location
+                <i class="fa fa-edit"></i>Task
             </li>
         </ol>
     </div>
@@ -34,11 +34,11 @@
 </div>
     <div class="row">
     	<div class="col-xs-10">
-            <a href="{{URL::route('location/add-location')}}"><button type="submit" class="btn btn-primary" >Add Location</button></a>
-            <button type="submit" class="btn btn-danger" id="del_user">Delete Location</button>
+            <a href="{{URL::route('task/add-task')}}"><button type="submit" class="btn btn-primary" >Add Task</button></a>
+            <button type="submit" class="btn btn-danger" id="del_task">Delete Task</button>
 
             <div class="table-responsive">
-              <form action="delSelect" method="post" id="delSelect">
+              <form action="delSelectTask" method="post" id="delSelectTask">
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -64,46 +64,54 @@
                                     </script><!-- -Script select all -->
                           </th>
                             <th Style="width:30px">Id</th>
-                            <th>Location</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Start Date</th>
+                            <th>Link</th>
+
                         </tr>
                     </thead>
                     <tbody>
-                        @if(!empty($results))
-                    	@foreach($results as $i=>$location)
-                        <tr>
-                            <td>                                
-                                <input type="checkbox" class="checkbox" value="{{$location->id}}">
-                                <input type="hidden" name="chk-{{$location->id}}" value="" >
-                            </td>
-                            <td>{{$i+1}}</td>
-                            <td>{{$location->name}}
-                                <ul class="menu list-unstyled" role="menu">
-                                	<li ><a href="location/edit-location/{{$location->id}}">Edit</a></li>
+                        @if(!empty($tasks))
+                    	@foreach($tasks as $i=>$task)
+                            <tr>
+                                <td>                                
+                                    <input type="checkbox" class="checkbox" value="{{$task->id}}">
+                                    <input type="hidden" name="chk-{{$task->id}}" value="" >
 
-                                	<li><a class="confirm" href="location/delete/{{$location->id}}">Delete</a></li>
-                                </ul>
-                                <script>
-                                $(".confirm").click(function(){
-                                    if(confirm("Are you sure you want to delete this?")){
-                                        return true;
-                                    }
-                                    else{
-                                        return false;
-                                    }
-                                });
-                                </script>
-                            </td>
-                           
-                        </tr>
-                        @endforeach
-                        @else <p class="empty">Không tìm thấy kết quả</div>
+                                </td>
+                                <td>{{$i+1}}</td>
+                                <td>{{$task->title}}
+                                    <ul class="menu list-unstyled" role="menu">
+                                    	<li ><a href="{{URL::route('task/edit',array($task->id))}}">Edit</a></li>
+                                    	<li><a class="confirm" href="{{URL::route('task/delete',array($task->id))}}">Delete</a></li>
+                                    </ul>
+                                    <script type="text/javascript">
+                                    $(".confirm").click(function(){
+                                        if(confirm("Are you sure you want to delete this?")){
+                                            return true;
+                                        }
+                                        else{
+                                            return false;
+                                        }
+                                    });
+                                    </script>
+                                </td>
+                                <td>{{$task->description}}</td>
+                                <td>{{Task::find($task->id)->category()->get()->first()->name}}</td>
+                                <td>{{$task->startdate}}</td>
+                                <td>{{$task->link}}</td>
+                    
+                            </tr>
+                        @endforeach()
+                        @else <p class="empty">Can't find the results</div>
                         @endif
-                        
-                      
+                                       
                     </tbody>
                 </table>
             </form>
-            <div class="per_page">{{$results->links()}}</div>
+            <div class="per_page">{{$tasks->links()}}</div>
             </div><!-- /.table-responsive -->
     	</div><!-- /.col-xs-10 -->
     	<div class="col-xs-2">
@@ -124,12 +132,12 @@
                 $i--;
             }
         });
-        $('#del_user').click(function(){
+        $('#del_task').click(function(){
             if ($i<1) {
-                alert('You must check user need delete!');
+                alert('You must check task need delete!');
                 return false;
             }else{
-                $("#delSelect").submit();
+                $("#delSelectTask").submit();
             }
         });
     });

@@ -17,7 +17,7 @@
 				<div class="row form-group">
 			  		<div class="col-xs-6">
 			  			<button type="reset" class="btn btn-default">Reset</button>
-				    	<button type="submit" class="btn btn-primary" id="submit_add">Update</button>
+				    	<button type="submit" class="btn btn-primary" id="submit_update">Update</button>
 			  		</div>
 			  	</div>
 			</div>
@@ -30,14 +30,17 @@
 					NameLocation:{
 						required:true,
 						minlength:3,
-						
+						remote:{
+                                url:'{{URL::route('edit-check-location',$location->id)}}',
+                                type:"POST"
+                            }
 					}
 				},
 				messages:{
 					NameLocation:{
 						required:"Please, enter name of location!",
 						minlength:"Length than 3 word!",
-						
+						remote:"Location existing!"
 						}
 					}
 			});

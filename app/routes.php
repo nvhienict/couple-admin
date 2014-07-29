@@ -111,6 +111,15 @@ Route::group(array("prefix" => "admin"),function()
 	Route::post("users/edit/{id}", array("as"=>"users/edit","uses"=>"AdminController@post_edit_users"))
 				->where(array('id'=>'[0-9]+'));
 
+	/*****Task*****/
+	Route::get('task',array('before'=>'check_login','as'=>'task','uses'=>"TaskController@showTask"));
+	Route::get('task/add-task',array('as'=>'task/add-task','uses'=>'TaskController@showAdd'));
+	Route::post('task/add', array('as'=>"task/add", 'uses'=>'TaskController@addTask'));
+	Route::get('task/edit-task',array('as'=>'task/edit-task','uses'=>'TaskController@showEdit'));
+	Route::post('checkTitle',array('as'=>'checkTitle','uses'=>'TaskController@checkTitle'));
+	Route::post('edit_checkTitle/{id}',array('as'=>'edit_checkTitle','uses'=>'TaskController@edit_checkTitle'));
+	Route::get('task/edit/{id}',array('as'=>'task/edit', 'uses'=>'TaskController@editTask'));
+	Route::post('task/update/{id}', array('as'=>'task/update','uses'=>'TaskController@updateTask'));
+	Route::get('task/delete/{id}', array('as'=>'task/delete','uses'=>'TaskController@deleteTask'));
+	Route::post('delSelectTask',array("as"=>"'delSelectTask", "uses"=>"TaskController@delSelectTask"));
 });
-
-

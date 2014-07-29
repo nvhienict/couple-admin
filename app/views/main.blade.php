@@ -175,6 +175,9 @@
                     <li>
                         <a href="{{Asset('admin/location')}}"><i class="glyphicon glyphicon-map-marker"></i> Location</a>
                     </li>
+                     <li>
+                        <a href="{{Asset('admin/task')}}"><i class="glyphicon glyphicon-ok"></i>Task</a>
+                    </li>
 
                 </ul>
             </div>

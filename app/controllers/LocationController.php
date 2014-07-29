@@ -30,9 +30,9 @@ class LocationController extends BaseController {
 	public function check_location(){
 		return (Location::where("name",Input::get('locationname'))->count()==0? "true": "false");
 	}
-	/*public function edit_check_location($id){
+	public function edit_check_location($id){
 		
-		if(Input::get('NameLocation')==Location::find($id)->get()->first()->name){
+		if(Input::get('NameLocation')==Location::where('id',$id)->get()->first()->name){
 			return "true";
 		}
 		else{
@@ -41,7 +41,7 @@ class LocationController extends BaseController {
 			}
 			else return "false";
 		} 
-	}*/
+	}
 	
 	public function showAdd()
 	{
@@ -53,7 +53,7 @@ class LocationController extends BaseController {
 	}
 	
 	public function listLocation(){
-		$results= Location::where('id',">",0)->paginate(2);
+		$results= Location::where('id',">",0)->paginate(10);
 		return View::make('location')->with("results",$results);
 	}
 	public function editLocation($id)

@@ -25,4 +25,5 @@ class Vendor extends Eloquent{
   	{
     	return $this->belongsTo('Category', 'category');
   	}
+  	
 }
