@@ -145,9 +145,9 @@ class VendorController extends \BaseController {
 		foreach(Vendor::get() as $vendor){
 			if(Input::get('checkbox-'.$vendor->id)==$vendor->id){
 				Vendor::find($vendor->id)->delete();
-				return Redirect::to('admin/vendors')->with('messages',"Xoa vendor thanh cong");
 			}
 		}
+		return Redirect::to('admin/vendors')->with('messages',"Xoa vendor thanh cong");
 	}
 	public function check_vendor(){
 		return (Vendor::where("name",Input::get('name'))->count()==0? "true": "false");

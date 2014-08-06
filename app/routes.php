@@ -32,6 +32,7 @@ Route::group(array("prefix" => "admin"),function()
 	Route::get("vendors/create",array("as"=>"add-vendor","before"=>"check_login",function(){
 		return View::make('add-vendor');
 	}));
+
 	Route::post("vendors/create",array("as"=>"add-vendor","uses"=>"VendorController@store"));
 
 	Route::get("vendors/{id}",array("as"=>"delete-vendor","before"=>"check_login","uses"=>"VendorController@destroy"));
@@ -51,6 +52,20 @@ Route::group(array("prefix" => "admin"),function()
 	Route::post("edit-check-vendor/{id}",array("as"=>"edit-check-vendor","uses"=>"VendorController@edit_check_vendor"));
 
 	Route::post("edit-check-vendor-email/{id}",array("as"=>"edit-check-vendor-email","uses"=>"VendorController@edit_check_vendor_email"));
+	
+	Route::get("range",array("as"=>"range","before"=>"check_login","uses"=>"BudgetRangeController@index"));
+
+	Route::get("range/create",array("as"=>"add-range","before"=>"check_login","uses"=>"BudgetRangeController@create"));
+
+	Route::post("range/create",array("as"=>"add-range","before"=>"check_login","uses"=>"BudgetRangeController@store"));
+	
+	Route::get("range/{id}",array("as"=>"delete-range","before"=>"check_login","uses"=>"BudgetRangeController@destroy"));
+
+	Route::post("range/delete-ranges",array("as"=>"delete-ranges","before"=>"check_login","uses"=>"BudgetRangeController@delete_ranges"));
+	
+	Route::get("range/{id}/edit",array("as"=>"edit-range","before"=>"check_login","uses"=>"BudgetRangeController@edit"));
+
+	Route::post("range/{id}",array("as"=>"update-range","before"=>"check_login","uses"=>"BudgetRangeController@update"));
 	// Thuy-category
 	Route::get('categories', array("before"=>"check_login",'as' => 'categories', 'uses'=>'CategoriesController@ListCategory' ));
 

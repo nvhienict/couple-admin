@@ -178,6 +178,9 @@
                      <li>
                         <a href="{{Asset('admin/task')}}"><i class="glyphicon glyphicon-ok"></i>Task</a>
                     </li>
+                    <li>
+                        <a href="{{Asset('admin/range')}}"><i class="glyphicon glyphicon-ok"></i>Range</a>
+                    </li>
 
                 </ul>
             </div>

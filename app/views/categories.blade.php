@@ -50,7 +50,7 @@
 							<tr>
 								<td>
 									<input type="checkbox" value="{{$category->id}}">
-									<input type="hidden" name="chk-{{$category->id}}" value="" >
+									<input type="hidden" name="chk-{{$category->id}}" value="" ></td>
 								<td>{{$category->id}}</td>
 								<td>{{$category->name}}
 									<ul class="menu list-unstyled" role="menu">

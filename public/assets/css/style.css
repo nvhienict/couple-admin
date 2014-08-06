@@ -79,6 +79,10 @@ div#menu ul.list-unstyled span{
 div#menu ul.list-unstyled span:hover{
 	color: #3399FF;
 }
+/*Range CUong*/
+.form-range{
+	width: 300px;
+}
 
 
 /* Giang -> User */
