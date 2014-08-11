@@ -137,4 +137,20 @@ Route::group(array("prefix" => "admin"),function()
 	Route::post('task/update/{id}', array('as'=>'task/update','uses'=>'TaskController@updateTask'));
 	Route::get('task/delete/{id}', array('as'=>'task/delete','uses'=>'TaskController@deleteTask'));
 	Route::post('delSelectTask',array("as"=>"'delSelectTask", "uses"=>"TaskController@delSelectTask"));
+
+	/****Item*****/
+	Route::get('item',array('before'=>'check_login','as'=>'item','uses'=>'ItemController@show'));
+	Route::post('item/delete',array('as'=>'deleteItem','uses'=>'ItemController@deleteItem'));
+	Route::post('item/add',array('as'=>'add','uses'=>'ItemController@addItem'));
+	Route::post('item/updateItem',array('as'=>'updateItem','uses'=>'ItemController@updateItem'));
+	Route::post('item/updateRange1',array('as'=>'updateRange1','uses'=>'ItemController@updateRange1'));
+	Route::post('item/updateRange2',array('as'=>'updateRange2','uses'=>'ItemController@updateRange2'));
+	Route::post('item/updateRange3',array('as'=>'updateRange3','uses'=>'ItemController@updateRange3'));
+	Route::post('item/updateRange4',array('as'=>'updateRange4','uses'=>'ItemController@updateRange4'));
+	Route::post('item/updateRange5',array('as'=>'updateRange5','uses'=>'ItemController@updateRange5'));
+	Route::post('item/updateCate1',array('as'=>'updateCate1','uses'=>'CategoriesController@updateCate1'));
+	Route::post('item/updateCate2',array('as'=>'updateCate2','uses'=>'CategoriesController@updateCate2'));
+	Route::post('item/updateCate3',array('as'=>'updateCate3','uses'=>'CategoriesController@updateCate3'));
+	Route::post('item/updateCate4',array('as'=>'updateCate4','uses'=>'CategoriesController@updateCate4'));
+	Route::post('item/updateCate5',array('as'=>'updateCate5','uses'=>'CategoriesController@updateCate5'));
 });

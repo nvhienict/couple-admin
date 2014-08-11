@@ -1,0 +1,838 @@
+@extends('main')
+@section('title')
+	Item
+@endsection
+@section('content')
+<div class="container item">
+    <div class="container">
+    <div class="row">
+        <div class="col-xs-10">
+            
+            <div class="row">
+                <div class="col-xs-12">
+                    <table class="table table-striped table-budget" id="table-item">
+                        <thead>
+                            <th colspan="2">Category</th>
+                            <th>Range1</th>
+                            <th>Range2</th>
+                            <th>Range3</th>
+                            <th>Range4</th>
+                            <th>Range5</th>
+                            <th>
+                                <a href="#" id="budget_all_item_sign_up"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                                <a href="#" id="budget_all_item_sign_down"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                                <!-- display or hide all items -->
+                                <script type="text/javascript">
+                                    $('#budget_all_item_sign_up').click(function(){
+                                        $('.budget_item_cat').show();
+                                        
+                                    });
+                                    $('#budget_all_item_sign_down').click(function(){
+                                        $('.budget_item_cat').hide();
+                                    });
+                                </script>
+
+                            </th>
+                        </thead>
+                        <tbody id="first">
+                        @foreach(Category::get() as $key=>$category)
+                            <tr class="budget_cat">
+                                <td><i class="glyphicon glyphicon-hand-right" id="budget_category_icon"></i></td>
+                                <td><strong>{{$category->name}}</strong>
+
+                                </td>
+                                <td>
+                                    <a onclick="clcate1({{$category->id}})" class="{{$category->id}}_cate_show_hide ">{{$category->range1}}</a><span class="{{$category->id}}_percent_show_hide">%</span>                                    
+                                    <input onchange="v_fChangecate1({{$category->id}})" ondblclick="dbcate1({{$category->id}})" type="text" style="width:150px;display:none;" class="{{$category->id}}_cate_slidingDiv" name="range1" value="{{$category->range1}}">                                    
+                                    <input type="hidden" name="{{$category->id}}" value="{{$category->id}}">
+                                    <p class="{{$category->id}}_mgss_cate_1"style="display:none;color:red;">Must Enter Range1!</p>
+                                </td>
+                                <td>
+                                    <a onclick="clcate2({{$category->id}})"class="{{$category->id}}_cate_show_hide1 ">{{$category->range2}}</a><span class="{{$category->id}}_percent_show_hide1">%</span>                                    
+                                    <input onchange="v_fChangecate2({{$category->id}})" ondblclick="dbcate2({{$category->id}})" type="text" style="width:150px;display:none;" class="{{$category->id}}_cate_slidingDiv1" name="range2" value="{{$category->range2}}">
+                                    <input type="hidden" name="{{$category->id}}" value="{{$category->id}}">
+                                    <p class="{{$category->id}}_mgss_cate_2"style="display:none;color:red;">Must Enter Range2!</p>
+                                </td>
+                                <td>
+                                    <a onclick="clcate3({{$category->id}})"class="{{$category->id}}_cate_show_hide2 ">{{$category->range3}}</a><span class="{{$category->id}}_percent_show_hide2">%</span>                                    
+                                    <input onchange="v_fChangecate3({{$category->id}})" ondblclick="dbcate3({{$category->id}})" type="text" style="width:150px;display:none;" class="{{$category->id}}_cate_slidingDiv2" name="range3" value="{{$category->range3}}">
+                                    <input type="hidden" name="{{$category->id}}" value="{{$category->id}}">
+                                    <p class="{{$category->id}}_mgss_cate_3"style="display:none;color:red;">Must Enter Range3!</p>
+                                </td>
+                                <td>
+                                    <a onclick="clcate4({{$category->id}})"class="{{$category->id}}_cate_show_hide3 ">{{$category->range4}}</a><span class="{{$category->id}}_percent_show_hide3">%</span>                                    
+                                    <input onchange="v_fChangecate4({{$category->id}})" ondblclick="dbcate4({{$category->id}})"type="text" style="width:150px;display:none;" class="{{$category->id}}_cate_slidingDiv3" name="range4" value="{{$category->range4}}">
+                                    <input type="hidden" name="{{$category->id}}" value="{{$category->id}}">
+                                    <p class="{{$category->id}}_mgss_cate_4"style="display:none;color:red;">Must Enter Range4!</p>
+                                </td>
+                                <td>
+                                    <a onclick="clcate5({{$category->id}})"class="{{$category->id}}_cate_show_hide4 ">{{$category->range5}}</a><span class="{{$category->id}}_percent_show_hide4">%</span>                                    
+                                    <input onchange="v_fChangecate5({{$category->id}})" ondblclick="dbcate5({{$category->id}})" type="text" style="width:150px;display:none;" class="{{$category->id}}_cate_slidingDiv4" name="range5" value="{{$category->range5}}">
+                                    <input type="hidden" name="{{$category->id}}" value="{{$category->id}}">
+                                    <p class="{{$category->id}}_mgss_cate_5"style="display:none;color:red;">Must Enter Range5!</p>
+                                </td>
+                                    <!-- -Script Update Category Range  -->
+                                    <script type="text/javascript">
+
+                                            function clcate1(the_i_CateId){
+                                                    $("."+the_i_CateId+"_cate_show_hide").hide();
+                                                    $("."+the_i_CateId+"_percent_show_hide").hide();                                                                                                
+                                                     $("."+the_i_CateId+"_cate_slidingDiv").show();                                                                                                   
+                                                 };   
+                                                
+                                                function dbcate1(the_i_CateId)
+                                                {
+                                                    if ($("."+the_i_CateId+"_cate_slidingDiv").val()=="") 
+                                                    {
+                                                        $("."+the_i_CateId+"_cate_slidingDiv").show();
+                                                        $("."+the_i_CateId+"_mgss_cate_1").show();
+                                                       
+                                                        
+                                                    } 
+                                                    else
+                                                    { 
+                                                        $("."+the_i_CateId+"_cate_slidingDiv").hide(); 
+                                                        $("."+the_i_CateId+"_cate_show_hide").show();
+                                                        $("."+the_i_CateId+"_percent_show_hide").show();  
+                                                    };                                                 
+                                                };
+
+                                                function v_fChangecate1(the_i_CateId){ 
+                                                    if ($("."+the_i_CateId+"_cate_slidingDiv").val()=="") 
+                                                    {
+                                                        $("."+the_i_CateId+"_cate_slidingDiv").show();
+                                                        $("."+the_i_CateId+"_mgss_cate_1").show();
+                                                       
+                                                        
+                                                    } 
+                                                    else{                                                                                                       
+                                                    $.ajax({
+                                                        type: "post",
+                                                        url: "{{URL::route('updateCate1')}}",
+                                                        data: {range1: $("."+the_i_CateId+"_cate_slidingDiv").val(),
+                                                                id: $("."+the_i_CateId+"_cate_slidingDiv").next().val()
+                                                        }
+                                                        
+                                                        });
+                                                    $("."+the_i_CateId+"_cate_show_hide").text($("."+the_i_CateId+"_cate_slidingDiv").val());
+                                                    $("."+the_i_CateId+"_cate_slidingDiv").hide();
+                                                    $("."+the_i_CateId+"_cate_show_hide").show();
+                                                    $("."+the_i_CateId+"_percent_show_hide").show();  
+                                                    $("."+the_i_CateId+"_mgss_cate_1").hide();
+                                                       
+                                                   };
+                                                };
+                                                                
+                                            
+                                            function clcate2(the_i_CateId){
+                                                    $("."+the_i_CateId+"_cate_show_hide1").hide();
+                                                    $("."+the_i_CateId+"_percent_show_hide1").hide();                                                                                                
+                                                     $("."+the_i_CateId+"_cate_slidingDiv1").show();                                                                                                   
+                                                 };   
+                                                
+                                                function dbcate2(the_i_CateId)
+                                                {
+                                                    if ($("."+the_i_CateId+"_cate_slidingDiv1").val()=="") 
+                                                    {
+                                                        $("."+the_i_CateId+"_cate_slidingDiv1").show();
+                                                        $("."+the_i_CateId+"_mgss_cate_2").show();
+                                                       
+                                                        
+                                                    } 
+                                                    else
+                                                    { 
+                                                        $("."+the_i_CateId+"_cate_slidingDiv1").hide(); 
+                                                        $("."+the_i_CateId+"_cate_show_hide1").show();
+                                                        $("."+the_i_CateId+"_percent_show_hide1").show();  
+                                                    };                                                 
+                                                };
+
+                                                function v_fChangecate2(the_i_CateId){ 
+                                                    if ($("."+the_i_CateId+"_cate_slidingDiv1").val()=="") 
+                                                    {
+                                                        $("."+the_i_CateId+"_cate_slidingDiv1").show();
+                                                         $("."+the_i_CateId+"_mgss_cate_2").show();
+                                                       
+                                                        
+                                                    } 
+                                                    else{                                                                                                       
+                                                    $.ajax({
+                                                        type: "post",
+                                                        url: "{{URL::route('updateCate2')}}",
+                                                        data: {range2: $("."+the_i_CateId+"_cate_slidingDiv1").val(),
+                                                                id: $("."+the_i_CateId+"_cate_slidingDiv1").next().val()
+                                                        }
+                                                        
+                                                        });
+                                                    $("."+the_i_CateId+"_cate_show_hide1").text($("."+the_i_CateId+"_cate_slidingDiv1").val());
+                                                    $("."+the_i_CateId+"_cate_slidingDiv1").hide();
+                                                    $("."+the_i_CateId+"_cate_show_hide1").show();
+                                                    $("."+the_i_CateId+"_percent_show_hide1").show(); 
+                                                    $("."+the_i_CateId+"_mgss_cate_2").hide();
+                                                       
+                                                   };
+                                                };
+
+
+                                                function clcate3(the_i_CateId){
+                                                    $("."+the_i_CateId+"_cate_show_hide2").hide();
+                                                    $("."+the_i_CateId+"_percent_show_hide2").hide();                                                                                                
+                                                     $("."+the_i_CateId+"_cate_slidingDiv2").show();                                                                                                   
+                                                 };   
+                                                
+                                                function dbcate3(the_i_CateId)
+                                                {
+                                                    if ($("."+the_i_CateId+"_cate_slidingDiv2").val()=="") 
+                                                    {
+                                                        $("."+the_i_CateId+"_cate_slidingDiv2").show();
+                                                        $("."+the_i_CateId+"_mgss_cate_3").show();
+                                                       
+                                                        
+                                                    } 
+                                                    else
+                                                    { 
+                                                        $("."+the_i_CateId+"_cate_slidingDiv2").hide(); 
+                                                        $("."+the_i_CateId+"_cate_show_hide2").show();
+                                                        $("."+the_i_CateId+"_percent_show_hide2").show();  
+                                                    };                                                 
+                                                };
+
+                                                function v_fChangecate3(the_i_CateId){ 
+                                                    if ($("."+the_i_CateId+"_cate_slidingDiv2").val()=="") 
+                                                    {
+                                                        $("."+the_i_CateId+"_cate_slidingDiv2").show();
+                                                        $("."+the_i_CateId+"_mgss_cate_3").show();
+                                                       
+                                                        
+                                                    } 
+                                                    else{                                                                                                       
+                                                    $.ajax({
+                                                        type: "post",
+                                                        url: "{{URL::route('updateCate3')}}",
+                                                        data: {range3: $("."+the_i_CateId+"_cate_slidingDiv2").val(),
+                                                                id: $("."+the_i_CateId+"_cate_slidingDiv2").next().val()
+                                                        }
+                                                        
+                                                        });
+                                                    $("."+the_i_CateId+"_cate_show_hide2").text($("."+the_i_CateId+"_cate_slidingDiv2").val());
+                                                    $("."+the_i_CateId+"_cate_slidingDiv2").hide();
+                                                    $("."+the_i_CateId+"_cate_show_hide2").show();
+                                                    $("."+the_i_CateId+"_percent_show_hide2").show();
+                                                    $("."+the_i_CateId+"_mgss_cate_3").hide();
+                                                       
+                                                   };
+                                                };
+
+
+                                                function clcate4(the_i_CateId){
+                                                    $("."+the_i_CateId+"_cate_show_hide3").hide();
+                                                    $("."+the_i_CateId+"_percent_show_hide3").hide();                                                                                                
+                                                     $("."+the_i_CateId+"_cate_slidingDiv3").show();                                                                                                   
+                                                 };   
+                                                
+                                                function dbcate4(the_i_CateId)
+                                                {
+                                                    if ($("."+the_i_CateId+"_cate_slidingDiv3").val()=="") 
+                                                    {
+                                                        $("."+the_i_CateId+"_cate_slidingDiv3").show();
+                                                        $("."+the_i_CateId+"_mgss_cate_4").show();
+                                                       
+                                                       
+                                                    } 
+                                                    else
+                                                    { 
+                                                        $("."+the_i_CateId+"_cate_slidingDiv3").hide(); 
+                                                        $("."+the_i_CateId+"_cate_show_hide3").show();
+                                                        $("."+the_i_CateId+"_percent_show_hide3").show();  
+                                                    };                                                 
+                                                };
+
+                                                function v_fChangecate4(the_i_CateId){ 
+                                                    if ($("."+the_i_CateId+"_cate_slidingDiv3").val()=="") 
+                                                    {
+                                                        $("."+the_i_CateId+"_cate_slidingDiv3").show();
+                                                        $("."+the_i_CateId+"_mgss_cate_4").show();
+                                                       
+                                                        
+                                                    } 
+                                                    else{                                                                                                       
+                                                    $.ajax({
+                                                        type: "post",
+                                                        url: "{{URL::route('updateCate4')}}",
+                                                        data: {range4: $("."+the_i_CateId+"_cate_slidingDiv3").val(),
+                                                                id: $("."+the_i_CateId+"_cate_slidingDiv3").next().val()
+                                                        }
+                                                        
+                                                        });
+                                                    $("."+the_i_CateId+"_cate_show_hide3").text($("."+the_i_CateId+"_cate_slidingDiv3").val());
+                                                    $("."+the_i_CateId+"_cate_slidingDiv3").hide();
+                                                    $("."+the_i_CateId+"_cate_show_hide3").show();
+                                                    $("."+the_i_CateId+"_percent_show_hide3").show(); 
+                                                    $("."+the_i_CateId+"_mgss_cate_4").hide();
+                                                       
+                                                   };
+                                                };
+                                                function clcate5(the_i_CateId){
+                                                    $("."+the_i_CateId+"_cate_show_hide4").hide();
+                                                    $("."+the_i_CateId+"_percent_show_hide4").hide();                                                                                                
+                                                     $("."+the_i_CateId+"_cate_slidingDiv4").show();                                                                                                   
+                                                 };   
+                                                
+                                                function dbcate5(the_i_CateId)
+                                                {
+                                                    if ($("."+the_i_CateId+"_cate_slidingDiv4").val()=="") 
+                                                    {
+                                                        $("."+the_i_CateId+"_cate_slidingDiv4").show();
+                                                        $("."+the_i_CateId+"_mgss_cate_5").show();
+                                                       
+                                                        
+                                                    } 
+                                                    else
+                                                    { 
+                                                        $("."+the_i_CateId+"_cate_slidingDiv4").hide(); 
+                                                        $("."+the_i_CateId+"_cate_show_hide4").show();
+                                                        $("."+the_i_CateId+"_percent_show_hide4").show();  
+                                                    };                                                 
+                                                };
+
+                                                function v_fChangecate5(the_i_CateId){ 
+                                                    if ($("."+the_i_CateId+"_cate_slidingDiv4").val()=="") 
+                                                    {
+                                                        $("."+the_i_CateId+"_cate_slidingDiv4").show();
+                                                        $("."+the_i_CateId+"_mgss_cate_5").show();
+                                                       
+                                                        
+                                                    } 
+                                                    else{                                                                                                       
+                                                    $.ajax({
+                                                        type: "post",
+                                                        url: "{{URL::route('updateCate5')}}",
+                                                        data: {range5: $("."+the_i_CateId+"_cate_slidingDiv4").val(),
+                                                                id: $("."+the_i_CateId+"_cate_slidingDiv4").next().val()
+                                                        }
+                                                        
+                                                        });
+                                                    $("."+the_i_CateId+"_cate_show_hide4").text($("."+the_i_CateId+"_cate_slidingDiv4").val());
+                                                    $("."+the_i_CateId+"_cate_slidingDiv4").hide();
+                                                    $("."+the_i_CateId+"_cate_show_hide4").show();
+                                                    $("."+the_i_CateId+"_percent_show_hide4").show();
+                                                    $$("."+the_i_CateId+"_mgss_cate_5").hide();
+                                                       
+                                                   };
+                                                };
+
+
+                                            
+                                                                
+                                        </script><!-- -end Script -->
+
+                                
+                                                            
+                                                             
+                                                          
+
+                                <td>
+                                    <a href="#" class="budget_item_sign_up{{$category->id}}"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                                    <a href="#" class="budget_item_sign_down{{$category->id}}" style="display:none;"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                                    <!-- display or hide a item -->
+                                    <script type="text/javascript">
+                                        $('.budget_item_sign_up{{$category->id}}').click(function(){
+                                            $('.budget_item_cat{{$category->id}}').hide();
+                                            $('.budget_item_sign_up{{$category->id}}').hide();
+                                            $('.budget_item_sign_down{{$category->id}}').show();
+                                            
+                                        });
+                                        $('.budget_item_sign_down{{$category->id}}').click(function(){
+                                            $('.budget_item_cat{{$category->id}}').show();
+                                            $('.budget_item_sign_up{{$category->id}}').show();
+                                            $('.budget_item_sign_down{{$category->id}}').hide();
+                                            
+                                        });
+                                    </script>
+                                </td>
+                            
+                            </tr >
+                                @foreach(Budget::where('category',$category->id)->get() as $budget)
+                                <tr class="budget_item_cat{{$category->id}}">
+                                    <td><input type="hidden" value="{{$budget->id}}">
+                                        
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <a  onclick="cl({{$budget->id}})" class="{{$budget->id}}_show_hide ">{{$budget->item}}</a>
+                                            <input onchange="v_fChange({{$budget->id}})" ondblclick="db({{$budget->id}})"type="text" style="width:150px;display:none;" class="{{$budget->id}}_slidingDiv" name="item" value="{{$budget->item}}">
+                                            <input type="hidden" name="{{$budget->id}}" value="{{$budget->id}}">
+                                            <p class="{{$budget->id}}_mgss_item_1"style="display:none;color:red;">Must Enter Item!</p>
+                                         </div>
+                                         
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <a onclick="cl1({{$budget->id}})" class="{{$budget->id}}_show_hide1 ">{{$budget->range1}}</a><span class="{{$budget->id}}_percent_item_show_hide1">%</span>                                                                                                                          
+                                            <input onchange="v_fChange1({{$budget->id}})" ondblclick="db1({{$budget->id}})"type="text" style="width:150px;display:none;" class="{{$budget->id}}_slidingDiv1" name="range1" value="{{$budget->range1}}">
+                                            <input type="hidden" name="{{$budget->id}}" value="{{$budget->id}}">
+                                            <p class="{{$budget->id}}_mgss_item_2"style="display:none;color:red;">Must Enter Range1!</p>
+                                         </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <a onclick="cl2({{$budget->id}})" class="{{$budget->id}}_show_hide2 ">{{$budget->range2}}</a><span class="{{$budget->id}}_percent_item_show_hide2">%</span>                                                                                                                           
+                                           <input onchange="v_fChange2({{$budget->id}})" ondblclick="db2({{$budget->id}})" type="text" style="width:150px;display:none;" class="{{$budget->id}}_slidingDiv2" name="range2" value="{{$budget->range2}}">
+                                           <input type="hidden" name="{{$budget->id}}" value="{{$budget->id}}">  
+                                           <p class="{{$budget->id}}_mgss_item_3"style="display:none;color:red;">Must Enter Range2!</p>
+                                         </div>
+
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <a onclick="cl3({{$budget->id}})" class="{{$budget->id}}_show_hide3 ">{{$budget->range3}}</a><span class="{{$budget->id}}_percent_item_show_hide3">%</span>                                                                                  
+                                            <input onchange="v_fChange3({{$budget->id}})" ondblclick="db3({{$budget->id}})" type="text" style="width:150px;display:none;" class="{{$budget->id}}_slidingDiv3" name="range3" value="{{$budget->range3}}">
+                                            <input type="hidden" name="{{$budget->id}}" value="{{$budget->id}}">
+                                            <p class="{{$budget->id}}_mgss_item_4"style="display:none;color:red;">Must Enter Range3!</p>
+                                         </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <a onclick="cl4({{$budget->id}})" class="{{$budget->id}}_show_hide4 ">{{$budget->range4}}</a><span class="{{$budget->id}}_percent_item_show_hide4">%</span>                                                                                  
+                                            <input onchange="v_fChange4({{$budget->id}})" ondblclick="db4({{$budget->id}})" type="text" style="width:150px;display:none;" class="{{$budget->id}}_slidingDiv4" name="range4" value="{{$budget->range4}}">
+                                            <input type="hidden" name="{{$budget->id}}" value="{{$budget->id}}">
+                                            <p class="{{$budget->id}}_mgss_item_5"style="display:none;color:red;">Must Enter Range4!</p>
+                                         </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <a onclick="cl5({{$budget->id}})" class="{{$budget->id}}_show_hide5 ">{{$budget->range5}}</a><span class="{{$budget->id}}_percent_item_show_hide5">%</span>                                                                                  
+                                            <input onchange="v_fChange5({{$budget->id}})" ondblclick="db5({{$budget->id}})" type="text" style="width:150px;display:none;" class="{{$budget->id}}_slidingDiv5" name="range5" value="{{$budget->range5}}">
+                                            <input type="hidden" value="{{$budget->id}}">
+                                            <p class="{{$budget->id}}_mgss_item_6"style="display:none;color:red;">Must Enter Range5!</p>
+                                         </div>
+                                    </td>
+
+
+
+
+
+                                        <!-- -Script Onclick show Input New Item -->
+
+                                        <script type="text/javascript">
+                                            function cl(the_i_BugetId){
+                                                    if($("."+the_i_BugetId+"_slidingDiv").val()=="New Item"){
+                                                    $("."+the_i_BugetId+"_show_hide").hide();                                                    
+                                                    $("."+the_i_BugetId+"_slidingDiv").val("") 
+                                                    $("."+the_i_BugetId+"_slidingDiv").show();
+                                                 }
+                                                 else
+                                                 {
+                                                    $("."+the_i_BugetId+"_show_hide").hide();
+                                                    $("."+the_i_BugetId+"_slidingDiv").show();
+                                                 };   
+                                                };
+                                                function db(the_i_BugetId)
+                                                {
+                                                    if ($("."+the_i_BugetId+"_slidingDiv").val()=="") 
+                                                    {
+                                                        $("."+the_i_BugetId+"_slidingDiv").show();
+                                                        $("."+the_i_BugetId+"_mgss_item_1").show();
+                                                        
+
+                                                    } 
+
+                                                    else
+                                                    {
+                                                        $("."+the_i_BugetId+"_slidingDiv").hide(); 
+                                                        $("."+the_i_BugetId+"_show_hide").show();
+};                                                   };
+
+                                                function v_fChange(the_i_BugetId){ 
+                                                    if ($("."+the_i_BugetId+"_slidingDiv").val()=="") 
+                                                    {
+                                                        $("."+the_i_BugetId+"_slidingDiv").show();
+                                                        $("."+the_i_BugetId+"_mgss_item_1").show();
+                                                        
+                                                        
+                                                    } 
+                                                    else{                                                                                                       
+                                                    $.ajax({
+                                                        type: "post",
+                                                        url: "{{URL::route('updateItem')}}",
+                                                        data: {item: $("."+the_i_BugetId+"_slidingDiv").val(),
+                                                                id: $("."+the_i_BugetId+"_slidingDiv").next().val()
+                                                        }
+                                                        
+                                                        });
+                                                    $("."+the_i_BugetId+"_show_hide").text($("."+the_i_BugetId+"_slidingDiv").val());
+                                                    $("."+the_i_BugetId+"_slidingDiv").hide();
+                                                    $("."+the_i_BugetId+"_show_hide").show();
+                                                    $("."+the_i_BugetId+"_mgss_item_1").hide();
+                                                        
+                                                   };
+                                                };
+
+                                            function cl1(the_i_BugetId){
+                                                    if($("."+the_i_BugetId+"_slidingDiv1").val()=="0"){
+                                                    $("."+the_i_BugetId+"_show_hide1").hide();
+                                                    $("."+the_i_BugetId+"_percent_item_show_hide1").hide();                                                                                                
+                                                    $("."+the_i_BugetId+"_slidingDiv1").val(""); 
+                                                    $("."+the_i_BugetId+"_slidingDiv1").show();
+                                                 }
+                                                 else
+                                                 {
+                                                    $("."+the_i_BugetId+"_show_hide1").hide();
+                                                    $("."+the_i_BugetId+"_percent_item_show_hide1").hide();  
+                                                    $("."+the_i_BugetId+"_slidingDiv1").show();
+                                                 };   
+                                                };
+                                                function db1(the_i_BugetId)
+                                                {
+                                                    if ($("."+the_i_BugetId+"_slidingDiv1").val()=="") 
+                                                    {
+                                                        $("."+the_i_BugetId+"_slidingDiv1").show();
+                                                        $("."+the_i_BugetId+"_mgss_item_2").show();
+
+                                                    } 
+
+                                                    else
+                                                    {
+                                                        $("."+the_i_BugetId+"_slidingDiv1").hide(); 
+                                                        $("."+the_i_BugetId+"_show_hide1").show();
+                                                        $("."+the_i_BugetId+"_percent_item_show_hide1").show();  
+                                                    };                                                   
+                                                };
+
+                                                function v_fChange1(the_i_BugetId){ 
+                                                    if ($("."+the_i_BugetId+"_slidingDiv1").val()=="") 
+                                                    {
+                                                        $("."+the_i_BugetId+"_slidingDiv1").show();
+                                                        $("."+the_i_BugetId+"_mgss_item_2").show();
+                                                        
+                                                    } 
+                                                    else{                                                                                                       
+                                                    $.ajax({
+                                                        type: "post",
+                                                        url: "{{URL::route('updateRange1')}}",
+                                                        data: {range1: $("."+the_i_BugetId+"_slidingDiv1").val(),
+                                                                id: $("."+the_i_BugetId+"_slidingDiv1").next().val()
+                                                        }
+                                                        
+                                                        });
+                                                    $("."+the_i_BugetId+"_show_hide1").text($("."+the_i_BugetId+"_slidingDiv1").val());
+                                                    $("."+the_i_BugetId+"_slidingDiv1").hide();
+                                                    $("."+the_i_BugetId+"_show_hide1").show();
+                                                    $("."+the_i_BugetId+"_percent_item_show_hide1").show(); 
+                                                    $("."+the_i_BugetId+"_mgss_item_2").hide(); 
+                                                   };
+                                                };
+
+                                                 function cl2(the_i_BugetId){
+                                                    if($("."+the_i_BugetId+"_slidingDiv2").val()=="0"){
+                                                    $("."+the_i_BugetId+"_show_hide2").hide();
+                                                    $("."+the_i_BugetId+"_percent_item_show_hide2").hide();                                                                                                
+                                                    $("."+the_i_BugetId+"_slidingDiv2").val(""); 
+                                                    $("."+the_i_BugetId+"_slidingDiv2").show();
+                                                 }
+                                                 else
+                                                 {
+                                                    $("."+the_i_BugetId+"_show_hide2").hide();
+                                                    $("."+the_i_BugetId+"_percent_item_show_hide2").hide();  
+                                                    $("."+the_i_BugetId+"_slidingDiv2").show();
+                                                 };   
+                                                };
+                                                function db2(the_i_BugetId)
+                                                {
+                                                    if ($("."+the_i_BugetId+"_slidingDiv2").val()=="") 
+                                                    {
+                                                        $("."+the_i_BugetId+"_slidingDiv2").show();
+                                                        $("."+the_i_BugetId+"_mgss_item_3").show();
+
+                                                    } 
+
+                                                    else
+                                                    {
+                                                        $("."+the_i_BugetId+"_slidingDiv2").hide(); 
+                                                        $("."+the_i_BugetId+"_show_hide2").show();
+                                                        $("."+the_i_BugetId+"_percent_item_show_hide2").show();  
+};                                                   };
+
+                                                function v_fChange2(the_i_BugetId){ 
+                                                    if ($("."+the_i_BugetId+"_slidingDiv2").val()=="") 
+                                                    {
+                                                        $("."+the_i_BugetId+"_slidingDiv2").show();
+                                                        $("."+the_i_BugetId+"_mgss_item_3").show();
+                                                        
+                                                    } 
+                                                    else{                                                                                                       
+                                                    $.ajax({
+                                                        type: "post",
+                                                        url: "{{URL::route('updateRange2')}}",
+                                                        data: {range2: $("."+the_i_BugetId+"_slidingDiv2").val(),
+                                                                id: $("."+the_i_BugetId+"_slidingDiv2").next().val()
+                                                        }
+                                                        
+                                                        });
+                                                    $("."+the_i_BugetId+"_show_hide2").text($("."+the_i_BugetId+"_slidingDiv2").val());
+                                                    $("."+the_i_BugetId+"_slidingDiv2").hide();
+                                                    $("."+the_i_BugetId+"_show_hide2").show();
+                                                    $("."+the_i_BugetId+"_percent_item_show_hide2").show(); 
+                                                    $("."+the_i_BugetId+"_mgss_item_3").hide(); 
+                                                   };
+                                                };
+
+                                            function cl3(the_i_BugetId){
+                                                    if($("."+the_i_BugetId+"_slidingDiv3").val()=="0"){
+                                                    $("."+the_i_BugetId+"_show_hide3").hide();
+                                                    $("."+the_i_BugetId+"_percent_item_show_hide3").hide();                                                                                                
+                                                    $("."+the_i_BugetId+"_slidingDiv3").val(""); 
+                                                    $("."+the_i_BugetId+"_slidingDiv3").show();
+                                                 }
+                                                 else
+                                                 {
+                                                    $("."+the_i_BugetId+"_show_hide3").hide();
+                                                    $("."+the_i_BugetId+"_percent_item_show_hide3").hide();  
+                                                    $("."+the_i_BugetId+"_slidingDiv3").show();
+                                                 };   
+                                                };
+                                                function db3(the_i_BugetId)
+                                                {
+                                                    if ($("."+the_i_BugetId+"_slidingDiv3").val()=="") 
+                                                    {
+                                                        $("."+the_i_BugetId+"_slidingDiv3").show();
+                                                        $("."+the_i_BugetId+"_mgss_item_4").show();
+
+                                                    } 
+
+                                                    else
+                                                    {
+                                                        $("."+the_i_BugetId+"_slidingDiv3").hide(); 
+                                                        $("."+the_i_BugetId+"_show_hide3").show();
+                                                        $("."+the_i_BugetId+"_percent_item_show_hide3").show();  
+};                                                   };
+
+                                                function v_fChange3(the_i_BugetId){ 
+                                                    if ($("."+the_i_BugetId+"_slidingDiv3").val()=="") 
+                                                    {
+                                                        $("."+the_i_BugetId+"_slidingDiv3").show();
+                                                        $("."+the_i_BugetId+"_mgss_item_4").show();
+                                                        
+                                                    } 
+                                                    else{                                                                                                       
+                                                    $.ajax({
+                                                        type: "post",
+                                                        url: "{{URL::route('updateRange3')}}",
+                                                        data: {range3: $("."+the_i_BugetId+"_slidingDiv3").val(),
+                                                                id: $("."+the_i_BugetId+"_slidingDiv3").next().val()
+                                                        }
+                                                        
+                                                        });
+                                                    $("."+the_i_BugetId+"_show_hide3").text($("."+the_i_BugetId+"_slidingDiv3").val());
+                                                    $("."+the_i_BugetId+"_slidingDiv3").hide();
+                                                    $("."+the_i_BugetId+"_show_hide3").show();
+                                                    $("."+the_i_BugetId+"_percent_item_show_hide3").show(); 
+                                                    $("."+the_i_BugetId+"_mgss_item_4").hide(); 
+                                                   };
+                                                };
+
+                                            function cl4(the_i_BugetId){
+                                                    if($("."+the_i_BugetId+"_slidingDiv4").val()=="0"){
+                                                    $("."+the_i_BugetId+"_show_hide4").hide();
+                                                    $("."+the_i_BugetId+"_percent_item_show_hide4").hide();                                                                                                
+                                                    $("."+the_i_BugetId+"_slidingDiv4").val(""); 
+                                                    $("."+the_i_BugetId+"_slidingDiv4").show();
+                                                 }
+                                                 else
+                                                 {
+                                                    $("."+the_i_BugetId+"_show_hide4").hide();
+                                                    $("."+the_i_BugetId+"_percent_item_show_hide4").hide();  
+                                                    $("."+the_i_BugetId+"_slidingDiv4").show();
+                                                 };   
+                                                };
+                                                function db4(the_i_BugetId)
+                                                {
+                                                    if ($("."+the_i_BugetId+"_slidingDiv4").val()=="") 
+                                                    {
+                                                        $("."+the_i_BugetId+"_slidingDiv4").show();
+                                                        $("."+the_i_BugetId+"_mgss_item_5").show();
+
+                                                    } 
+
+                                                    else
+                                                    {
+                                                        $("."+the_i_BugetId+"_slidingDiv4").hide(); 
+                                                        $("."+the_i_BugetId+"_show_hide4").show();
+                                                        $("."+the_i_BugetId+"_percent_item_show_hide4").show();  
+};                                                   };
+
+                                                function v_fChange4(the_i_BugetId){ 
+                                                    if ($("."+the_i_BugetId+"_slidingDiv4").val()=="") 
+                                                    {
+                                                        $("."+the_i_BugetId+"_slidingDiv4").show();
+                                                        $("."+the_i_BugetId+"_mgss_item_5").show();
+                                                        
+                                                    } 
+                                                    else{                                                                                                       
+                                                    $.ajax({
+                                                        type: "post",
+                                                        url: "{{URL::route('updateRange4')}}",
+                                                        data: {range4: $("."+the_i_BugetId+"_slidingDiv4").val(),
+                                                                id: $("."+the_i_BugetId+"_slidingDiv4").next().val()
+                                                        }
+                                                        
+                                                        });
+                                                    $("."+the_i_BugetId+"_show_hide4").text($("."+the_i_BugetId+"_slidingDiv4").val());
+                                                    $("."+the_i_BugetId+"_slidingDiv4").hide();
+                                                    $("."+the_i_BugetId+"_show_hide4").show();
+                                                    $("."+the_i_BugetId+"_percent_item_show_hide4").show(); 
+                                                    $("."+the_i_BugetId+"_mgss_item_5").hide(); 
+                                                   };
+                                                };
+
+                                                function cl5(the_i_BugetId){
+                                                    if($("."+the_i_BugetId+"_slidingDiv5").val()=="0"){
+                                                    $("."+the_i_BugetId+"_show_hide5").hide();
+                                                    $("."+the_i_BugetId+"_percent_item_show_hide5").hide();                                                                                                
+                                                    $("."+the_i_BugetId+"_slidingDiv5").val(""); 
+                                                    $("."+the_i_BugetId+"_slidingDiv5").show();
+                                                 }
+                                                 else
+                                                 {
+                                                    $("."+the_i_BugetId+"_show_hide5").hide();
+                                                    $("."+the_i_BugetId+"_percent_item_show_hide5").hide();  
+                                                    $("."+the_i_BugetId+"_slidingDiv5").show();
+                                                 };   
+                                                };
+                                                function db5(the_i_BugetId)
+                                                {
+                                                    if ($("."+the_i_BugetId+"_slidingDiv5").val()=="") 
+                                                    {
+                                                        $("."+the_i_BugetId+"_slidingDiv5").show();
+                                                        $("."+the_i_BugetId+"_mgss_item_6").show();
+
+                                                    } 
+
+                                                    else
+                                                    {
+                                                        $("."+the_i_BugetId+"_slidingDiv5").hide(); 
+                                                        $("."+the_i_BugetId+"_show_hide5").show();
+                                                        $("."+the_i_BugetId+"_percent_item_show_hide5").show();  
+};                                                   };
+
+                                                function v_fChange5(the_i_BugetId){ 
+                                                    if ($("."+the_i_BugetId+"_slidingDiv5").val()=="") 
+                                                    {
+                                                        $("."+the_i_BugetId+"_slidingDiv5").show();
+                                                        $("."+the_i_BugetId+"_mgss_item_6").show();
+                                                        
+                                                    } 
+                                                    else{                                                                                                       
+                                                    $.ajax({
+                                                        type: "post",
+                                                        url: "{{URL::route('updateRange5')}}",
+                                                        data: {range5: $("."+the_i_BugetId+"_slidingDiv5").val(),
+                                                                id: $("."+the_i_BugetId+"_slidingDiv5").next().val()
+                                                        }
+                                                        
+                                                        });
+                                                    $("."+the_i_BugetId+"_show_hide5").text($("."+the_i_BugetId+"_slidingDiv5").val());
+                                                    $("."+the_i_BugetId+"_slidingDiv5").hide();
+                                                    $("."+the_i_BugetId+"_show_hide5").show();
+                                                    $("."+the_i_BugetId+"_percent_item_show_hide5").show();  
+                                                    $("."+the_i_BugetId+"_mgss_item_6").hide();
+                                                   };
+                                                };
+
+
+                                        </script>
+                                        <!-- -Script Update Item -->
+                                        
+
+                                        <td>
+            
+                                            <a class="budget_icon_trash" class="confirm" id="delete-item{{$budget->id}}" href=""><i class="glyphicon glyphicon-trash"></i></a>
+                                            <input type="hidden" name="{{$budget->id}}" value="{{$budget->id}}">
+                                        </td>
+                                                        <script>
+                                                            $("#delete-item{{$budget->id}}").click(function(){
+                                                                if(confirm("Are you sure you want to delete this?")){
+                                                                    $.ajax({
+                                                                        type: "post",
+                                                                        url: "{{URL::route('deleteItem')}}",
+                                                                        data: {
+                                                                                id:$(this).next().val()
+
+                                                                        },
+                                                                    });
+
+                                                                }
+                                                                else{
+                                                                    return false;
+                                                                };
+                                                            });
+                                                        </script>
+                                   
+                                </tr>
+                                </tbody> 
+                                                           
+                                                            
+
+                                @endforeach
+                                <tr >
+                                    <td></td>
+                                    <td colspan="7"><a href="" style="cursor:pointer;" id="add_item{{$category->id}}">
+                                            <i class="glyphicon glyphicon-plus"></i>&nbsp Add Item
+                                        </a>
+                                        <input type="hidden" value="{{$category->id}}" name="{{$category->id}}">
+                                    </td>
+                                    <!-- -Script add new Item -->
+                                    <script type="text/javascript">
+
+                                                           $("#add_item{{$category->id}}").click(function(){
+                                                            $.ajax({
+                                                                        type: "post",
+                                                                        url: "{{URL::route('add')}}",
+                                                                        data: {
+                                                                                id:$(this).next().val()
+
+                                                                        },
+                                                                        success: function(data){
+                                                                            var obj = JSON.parse(data);
+                                                                            jQuery('.budget_item_cat'+obj.item_last).after(obj.html);
+                                                                                
+                                                                        }
+                                                                        
+
+                                                                    });
+                                                              });
+
+
+                                    </script>
+                                </tr>
+                                
+                        @endforeach
+                        </tbody>
+                        
+                    </table>
+                </div>
+            </div>
+        </div> <!-- col-xs-10 -->
+
+       
+
+    </div> <!-- row -->
+</div><!--container-->
+            
+@endsection
+
+
+                                            
+                                                                                 
+                                                                 
+                                                                                                                      
+                                                                             
+                                    
+                                              
+                                        
+                                                                                                 
+                                                                                                    
+                                                                                   
+                                         
+                                                                      
+                         
