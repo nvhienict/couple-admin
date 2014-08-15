@@ -154,7 +154,7 @@ class CategoriesController extends \BaseController {
 		$msg="Delete Categry Success!";
 		return Redirect::route("categories")->with('message',$msg);
 	} //end function
-}
+
 	public function updateCate1()
 	{	
 		$id=Input::get('id');
@@ -194,4 +194,6 @@ class CategoriesController extends \BaseController {
 		$category=Category::find($id);
 		$category->range5=$range5;
 		$category->save();
+	}
+
 	}
