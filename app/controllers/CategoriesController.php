@@ -155,3 +155,43 @@ class CategoriesController extends \BaseController {
 		return Redirect::route("categories")->with('message',$msg);
 	} //end function
 }
+	public function updateCate1()
+	{	
+		$id=Input::get('id');
+		$range1=Input::get('range1');
+		$category=Category::find($id);
+		$category->range1=$range1;
+		$category->save();
+	}
+	public function updateCate2()
+	{	
+		$id=Input::get('id');
+		$range2=Input::get('range2');
+		$category=Category::find($id);
+		$category->range2=$range2;
+		$category->save();
+	}
+	public function updateCate3()
+	{	
+		$id=Input::get('id');
+		$range3=Input::get('range3');
+		$category=Category::find($id);
+		$category->range3=$range3;
+		$category->save();
+	}
+	public function updateCate4()
+	{	
+		$id=Input::get('id');
+		$range4=Input::get('range4');
+		$category=Category::find($id);
+		$category->range4=$range4;
+		$category->save();
+	}
+	public function updateCate5()
+	{	
+		$id=Input::get('id');
+		$range5=Input::get('range5');
+		$category=Category::find($id);
+		$category->range5=$range5;
+		$category->save();
+	}
