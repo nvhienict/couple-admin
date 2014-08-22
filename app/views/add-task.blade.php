@@ -74,11 +74,7 @@
 						minlength:1,
 						number:true
                   		},
-                  	link:{
-						required:true,
-						minlength:3
-						
-                  		}
+                  	
 				},
 				messages:{
 					title:{
@@ -99,12 +95,8 @@
 						required:"Please, enter startdate!",
 						minlength:"Length than 1 word!",
 						number:"Must enter number!",
-						},
-					link:{
-						required:"Please, enter link!",
-						minlength:"Length than 3 word!",
-						},	
-
+						}
+					
 					}
 					
 			});
