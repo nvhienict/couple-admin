@@ -74,6 +74,7 @@
                             <th>Email</th>
                             <th>Category</th>
                             <th>Location</th>
+                           
                         </tr>
                     </thead>
                     <tbody>
@@ -95,6 +96,7 @@
                             <td>{{$vendor->email}}</td>
                             <td>{{Vendor::find($vendor->id)->category()->get()->first()->name}}</td>
                             <td>{{Vendor::find($vendor->id)->location()->get()->first()->name}}</td>
+                            
                         </tr>
                         <div class="modal fade" id="bs-delele-modal-sm-{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                              <div class="modal-dialog">

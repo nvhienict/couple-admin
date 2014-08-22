@@ -351,9 +351,9 @@
                                     </script>
                                 </td>
                             
-                            </tr >
+                            </tr>
                                 @foreach(Budget::where('category',$category->id)->get() as $budget)
-                                <tr class="budget_item_cat{{$category->id}}">
+                                <tr class="budget_item_cat{{$budget->id}}">
                                     <td><input type="hidden" value="{{$budget->id}}">
                                         
                                     </td>
@@ -746,26 +746,29 @@
 
                                         <td>
             
-                                            <a class="budget_icon_trash" class="confirm" id="delete-item{{$budget->id}}" href=""><i class="glyphicon glyphicon-trash"></i></a>
-                                            <input type="hidden" name="{{$budget->id}}" value="{{$budget->id}}">
+                                            <a class="budget_icon_trash" class="confirm" onclick="deleteItem({{$budget->id}})" href="javascript:;"><i class="glyphicon glyphicon-trash"></i></a>
+                                            <input type="hidden" class="deleteItem{{$budget->id}}" name="{{$budget->id}}" value="{{$budget->id}}">
                                         </td>
                                                         <script>
-                                                            $("#delete-item{{$budget->id}}").click(function(){
+                                                            function deleteItem(id){
                                                                 if(confirm("Are you sure you want to delete this?")){
                                                                     $.ajax({
                                                                         type: "post",
                                                                         url: "{{URL::route('deleteItem')}}",
                                                                         data: {
-                                                                                id:$(this).next().val()
+                                                                                id:$(".deleteItem"+id).val()
 
                                                                         },
+                                                                        success:function(){
+                                                                            $(".budget_item_cat"+id).remove();
+                                                                        }
                                                                     });
 
                                                                 }
                                                                 else{
                                                                     return false;
                                                                 };
-                                                            });
+                                                            };
                                                         </script>
                                    
                                 </tr>
@@ -776,31 +779,33 @@
                                 @endforeach
                                 <tr >
                                     <td></td>
-                                    <td colspan="7"><a href="" style="cursor:pointer;" id="add_item{{$category->id}}">
+                                    <td colspan="7">
+                                        <a onclick="addItem({{$category->id}})" href="" style="cursor:pointer;" id="add_item{{$category->id}}">
                                             <i class="glyphicon glyphicon-plus"></i>&nbsp Add Item
                                         </a>
-                                        <input type="hidden" value="{{$category->id}}" name="{{$category->id}}">
+                                        <input type="hidden" class="addItem{{$category->id}}" value="{{$category->id}}" name="{{$category->id}}">
                                     </td>
                                     <!-- -Script add new Item -->
                                     <script type="text/javascript">
 
-                                                           $("#add_item{{$category->id}}").click(function(){
+                                                           function addItem(id){
                                                             $.ajax({
                                                                         type: "post",
                                                                         url: "{{URL::route('add')}}",
                                                                         data: {
-                                                                                id:$(this).next().val()
+                                                                                id:$('.addItem'+id).val()
 
                                                                         },
                                                                         success: function(data){
+                                                                           
                                                                             var obj = JSON.parse(data);
-                                                                            jQuery('.budget_item_cat'+obj.item_last).after(obj.html);
+                                                                            jQuery('#add'+obj.item_last).after(obj.html);
                                                                                 
                                                                         }
                                                                         
 
                                                                     });
-                                                              });
+                                                              };
 
 
                                     </script>

@@ -51,7 +51,14 @@
                     <label>Website</label>
                     <input name='website' value="{{$vendor->website}}" placeholder="Enter text" class="form-control">
                 </div>
-
+                 <div class="form-group">
+                    <label>Map</label>
+                    <input name='map' value="{{$vendor->map}}" placeholder="Enter text" class="form-control">
+                </div>
+                 <div class="form-group">
+                    <label>Video</label>
+                    <input name='video' value="{{$vendor->video}}" placeholder="Enter text" class="form-control">
+                </div>
                 <div class="form-group">
                     <label>Category</label>
                     <select name="category" class="form-control">

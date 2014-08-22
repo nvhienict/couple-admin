@@ -69,6 +69,18 @@
                     	@endforeach
                     </select>
                 </div>
+                <div class="form-group">
+                    <label>Map</label>
+                    <input name='map' id='map' placeholder="Enter text" class="form-control">
+                    @foreach ($errors->get('map') as $message)
+                    <p class="text-left alert alert-danger">{{$message}}</p>
+                    @endforeach
+                </div>
+                <div class="form-group">
+                    <label>Video</label>
+                    <input name='video' id='video' placeholder="Enter text" class="form-control">
+                   
+                </div>
 
                 <div class="form-group">
                     <label>Avatar</label>
@@ -113,6 +125,10 @@
                         required:true,
                         minlength:9
                     },
+                    map:{
+                        required:true
+                        
+                    },
                     avatar:{
                         required:true,
                         accept:"image/*"
@@ -140,6 +156,9 @@
                     phone:{
                         required:"Chưa điền thông tin",
                         minlength:"Yêu cầu nhập trên 9 kí tự"
+                    },
+                    map:{
+                        required:"Chưa điền thông tin",
                     },
                     avatar:{
                         required:"Chưa upload file",

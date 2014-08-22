@@ -30,10 +30,7 @@
 		      <input type="password" name="inputPassword" class="form-control" id="inputPassword" placeholder="Password">
 		    </div>
 		  </div>
-		  <div class="form-group">
-		  	<div class="col-sm-2">Test: </div>
-		  	<div class="col-sm-10">email: admin@thuna.vn   /  pass: 123</div>
-		  </div>
+		  
 		  <div class="form-group">
 		    <div class="col-sm-offset-2 col-sm-10">
 		      <div class="checkbox">

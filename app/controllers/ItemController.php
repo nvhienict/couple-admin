@@ -99,7 +99,8 @@ class ItemController extends \BaseController {
                 <a class="budget_icon_trash" class="confirm" id="delete-item{{$budget->id}}" href="{{URL::route("item_delete",array($budget->id))}}"><i class="glyphicon glyphicon-trash"></i></a>
             </td>
 		</tr>';
-		echo json_encode(array('catid'=>$item->category,'item_last'=>$item_last->id,'iditem'=>$item->id,'html'=>$html));die();
+		echo json_encode(array('catid'=>$item->category,'item_last'=>$item_last->id,'iditem'=>$item->id,'html'=>$html));
+		exit();
 	}
 
 

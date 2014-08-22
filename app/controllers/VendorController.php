@@ -37,7 +37,8 @@ class VendorController extends \BaseController {
 			"email"=>"required|email",
 			"phone"=>"required|min:9",
 			"avatar"=>"required|image",
-			"editor4"=>"required|min:10"
+			"editor4"=>"required|min:10",
+			"map"=>"required"
 			);
 		$validator=Validator::make(Input::all(),$rules);
 		if($validator->passes())
@@ -48,6 +49,8 @@ class VendorController extends \BaseController {
 			$vendor->email=Input::get('email');
 			$vendor->phone=Input::get('phone');
 			$vendor->website=Input::get('website');
+			$vendor->map=Input::get('map');
+			$vendor->video=Input::get('video');
 			$vendor->category=Input::get('category');
 			$vendor->location=Input::get('location');
 			$vendor->avatar=Image::make(Input::file('avatar')->getRealPath())->encode('jpg',80);
@@ -102,7 +105,8 @@ class VendorController extends \BaseController {
 			"address"=>"required|min:5",
 			"email"=>"required|email",
 			"phone"=>"required|min:9",
-			"editor4"=>"required|min:10"
+			"editor4"=>"required|min:10",
+			"map"=>"required"
 			);
 		$validator=Validator::make(Input::all(),$rules);
 		if($validator->passes())
@@ -113,6 +117,8 @@ class VendorController extends \BaseController {
 			$vendor->email=Input::get('email');
 			$vendor->phone=Input::get('phone');
 			$vendor->website=Input::get('website');
+			$vendor->map=Input::get('map');
+			$vendor->video=Input::get('video');
 			$vendor->category=Input::get('category');
 			$vendor->location=Input::get('location');
 			if(Input::hasFile('avatar')) $vendor->avatar=Image::make(Input::file('avatar')->getRealPath())->encode('jpg',80);
