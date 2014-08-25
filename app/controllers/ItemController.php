@@ -33,7 +33,15 @@ class ItemController extends \BaseController {
 	{
 
 		$id=Input::get('id');
-		$item_last=Budget::where('category',$id)->get()->last();
+		$count=Budget::where('category',$id)->get()->count();
+		if ($count) {
+			$item_last=Budget::where('category',$id)->get()->last()->id;
+
+		} else {
+			$item_last=0;
+               
+		}
+		//$item_last=Budget::where('category',$id)->get()->last();
 		$budget=new Budget();
 		$budget->item="New Item";
 		$budget->category=$id;
@@ -43,63 +51,70 @@ class ItemController extends \BaseController {
 		$budget->range4="0.00";
 		$budget->range5="0.00";
 		$budget->save(); 
-		$item=Budget::get()->last();
+		$item=Budget::where('category',$id)->get()->last();
 		$html = '';
-		$html .= '<tr id="budget_item_cat'.$item->id.'" class="budget_item_cat'.$item->category.'">
-			
-			<td>
-				<div>
-			 <a onclick="cl('.$item->id.')" class="'.$item->id.'_show_hide">'.$item->item.'</a> 
-			 	
-			    <input id="'.$item->id.'" onchange="v_fChange('.$item->id.')"  ondblclick="db('.$item->id.')"  type="text"  value="" name="item" class="'.$item->id.'_slidingDiv" style="width:150px;display:none;" >
-				<input type="hidden" value="'.$item->id.'" name="'.$item->id.'">
-			 </div>
-			</td>
-			<td>
-			     <div>
-			 <a onclick="cl1('.$item->id.')" class="'.$item->id.'_show_hide1">'.$item->range1.'</a> 
-			 	
-			    <input id="'.$item->id.'" onchange="v_fChange1(this)" ondblclick="db1('.$item->id.')"  type="text" value="" name="range1" class="'.$item->id.'_slidingDiv1" style="width:150px;display:none;" >
-				<input type="hidden" value="'.$item->id.'" name="'.$item->id.'">
-			 </div>
-			</td>
-			<td>
-			    <div>
-			 	<a onclick="cl2('.$item->id.')" class="'.$item->id.'_show_hide2">'.$item->range2.'</a> 
-			 	
-			    <input  id="'.$item->id.'" onchange="v_fChange2(this)" ondblclick="db2('.$item->id.')"  type="text" value="" name="range2" class="'.$item->id.'_slidingDiv2" style="width:150px;display:none;">
-				<input type="hidden" value="'.$item->id.'" name="'.$item->id.'">
-			 </div>
-			<td>
-			<td>
-			    <div>
-				 <a onclick="cl3('.$item->id.')" class="'.$item->id.'_show_hide3">'.$item->range3.'</a> 
-			 	
-			    <input  id="'.$item->id.'" onchange="v_fChange3(this)" ondblclick="db3('.$item->id.')"  type="text" value="" name="range3" class="'.$item->id.'_slidingDiv3" style="width:150px;display:none;">
-				<input type="hidden" value="'.$item->id.'" name="'.$item->id.'">
-			 </div>
-			<td>
-				<div>
-				<a onclick="cl4('.$item->id.')" class="'.$item->id.'_show_hide4">'.$item->range4.'</a> 
-				 	
-				    <input  id="'.$item->id.'" onchange="v_fChange4(this)" ondblclick="db4('.$item->id.')"  type="text" value="" name="range4" class="'.$item->id.'_slidingDiv4" style="width:150px;display:none;">
-					<input type="hidden" value="'.$item->id.'" name="'.$item->id.'">
-				 </div>
-			</td>
-			<td>
-				<div>
-				<a onclick="cl5('.$item->id.')" class="'.$item->id.'_show_hide5">'.$item->range5.'</a> 
-				 	
-				    <input  id="'.$item->id.'" onchange="v_fChange5(this)" ondblclick="db5('.$item->id.')"  type="text" value="" name="range5" class="'.$item->id.'_slidingDiv5" style="width:150px;display:none;">
-					<input type="hidden" value="'.$item->id.'" name="'.$item->id.'">
-				 </div>
-			</td>	 
+		$html .= '<tr class="budget_item_cat'.$item->id.'">
+            <td>
+            <input type="hidden" value="'.$item->id.'">
+            </td>
+            <td>
+                <div>
+                    <a  onclick="cl('.$item->id.')" class="'.$item->id.'_show_hide ">'.$item->item.'</a>
+                    <input onchange="v_fChange('.$item->id.')" ondblclick="db('.$item->id.')"type="text" style="width:150px;display:none;" class="'.$item->id.'_slidingDiv" name="item" value="'.$budget->item.'">
+                    <input type="hidden" name="'.$item->id.'" value="'.$item->id.'">
+                    <p class="'.$item->id.'_mgss_item_1"style="display:none;color:red;">Must Enter Item!</p>
+                 </div>
+                 
+            </td>
+            <td>
+                <div>
+                    <a onclick="cl1('.$item->id.')" class="'.$item->id.'_show_hide1 ">'.$budget->range1.'</a><span class="'.$item->id.'_percent_item_show_hide1">%</span>                                                                                                                          
+                    <input onchange="v_fChange1('.$item->id.')" ondblclick="db1('.$item->id.')"type="text" style="width:150px;display:none;" class="'.$item->id.'_slidingDiv1" name="range1" value="'.$budget->range1.'">
+                    <input type="hidden" name="'.$item->id.'" value="'.$item->id.'">
+                    <p class="'.$item->id.'_mgss_item_2"style="display:none;color:red;">Must Enter Range1!</p>
+                 </div>
+            </td>
+            <td>
+                <div>
+                    <a onclick="cl2('.$item->id.')" class="'.$item->id.'_show_hide2 ">'.$budget->range2.'</a><span class="'.$item->id.'_percent_item_show_hide2">%</span>                                                                                                                           
+                   <input onchange="v_fChange2('.$item->id.')" ondblclick="db2('.$item->id.')" type="text" style="width:150px;display:none;" class="'.$item->id.'_slidingDiv2" name="range2" value="'.$budget->range2.'">
+                   <input type="hidden" name="'.$item->id.'" value="'.$item->id.'">  
+                   <p class="'.$item->id.'_mgss_item_3"style="display:none;color:red;">Must Enter Range2!</p>
+                 </div>
+
+            </td>
+            <td>
+                <div>
+                    <a onclick="cl3('.$item->id.')" class="'.$item->id.'_show_hide3 ">'.$budget->range3.'</a><span class="'.$item->id.'_percent_item_show_hide3">%</span>                                                                                  
+                    <input onchange="v_fChange3('.$item->id.')" ondblclick="db3('.$item->id.')" type="text" style="width:150px;display:none;" class="'.$item->id.'_slidingDiv3" name="range3" value="'.$budget->range3.'">
+                    <input type="hidden" name="'.$item->id.'" value="'.$item->id.'">
+                    <p class="'.$item->id.'_mgss_item_4"style="display:none;color:red;">Must Enter Range3!</p>
+                 </div>
+            </td>
+            <td>
+                <div>
+                    <a onclick="cl4('.$item->id.')" class="'.$item->id.'_show_hide4 ">'.$budget->range4.'</a><span class="'.$item->id.'_percent_item_show_hide4">%</span>                                                                                  
+                    <input onchange="v_fChange4('.$item->id.')" ondblclick="db4('.$item->id.')" type="text" style="width:150px;display:none;" class="'.$item->id.'_slidingDiv4" name="range4" value="'.$budget->range4.'">
+                    <input type="hidden" name="'.$item->id.'" value="'.$item->id.'">
+                    <p class="'.$item->id.'_mgss_item_5"style="display:none;color:red;">Must Enter Range4!</p>
+                 </div>
+            </td>
+            <td>
+                <div>
+                    <a onclick="cl5('.$item->id.')" class="'.$item->id.'_show_hide5 ">'.$budget->range5.'</a><span class="'.$item->id.'_percent_item_show_hide5">%</span>                                                                                  
+                    <input onchange="v_fChange5('.$item->id.')" ondblclick="db5('.$item->id.')" type="text" style="width:150px;display:none;" class="'.$item->id.'_slidingDiv5" name="range5" value="'.$budget->range5.'">
+                    <input type="hidden" value="'.$item->id.'">
+                    <p class="'.$item->id.'_mgss_item_6"style="display:none;color:red;">Must Enter Range5!</p>
+                 </div>
+            </td>
+
 			<td>
             
-                <a class="budget_icon_trash" class="confirm" id="delete-item{{$budget->id}}" href="{{URL::route("item_delete",array($budget->id))}}"><i class="glyphicon glyphicon-trash"></i></a>
+                <a onclick="deleteItem('.$item->id.')" class="budget_icon_trash" class="confirm" id="delete-item'.$item->id.'" href="javascript:void(0)"><i class="glyphicon glyphicon-trash"></i></a>
+                <input type="hidden" class="deleteItem'.$item->id.'" name="'.$budget->id.'" value="'.$item->id.'">
             </td>
 		</tr>';
-		echo json_encode(array('catid'=>$item->category,'item_last'=>$item_last->id,'iditem'=>$item->id,'html'=>$html));
+		echo json_encode(array('catid'=>$item->category,'item_last'=>$item_last,'html'=>$html));
 		exit();
 	}
 
