@@ -40,6 +40,9 @@
     <script src="{{Asset('assets/js/bootstrap.min.js')}}"></script>
 
     <script src="{{Asset('assets/js/bootstrap-datepicker.js')}}"></script>
+
+    <!-- CKEditor -->
+    <script src="{{Asset('assets/ckeditor/ckeditor.js')}}"></script>
 </head>
 
 <body>
@@ -176,13 +179,16 @@
                         <a href="{{Asset('admin/location')}}"><i class="glyphicon glyphicon-map-marker"></i> Location</a>
                     </li>
                      <li>
-                        <a href="{{Asset('admin/task')}}"><i class="glyphicon glyphicon-ok"></i>Task</a>
+                        <a href="{{Asset('admin/task')}}"><i class="glyphicon glyphicon-ok"></i> Task</a>
                     </li>
                     <li>
-                        <a href="{{Asset('admin/range')}}"><i class="glyphicon glyphicon-ok"></i>Range</a>
+                        <a href="{{Asset('admin/range')}}"><i class="glyphicon glyphicon-ok"></i> Range</a>
                     </li>
                     <li>
-                        <a href="{{Asset('admin/item')}}"><i class="glyphicon glyphicon-asterisk"></i>Item</a>
+                        <a href="{{Asset('admin/item')}}"><i class="glyphicon glyphicon-asterisk"></i> Item</a>
+                    </li>
+                    <li>
+                        <a href="{{Asset('admin/songs')}}"><i class="fa fa-music"></i> Songs</a>
                     </li>
 
                 </ul>

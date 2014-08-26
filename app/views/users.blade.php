@@ -1,7 +1,7 @@
 @extends('main')
 
 @section('title')
-Admin > User | Thuna.vn
+Users
 @endsection
 @section('content')
 <div class="row">

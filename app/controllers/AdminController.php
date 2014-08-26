@@ -118,7 +118,7 @@ class AdminController extends \BaseController {
 	public function get_users()
 	{
 		$msg=Session::get('msg');
-		$users = User::paginate(8);
+		$users = User::paginate(10);
 		return View::make("users")->with("users", $users)->with('msg',$msg);
 	}
 
@@ -149,7 +149,7 @@ class AdminController extends \BaseController {
 
 
 		if(empty($keyword)){
-			$users = User::paginate(8);
+			$users = User::paginate(10);
 			return View::make("users")->with("users", $users);
 		}
 		else{
@@ -214,7 +214,7 @@ class AdminController extends \BaseController {
 
 	// ---- edit user
 	public function get_edit_users($id){
-		$users = User::where("id", "=", $id)->paginate(8);
+		$users = User::where("id", "=", $id)->paginate(10);
 		return View::make("users_edit")->with("users", $users);
 	}
 	public function post_edit_users($id){

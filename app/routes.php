@@ -14,14 +14,14 @@
 Route::group(array("prefix" => "admin"),function()
 {
 
-	// Giang
+	// ****** Admin Login *****
 	Route::filter("check_login", function(){
 		if(!Session::has("email"))
 			return Redirect::to("admin/login");
 	});
 
 	Route::get("main",array("before"=>"check_login", "as"=>"main","uses"=>"AdminController@index"));
-	//Cuong
+	
 	Route::get("login",array("as"=>"login","uses"=>"AdminController@get_login"));
 
 	Route::get("logout",array("as"=>"logout","uses"=>"AdminController@get_logout"));
@@ -66,7 +66,9 @@ Route::group(array("prefix" => "admin"),function()
 	Route::get("range/{id}/edit",array("as"=>"edit-range","before"=>"check_login","uses"=>"BudgetRangeController@edit"));
 
 	Route::post("range/{id}",array("as"=>"update-range","before"=>"check_login","uses"=>"BudgetRangeController@update"));
-	// Thuy-category
+	
+
+	// ******* Category *****
 	Route::get('categories', array("before"=>"check_login",'as' => 'categories', 'uses'=>'CategoriesController@ListCategory' ));
 
 	Route::get('category/{id}/edit', array('uses'=>'CategoriesController@edit'));
@@ -85,7 +87,8 @@ Route::group(array("prefix" => "admin"),function()
 
 	Route::post('dels_category',array("as"=>"dels_category", "uses"=>"CategoriesController@dels_category"));
 	
-// --Location
+	
+	// **** Location *******
 	Route::get("location", array("before"=>"check_login","as"=>"location","uses"=>"LocationController@listLocation"));
 	
 	Route::get("location/add-location", array("as"=>"location/add-location","uses"=>"LocationController@showAdd"));
@@ -105,7 +108,8 @@ Route::group(array("prefix" => "admin"),function()
 	
 	Route::post("edit-check-location/{id}",array("as"=>"edit-check-location","uses"=>"LocationController@edit_check_location"));
 
-	// Giang -----User
+	
+	//********* User ********
 	Route::post("users/search",array("as"=>"SearchUser","uses"=>"AdminController@postSearchUser"));
 
 	Route::get("users",array("before"=>"check_login","as"=>"users","uses"=>"AdminController@get_users"));
@@ -126,6 +130,7 @@ Route::group(array("prefix" => "admin"),function()
 	Route::post("users/edit/{id}", array("as"=>"users/edit","uses"=>"AdminController@post_edit_users"))
 				->where(array('id'=>'[0-9]+'));
 
+	
 	/*****Task*****/
 	Route::get('task',array('before'=>'check_login','as'=>'task','uses'=>"TaskController@showTask"));
 	Route::get('task/add-task',array('as'=>'task/add-task','uses'=>'TaskController@showAdd'));
@@ -153,4 +158,32 @@ Route::group(array("prefix" => "admin"),function()
 	Route::post('item/updateCate3',array('as'=>'updateCate3','uses'=>'CategoriesController@updateCate3'));
 	Route::post('item/updateCate4',array('as'=>'updateCate4','uses'=>'CategoriesController@updateCate4'));
 	Route::post('item/updateCate5',array('as'=>'updateCate5','uses'=>'CategoriesController@updateCate5'));
+
+	// ***** Songs ******
+	Route::get('songs', array('as'=>'songs', 'uses'=>'SongController@index'));
+
+	Route::get('songs/comments', array('as'=>'song_comments', 'uses'=>'SongController@comments'));
+
+	//----create song
+	Route::post('songs', array('as'=>'songs', 'uses'=>'SongController@create'));
+
+	Route::post('check_song_name', array('as'=>'check_song_name', 'uses'=>'SongController@check_song_name'));
+
+	// ---delete one song
+	Route::get('songs/delete/{id}', array('as'=>'songs/delete', 'uses'=>'SongController@destroy'));
+
+	// ---delete many song
+	Route::post('songs/delete', array('as'=>'song_dels', 'uses'=>'SongController@destroyMany'));
+
+	// ----edit song
+	Route::get('songs/{id}/edit', array('as'=>'songs-edit', 'uses'=>'SongController@edit'));
+
+	Route::post('check_song_name_edit/{id}', array('as'=>'check_song_name_edit', 'uses'=>'SongController@check_song_name_edit'));
+	
+	Route::post('songs/edit', array('as'=>'songs/edit', 'uses'=>'SongController@update'));
+
+	// *** Song-comment
+	Route::get('song_comments', array('as'=>'song_comments', 'uses'=>'SongController@comments'));
+
+	Route::post('song_comments/delete', array('as'=>'song_cmt_dels', 'uses'=>'SongController@commentsDelete'));
 });
