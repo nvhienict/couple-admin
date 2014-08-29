@@ -39,7 +39,8 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="{{Asset('assets/js/bootstrap.min.js')}}"></script>
 
-    <script src="{{Asset('assets/js/bootstrap-datepicker.js')}}"></script>
+    <link href="{{Asset("assets/css/jquery.datetimepicker.css")}}" rel="stylesheet">
+    <script src="{{Asset('assets/js/jquery.datetimepicker.js')}}"></script>
 
     <!-- CKEditor -->
     <script src="{{Asset('assets/ckeditor/ckeditor.js')}}"></script>

@@ -32,11 +32,7 @@ Admin > User > Edit | Thuna.vn
 			</td>
 			<td class="danger">
 				<input class="form-control" type="text" name="weddingdate" id="weddingdate" value="{{$user->weddingdate}}">
-				<script type="text/javascript">
-					$(document).ready(function () {
-						$('#weddingdate').datepicker();
-					});
-				</script>
+				<script type="text/javascript" src="{{Asset('assets/js/script-giang.js')}}"></script>
 			</td>
 			<td class="danger"><input class="form-control" type="text" name="firstname" id="firstname" value="{{$user->firstname}}"></td>
 			<td class="danger"><input class="form-control" type="text" name="lastname" id="lastname" value="{{$user->lastname}}"></td>

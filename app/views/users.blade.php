@@ -157,11 +157,7 @@ Users
 		            <div class='input-group date' id='datetimepicker5' data-date-format="YYYY/MM/DD">
 		                <input type="text" class="form-control" name="weddingdate" id="weddingdate" placeholder="Weddingdate" />
 		                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-						<script type="text/javascript">
-							$(document).ready(function () {
-								$('#weddingdate').datepicker();
-							});
-						</script>
+						<script type="text/javascript" src="{{Asset('assets/js/script-giang.js')}}"></script>
 		            </div>
 		        </div>
 		    </div>

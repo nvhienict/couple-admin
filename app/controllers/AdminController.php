@@ -168,10 +168,14 @@ class AdminController extends \BaseController {
 			);
 
 		if(!Validator::make(Input::all(), $rules)->fails()){
+
+			$avatar_default = User::where('role_id',1)->get()->first()->avatar;
+
 			$user=new User();
 			$user->firstname=Input::get('firstname');
 			$user->lastname=Input::get('lastname');
 			$user->email=Input::get('email');
+			$user->avatar=$avatar_default;
 			$user->password=Hash::make(Input::get('password_confirm'));
 			$user->weddingdate=Input::get('weddingdate');
 			$user->role_id=Input::get('role');
