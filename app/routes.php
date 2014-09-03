@@ -141,7 +141,7 @@ Route::group(array("prefix" => "admin"),function()
 	Route::get('task/edit/{id}',array('as'=>'task/edit', 'uses'=>'TaskController@editTask'));
 	Route::post('task/update/{id}', array('as'=>'task/update','uses'=>'TaskController@updateTask'));
 	Route::get('task/delete/{id}', array('as'=>'task/delete','uses'=>'TaskController@deleteTask'));
-	Route::post('delSelectTask',array("as"=>"'delSelectTask", "uses"=>"TaskController@delSelectTask"));
+	Route::post('delSelectTask',array("as"=>"delSelectTask", "uses"=>"TaskController@delSelectTask"));
 
 	/****Item*****/
 	Route::get('item',array('before'=>'check_login','as'=>'item','uses'=>'ItemController@show'));
@@ -185,5 +185,15 @@ Route::group(array("prefix" => "admin"),function()
 	// *** Song-comment
 	Route::get('song_comments', array('as'=>'song_comments', 'uses'=>'SongController@comments'));
 
-	Route::post('song_comments/delete', array('as'=>'song_cmt_dels', 'uses'=>'SongController@commentsDelete'));
+	
+	//****Image-slide
+	Route::get('imageslide',array('before'=>'check_login','as'=>'imageslide','uses'=>'ImageSlideController@showImageSlide'));
+	Route::get('imageslide/add',array('as'=>'imageslide/add','uses'=>'ImageSlideController@showAdd'));
+	Route::post('imageslide/add',array('as'=>'upload','uses'=>'ImageSlideController@post_addImage'));
+	Route::get('imnageslide/edit/{id}',array('as'=>'edit','uses'=>'ImageSlideController@edit'));
+	Route::get('imageslide/update',array('as'=>'imageslide/update', 'uses'=>'ImageSlideController@showUpdate'));
+	Route::post('imageslide/update/{id}',array('as'=>'update','uses'=>'ImageSlideController@update'));
+	Route::get('imageslide/delete/{id}',array('as'=>'delete','uses'=>'ImageSlideController@delete'));
+	Route::post('delSelectImages',array('as'=>'delSelectImages','uses'=>'ImageSlideController@delSelectImages'));
 });
+

@@ -104,3 +104,14 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 	height: 50px;
 	text-align: center;
 }
+/****Upload Image Slide*****/
+
+td div.menu-hidden a 
+{
+	display: none;
+}
+.table-image-slide tbody tr:hover > td div.menu-hidden a 
+{
+	display: inline-block;
+	
+}
