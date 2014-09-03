@@ -191,6 +191,9 @@
                     <li>
                         <a href="{{Asset('admin/songs')}}"><i class="fa fa-music"></i> Songs</a>
                     </li>
+                    <li>
+                        <a href="{{Asset('admin/imageslide')}}"><i class="glyphicon glyphicon-picture"></i> Images Slide</a>
+                    </li>
 
                 </ul>
             </div>
