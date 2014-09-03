@@ -193,6 +193,8 @@ class AdminController extends \BaseController {
 	public function del_users($id){
 		User::where("id", "=", $id)->delete();
 
+		Session::flush('email');
+
 		$msg="Delete User Success!";
 		return Redirect::route("users")->with('msg',$msg);
 	}
