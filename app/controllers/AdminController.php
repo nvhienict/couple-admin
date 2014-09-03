@@ -191,9 +191,9 @@ class AdminController extends \BaseController {
 
 	// ---delete user
 	public function del_users($id){
+		
 		User::where("id", "=", $id)->delete();
-
-		Session::flush('email');
+		Session::flush();
 
 		$msg="Delete User Success!";
 		return Redirect::route("users")->with('msg',$msg);
@@ -210,6 +210,7 @@ class AdminController extends \BaseController {
 			foreach (User::get() as $user){
 				if($user->id==$key){
 					User::where("id", "=", $user->id)->delete();
+					Session::flush();
 				}
 			} // end foreach
 		} //end foreach
