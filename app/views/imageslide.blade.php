@@ -54,7 +54,7 @@
                         @foreach($imageslides as $i=>$imageslide)
                             <tr>
                                 <td style="width:20px;">                                
-                                    <input type="checkbox" class="checkbox" value="$imageslide->id">
+                                    <input type="checkbox" class="checkbox" value="{{$imageslide->id}}">
                                     <input type="hidden" name="chk-{{$imageslide->id}}" value="" >
                                     
                                 </td>
