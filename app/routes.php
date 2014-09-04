@@ -195,5 +195,6 @@ Route::group(array("prefix" => "admin"),function()
 	Route::post('imageslide/update/{id}',array('as'=>'update','uses'=>'ImageSlideController@update'));
 	Route::get('imageslide/delete/{id}',array('as'=>'delete','uses'=>'ImageSlideController@delete'));
 	Route::post('delSelectImages',array('as'=>'delSelectImages','uses'=>'ImageSlideController@delSelectImages'));
+	
 });
 

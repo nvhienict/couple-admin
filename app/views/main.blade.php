@@ -163,8 +163,8 @@
             </ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
-                    <li class="active">
+                <ul class="nav navbar-nav side-nav" >
+                    <li >
                         <a href="{{URL::to('admin/main')}}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
@@ -196,6 +196,20 @@
                     </li>
 
                 </ul>
+               <script type="text/javascript">
+                    // $('.nav li ').click(function(e) {
+                    //     $('.nav li.active').removeClass('active');
+                    //     var $this = $(this);
+                    //     if (!$this.hasClass('active')) {
+                    //         $this.addClass('active');
+                           
+                    //     }
+                      
+                        
+                         
+                    // });
+
+               </script>
             </div>
             <!-- /.navbar-collapse -->
         </nav>

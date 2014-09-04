@@ -6,6 +6,24 @@
 <div class="container item">
     <div class="container">
     <div class="row">
+        <div class="col-xs-12 col-md-8 col-lg-6">
+            <h1>Item</h1>
+        </div>
+    </div>
+    <div class="row">
+    <div class="col-xs-10">
+        <ol class="breadcrumb">
+            <li>
+                <i class="fa fa-dashboard"></i><a href="{{Asset('admin/main')}}">Dashboard</a>
+            </li>
+            <li class="active">
+                <i class="fa fa-edit"></i>Task
+            </li>
+        </ol>
+    </div>
+    
+</div>
+    <div class="row">
         <div class="col-xs-10">
             
             <div class="row">
