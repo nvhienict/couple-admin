@@ -45,15 +45,15 @@ class ItemController extends \BaseController {
 		$budget=new Budget();
 		$budget->item="New Item";
 		$budget->category=$id;
-		$budget->range1="0.00";
-		$budget->range2="0.00";
-		$budget->range3="0.00";
-		$budget->range4="0.00";
-		$budget->range5="0.00";
+		$budget->range1="0";
+		$budget->range2="0";
+		$budget->range3="0";
+		$budget->range4="0";
+		$budget->range5="0";
 		$budget->save(); 
 		$item=Budget::where('category',$id)->get()->last();
 		$html = '';
-		$html .= '<tr class="budget_item_cat'.$item->id.'">
+		$html .= '<tr class="budget_item_cat'.$item->id.' budget_item_cat">
             <td>
             <input type="hidden" value="'.$item->id.'">
             </td>
@@ -69,7 +69,7 @@ class ItemController extends \BaseController {
             <td>
                 <div>
                     <a onclick="cl1('.$item->id.')" class="'.$item->id.'_show_hide1 ">'.$budget->range1.'</a><span class="'.$item->id.'_percent_item_show_hide1">%</span>                                                                                                                          
-                    <input onchange="v_fChange1('.$item->id.')" ondblclick="db1('.$item->id.')"type="text" style="width:150px;display:none;" class="'.$item->id.'_slidingDiv1" name="range1" value="'.$budget->range1.'">
+                    <input onkeyup="key_item_range1(event,'.$item->id.')" onchange="v_fChange1('.$item->id.')" ondblclick="db1('.$item->id.')"type="text" style="width:150px;display:none;" class="'.$item->id.'_slidingDiv1" name="range1" value="'.$budget->range1.'">
                     <input type="hidden" name="'.$item->id.'" value="'.$item->id.'">
                     <p class="'.$item->id.'_mgss_item_2"style="display:none;color:red;">Must Enter Range1!</p>
                  </div>
@@ -77,7 +77,7 @@ class ItemController extends \BaseController {
             <td>
                 <div>
                     <a onclick="cl2('.$item->id.')" class="'.$item->id.'_show_hide2 ">'.$budget->range2.'</a><span class="'.$item->id.'_percent_item_show_hide2">%</span>                                                                                                                           
-                   <input onchange="v_fChange2('.$item->id.')" ondblclick="db2('.$item->id.')" type="text" style="width:150px;display:none;" class="'.$item->id.'_slidingDiv2" name="range2" value="'.$budget->range2.'">
+                   <input onkeyup="key_item_range2(event,'.$item->id.')" onchange="v_fChange2('.$item->id.')" ondblclick="db2('.$item->id.')" type="text" style="width:150px;display:none;" class="'.$item->id.'_slidingDiv2" name="range2" value="'.$budget->range2.'">
                    <input type="hidden" name="'.$item->id.'" value="'.$item->id.'">  
                    <p class="'.$item->id.'_mgss_item_3"style="display:none;color:red;">Must Enter Range2!</p>
                  </div>
@@ -86,7 +86,7 @@ class ItemController extends \BaseController {
             <td>
                 <div>
                     <a onclick="cl3('.$item->id.')" class="'.$item->id.'_show_hide3 ">'.$budget->range3.'</a><span class="'.$item->id.'_percent_item_show_hide3">%</span>                                                                                  
-                    <input onchange="v_fChange3('.$item->id.')" ondblclick="db3('.$item->id.')" type="text" style="width:150px;display:none;" class="'.$item->id.'_slidingDiv3" name="range3" value="'.$budget->range3.'">
+                    <input onkeyup="key_item_range3(event,'.$item->id.')" onchange="v_fChange3('.$item->id.')" ondblclick="db3('.$item->id.')" type="text" style="width:150px;display:none;" class="'.$item->id.'_slidingDiv3" name="range3" value="'.$budget->range3.'">
                     <input type="hidden" name="'.$item->id.'" value="'.$item->id.'">
                     <p class="'.$item->id.'_mgss_item_4"style="display:none;color:red;">Must Enter Range3!</p>
                  </div>
@@ -94,7 +94,7 @@ class ItemController extends \BaseController {
             <td>
                 <div>
                     <a onclick="cl4('.$item->id.')" class="'.$item->id.'_show_hide4 ">'.$budget->range4.'</a><span class="'.$item->id.'_percent_item_show_hide4">%</span>                                                                                  
-                    <input onchange="v_fChange4('.$item->id.')" ondblclick="db4('.$item->id.')" type="text" style="width:150px;display:none;" class="'.$item->id.'_slidingDiv4" name="range4" value="'.$budget->range4.'">
+                    <input onkeyup="key_item_range4(event,'.$item->id.')" onchange="v_fChange4('.$item->id.')" ondblclick="db4('.$item->id.')" type="text" style="width:150px;display:none;" class="'.$item->id.'_slidingDiv4" name="range4" value="'.$budget->range4.'">
                     <input type="hidden" name="'.$item->id.'" value="'.$item->id.'">
                     <p class="'.$item->id.'_mgss_item_5"style="display:none;color:red;">Must Enter Range4!</p>
                  </div>
@@ -102,7 +102,7 @@ class ItemController extends \BaseController {
             <td>
                 <div>
                     <a onclick="cl5('.$item->id.')" class="'.$item->id.'_show_hide5 ">'.$budget->range5.'</a><span class="'.$item->id.'_percent_item_show_hide5">%</span>                                                                                  
-                    <input onchange="v_fChange5('.$item->id.')" ondblclick="db5('.$item->id.')" type="text" style="width:150px;display:none;" class="'.$item->id.'_slidingDiv5" name="range5" value="'.$budget->range5.'">
+                    <input onkeyup="key_item_range5(event,'.$item->id.')" onchange="v_fChange5('.$item->id.')" ondblclick="db5('.$item->id.')" type="text" style="width:150px;display:none;" class="'.$item->id.'_slidingDiv5" name="range5" value="'.$budget->range5.'">
                     <input type="hidden" value="'.$item->id.'">
                     <p class="'.$item->id.'_mgss_item_6"style="display:none;color:red;">Must Enter Range5!</p>
                  </div>
@@ -165,6 +165,9 @@ class ItemController extends \BaseController {
 		$budget=Budget::find($id);
 		$budget->range1=$range1;
 		$budget->save();
+		$range1_out=Budget::find($id)->range1;
+		echo json_encode(array('range1_out'=>$range1_out));
+		exit();
 	}
 	public function updateRange2()
 	{
