@@ -44,6 +44,15 @@
                     </div>
                 </div>           
                 
+            <div class="row form-group">
+                    <div class="col-xs-10"> 
+                        <p>
+                            <b>Kích cỡ Ảnh lớn dài 700px; rộng:300px.</b><br>
+                            <b>Kích cỡ Ảnh nhỏ dài 80px; rộng: 80px.</b><br>
+                           
+                        </p>
+                    </div>
+                </div>
             
                 
             </form>
