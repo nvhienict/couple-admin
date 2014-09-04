@@ -6,24 +6,6 @@
 <div class="container item">
     <div class="container">
     <div class="row">
-        <div class="col-xs-12 col-md-8 col-lg-6">
-            <h1>Item</h1>
-        </div>
-    </div>
-    <div class="row">
-    <div class="col-xs-10">
-        <ol class="breadcrumb">
-            <li>
-                <i class="fa fa-dashboard"></i><a href="{{Asset('admin/main')}}">Dashboard</a>
-            </li>
-            <li class="active">
-                <i class="fa fa-edit"></i>Task
-            </li>
-        </ol>
-    </div>
-    
-</div>
-    <div class="row">
         <div class="col-xs-10">
             
             <div class="row">
@@ -37,16 +19,22 @@
                             <th>Range4</th>
                             <th>Range5</th>
                             <th>
-                                <a href="#" id="budget_all_item_sign_up"><i class="glyphicon glyphicon-chevron-down"></i></a>
-                                <a href="#" id="budget_all_item_sign_down"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                                <a href="#" id="budget_all_item_sign_down"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                                <a href="#" id="budget_all_item_sign_up"><i class="glyphicon glyphicon-chevron-up"></i></a>
                                 <!-- display or hide all items -->
                                 <script type="text/javascript">
                                     $('#budget_all_item_sign_up').click(function(){
-                                        $('.budget_item_cat').show();
-                                        
+                                        $('.budget_item_cat').hide();
+                                        $('.budget_item_sign_down').show();
+                                        $('.budget_item_sign_up').hide(); 
+                                        $(".showhide").hide();                                       
                                     });
                                     $('#budget_all_item_sign_down').click(function(){
-                                        $('.budget_item_cat').hide();
+                                        $('.budget_item_cat').show();
+                                        $('.budget_item_sign_down').hide();
+                                        $('.budget_item_sign_up').show(); 
+                                        $(".showhide").show();  
+
                                     });
                                 </script>
 
@@ -351,28 +339,31 @@
                                                           
 
                                 <td>
-                                    <a href="#" class="budget_item_sign_up{{$category->id}}"><i class="glyphicon glyphicon-chevron-up"></i></a>
-                                    <a href="#" class="budget_item_sign_down{{$category->id}}" style="display:none;"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                                    <span class="budget_item_sign_up{{$category->id}} budget_item_sign_up"><i class="glyphicon glyphicon-chevron-up"></i></span>
+                                    <span class="budget_item_sign_down{{$category->id}} budget_item_sign_down" style="display:none;"><i class="glyphicon glyphicon-chevron-down"></i></span>
                                     <!-- display or hide a item -->
                                     <script type="text/javascript">
                                         $('.budget_item_sign_up{{$category->id}}').click(function(){
-                                            $('.budget_item_cat{{$category->id}}').hide();
+                                            $('.item_admin{{$category->id}}').hide();
                                             $('.budget_item_sign_up{{$category->id}}').hide();
                                             $('.budget_item_sign_down{{$category->id}}').show();
                                             
+                                            
                                         });
                                         $('.budget_item_sign_down{{$category->id}}').click(function(){
-                                            $('.budget_item_cat{{$category->id}}').show();
+                                            $('.item_admin{{$category->id}}').show();
                                             $('.budget_item_sign_up{{$category->id}}').show();
                                             $('.budget_item_sign_down{{$category->id}}').hide();
+                                           
                                             
                                         });
                                     </script>
                                 </td>
                             
                             </tr>
+                            <tbody class="item_admin{{$category->id}} budget_item_cat">
                                 @foreach(Budget::where('category',$category->id)->get() as $budget)
-                                <tr class="budget_item_cat{{$budget->id}}">
+                                <tr class="budget_item_cat{{$budget->id}} ">
                                     <td>
                                     <input type="hidden" value="{{$budget->id}}">
                                     </td>
@@ -461,12 +452,12 @@
                                                         </script>
                                    
                                 </tr>
-                                </tbody> 
+                            
                                                            
                                                             
 
                                 @endforeach
-                                <tr >
+                                <tr>
                                     <td></td>
                                    
                                     <td colspan="7">
@@ -506,7 +497,7 @@
 
                                     </script>
                                 </tr>
-                                
+                             </tbody>   
                         @endforeach
                         </tbody>
                         
