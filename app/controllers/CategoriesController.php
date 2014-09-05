@@ -195,5 +195,10 @@ class CategoriesController extends \BaseController {
 		$category->range5=$range5;
 		$category->save();
 	}
+	public function search(){
+		$name=Input::get('search_name');
+		$category=Category::where('name', 'LIKE', "%$name%")->paginate(5);
+		return View::make('categories')->with('results',$category);
+	}
 
 	}

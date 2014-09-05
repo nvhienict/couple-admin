@@ -101,4 +101,9 @@ class LocationController extends BaseController {
 		$msg="Delete User Success!";
 		return Redirect::route("location");
 	} //end function
+	public function search(){
+		$name=Input::get('search_name');
+		$locations=Location::where('name', 'LIKE', "%$name%")->paginate(5);
+		return View::make('location')->with('results',$locations);
+	}
 }

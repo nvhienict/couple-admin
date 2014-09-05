@@ -86,6 +86,8 @@ Route::group(array("prefix" => "admin"),function()
 	Route::get('category/{id}/delete', array('uses'=>'CategoriesController@DeleteCategory'));
 
 	Route::post('dels_category',array("as"=>"dels_category", "uses"=>"CategoriesController@dels_category"));
+
+	Route::post("category/search",array("as"=>"search_category","uses"=>"CategoriesController@search"));
 	
 	
 	// **** Location *******
@@ -104,9 +106,10 @@ Route::group(array("prefix" => "admin"),function()
 	Route::get("location/delete/{id}",array("uses"=>"LocationController@deleteLocation"));
 	
 	Route::post('delSelect',array("as"=>"'delSelect", "uses"=>"LocationController@delSelect"));
-	Route::post("check-location",array("as"=>"check-location","uses"=>"LocationController@check_location"));
-	
+	Route::post("check-location",array("as"=>"check-location","uses"=>"LocationController@check_location"));	
 	Route::post("edit-check-location/{id}",array("as"=>"edit-check-location","uses"=>"LocationController@edit_check_location"));
+
+	Route::post("location/search",array("as"=>"search_location","uses"=>"LocationController@search"));
 
 	
 	//********* User ********

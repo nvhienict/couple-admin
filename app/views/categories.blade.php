@@ -19,12 +19,14 @@
 					<button id="del_category" class="btn btn-danger" type="submit"> Delete Category </button>
 				</div>
 				<div class="col-xs-4">
-					<div class="input-group">
-						<input type="text" class="form-control" name="search" >
-						<div class="input-group-btn">
-							<button class="btn btn-primary"> Search </button>
-						</div>
-					</div>
+				<form id="search-category" role="form" action="{{URL::route('search_category')}}" method="post">
+			            <div class="input-group">
+			              <input type="text" name="search_name" class="form-control">
+			              <span class="input-group-btn">
+			                <button class="btn btn-default" type="submit">Search!</button>
+			              </span>
+			            </div><!-- /input-group -->
+               </form>
 				</div>
 			</div>
 			
