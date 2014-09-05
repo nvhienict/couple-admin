@@ -134,8 +134,8 @@
                                                  if(event.which >= 37 && event.which <= 40) return;
                                                      $("."+id+"_cate_slidingDiv").val(function(index, value) {
                                                             return value
-                                                                .replace(/\D/g, '')
-                                                                .replace(/\B(?=(\d{3})+(?!\d))/g, "")
+                                                                .replace(/[^0-9.]/g, '')
+                                                                //.replace(/\B(?=(\d{3})+(?!\d))/g, "")
                                                             ;
                                                         });
                                                 };
@@ -191,8 +191,8 @@
                                                  if(event.which >= 37 && event.which <= 40) return;
                                                      $("."+id+"_cate_slidingDiv1").val(function(index, value) {
                                                             return value
-                                                                .replace(/\D/g, '')
-                                                                .replace(/\B(?=(\d{3})+(?!\d))/g, "")
+                                                                .replace(/[^0-9.]/g, '')
+                                                               // .replace(/\B(?=(\d{3})+(?!\d))/g, "")
                                                             ;
                                                         });
                                                 };
@@ -249,8 +249,8 @@
                                                  if(event.which >= 37 && event.which <= 40) return;
                                                      $("."+id+"_cate_slidingDiv2").val(function(index, value) {
                                                             return value
-                                                                .replace(/\D/g, '')
-                                                                .replace(/\B(?=(\d{3})+(?!\d))/g, "")
+                                                                .replace(/[^0-9.]/g, '')
+                                                               // .replace(/\B(?=(\d{3})+(?!\d))/g, "")
                                                             ;
                                                         });
                                                 };
@@ -307,8 +307,8 @@
                                                  if(event.which >= 37 && event.which <= 40) return;
                                                      $("."+id+"_cate_slidingDiv3").val(function(index, value) {
                                                             return value
-                                                                .replace(/\D/g, '')
-                                                                .replace(/\B(?=(\d{3})+(?!\d))/g, "")
+                                                                .replace(/[^0-9.]/g, '')
+                                                                //.replace(/\B(?=(\d{3})+(?!\d))/g, "")
                                                             ;
                                                         });
                                                 };
@@ -364,8 +364,8 @@
                                                  if(event.which >= 37 && event.which <= 40) return;
                                                      $("."+id+"_cate_slidingDiv4").val(function(index, value) {
                                                             return value
-                                                                .replace(/\D/g, '')
-                                                                .replace(/\B(?=(\d{3})+(?!\d))/g, "")
+                                                                .replace(/[^0-9.]/g, '')
+                                                                //.replace(/\B(?=(\d{3})+(?!\d))/g, "")
                                                             ;
                                                         });
                                                 };
@@ -659,8 +659,8 @@
                                                  if(event.which >= 37 && event.which <= 40) return;
                                                      $("."+id+"_slidingDiv1").val(function(index, value) {
                                                             return value
-                                                                .replace(/\D/g, '')
-                                                                .replace(/\B(?=(\d{3})+(?!\d))/g, "")
+                                                                .replace(/[^0-9.]/g, '')
+                                                                //.replace(/\B(?=(\d{3})+(?!\d))/g, "")
                                                             ;
                                                         });
                                                 };
@@ -722,8 +722,8 @@
                                                  if(event.which >= 37 && event.which <= 40) return;
                                                      $("."+id+"_slidingDiv2").val(function(index, value) {
                                                             return value
-                                                                .replace(/\D/g, '')
-                                                                .replace(/\B(?=(\d{3})+(?!\d))/g, "")
+                                                                .replace(/[^0-9.]/g, '')
+                                                                //.replace(/\B(?=(\d{3})+(?!\d))/g, "")
                                                             ;
                                                         });
                                                 };
@@ -785,8 +785,8 @@
                                                  if(event.which >= 37 && event.which <= 40) return;
                                                      $("."+id+"_slidingDiv3").val(function(index, value) {
                                                             return value
-                                                                .replace(/\D/g, '')
-                                                                .replace(/\B(?=(\d{3})+(?!\d))/g, "")
+                                                                .replace(/[^0-9.]/g, '')
+                                                                //.replace(/\B(?=(\d{3})+(?!\d))/g, "")
                                                             ;
                                                         });
                                                 };
@@ -848,8 +848,8 @@
                                                  if(event.which >= 37 && event.which <= 40) return;
                                                      $("."+id+"_slidingDiv4").val(function(index, value) {
                                                             return value
-                                                                .replace(/\D/g, '')
-                                                                .replace(/\B(?=(\d{3})+(?!\d))/g, "")
+                                                                .replace(/[^0-9.]/g, '')
+                                                                //.replace(/\B(?=(\d{3})+(?!\d))/g, "")
                                                             ;
                                                         });
                                                 };
@@ -911,8 +911,8 @@
                                                  if(event.which >= 37 && event.which <= 40) return;
                                                      $("."+id+"_slidingDiv5").val(function(index, value) {
                                                             return value
-                                                                .replace(/\D/g, '')
-                                                                .replace(/\B(?=(\d{3})+(?!\d))/g, "")
+                                                                .replace(/[^0-9.]/g, '')
+                                                                //.replace(/\B(?=(\d{3})+(?!\d))/g, "")
                                                             ;
                                                         });
                                                 };
