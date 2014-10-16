@@ -34,7 +34,7 @@ class ImageSlideController extends \BaseController {
 		$photoslide=new PhotoSlide();
 		$photoslide->vendor=Input::get('vendor');
 		$photoslide->bigpic=Image::make(Input::file('bigpic_upload')->getRealPath())->resize(700, 300)->encode('jpg',80);
-		$photoslide->smallpic=Image::make(Input::file('smallpic_upload')->getRealPath())->resize(80,80)->encode('jpg',80);
+		$photoslide->smallpic=Image::make(Input::file('bigpic_upload')->getRealPath())->resize(80,80)->encode('jpg',80);
 		$photoslide->save();
 		return Redirect::route('imageslide');
 
@@ -86,7 +86,7 @@ class ImageSlideController extends \BaseController {
 		$photoslide=PhotoSlide::find($id);
 		$photoslide->vendor=Input::get('vendor');
 		if(Input::hasfile('bigpic_upload')) $photoslide->bigpic=Image::make(Input::file('bigpic_upload')->getRealPath())->resize(700, 300)->encode('jpg',80);
-		if(Input::hasfile('smallpic_upload')) $photoslide->smallpic=Image::make(Input::file('smallpic_upload')->getRealPath())->resize(80, 80)->encode('jpg',80);
+		$photoslide->smallpic=Image::make(Input::file('bigpic_upload')->getRealPath())->resize(80,80)->encode('jpg',80);
 		$photoslide->save();
 
 		return Redirect::route('imageslide');

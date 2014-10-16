@@ -22,14 +22,11 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="">BigPhoto:</label>
+                    <label for="">Photo:</label>
                     <input name="bigpic_upload" id="bigpic_upload" type="file" >
 
                 </div>
-                 <div class="form-group">
-                    <label for="">SmallPhoto:</label>
-                    <input name="smallpic_upload" id="smallpic_upload" type="file" >                 
-                </div>
+                 
 
                 <div class="row form-group">
                     <div class="col-xs-6">
@@ -39,7 +36,7 @@
                 </div>
                  <div class="row form-group">
                     <div class="col-xs-12">
-                       <b style="color:red">Mỗi vendor upload 7 ảnh lớn và 7 ảnh nhỏ.</b>
+                       <b style="color:red">Mỗi vendor upload 7 ảnh.</b>
                     </div>
                 </div>                 
                 

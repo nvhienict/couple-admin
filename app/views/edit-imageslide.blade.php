@@ -26,16 +26,12 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="">BigPhoto:</label>
+                    <label for="">Photo:</label>
                     <input name="bigpic_upload" id="bigpic_upload" type="file" >
                     {{'<img class="img-responsive img-thumbnail" src="data:image/jpeg;base64,' . base64_encode($imageslide->bigpic) . '" />'}}
 
                 </div>
-                 <div class="form-group">
-                    <label for="">SmallPhoto:</label>
-                    <input name="smallpic_upload" id="smallpic_upload" type="file" >                 
-                     {{'<img class="img-responsive img-thumbnail" src="data:image/jpeg;base64,' . base64_encode($imageslide->smallpic) . '" />'}}
-                </div>
+                
 
                 <div class="row form-group">
                     <div class="col-xs-6">
