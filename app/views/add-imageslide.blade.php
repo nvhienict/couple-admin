@@ -37,15 +37,7 @@
                         <button type="submit" class="btn btn-primary" id="submit_upload">Upload</button>
                     </div>
                 </div>           
-                <div class="row form-group">
-                    <div class="col-xs-10"> 
-                        <p>
-                            <b>Kích cỡ Ảnh lớn dài 700px; rộng:300px.</b><br>
-                            <b>Kích cỡ Ảnh nhỏ dài 80px; rộng: 80px.</b><br>
-                            <b>Slide ảnh của mỗi Vendor có 7 ảnh lớn và 7 ảnh nhỏ.</b><br>
-                        </p>
-                    </div>
-                </div>
+                
             
                 
             </form>
