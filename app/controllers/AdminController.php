@@ -191,12 +191,31 @@ class AdminController extends \BaseController {
 
 	// ---delete user
 	public function del_users($id){
+		try {
+			if(WeddingWebsite::where('user',$id)->get()->count() > 0){
+			$idWeb = WeddingWebsite::where('user',$id)->get()->first()->id;
+			TabWebsite::where('website',$idWeb)->delete();
+		}
 		
+		WeddingWebsite::where('user',$id)->delete();
+		Groups::where('user',$id)->delete();
+		Guests::where('user',$id)->delete();
+		PhotoTab::where('user',$id)->delete();
+		Rating::where('user',$id)->delete();
+		SongComment::where('user',$id)->delete();
+		UserBudget::where('user',$id)->delete();
+		UserTask::where('user',$id)->delete();
+		VendorComment::where('user',$id)->delete();
+
 		User::where("id", "=", $id)->delete();
 		Session::flush();
 
 		$msg="Delete User Success!";
 		return Redirect::route("users")->with('msg',$msg);
+		} catch (Exception $e) {
+			echo "Lỗi xoá các bảng";
+		}
+		
 	}
 	public function dels(){
 		$ids=array();
