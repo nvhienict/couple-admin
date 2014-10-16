@@ -36,7 +36,12 @@
                         <button type="reset" class="btn btn-default">Reset</button>
                         <button type="submit" class="btn btn-primary" id="submit_upload">Upload</button>
                     </div>
-                </div>           
+                </div>
+                 <div class="row form-group">
+                    <div class="col-xs-12">
+                       <b style="color:red">Mỗi vendor upload 7 ảnh lớn và 7 ảnh nhỏ.</b>
+                    </div>
+                </div>                 
                 
             
                 
