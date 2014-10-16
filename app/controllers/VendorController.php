@@ -38,7 +38,7 @@ class VendorController extends \BaseController {
 			"phone"=>"required|min:9",
 			"avatar"=>"required|image",
 			"editor4"=>"required|min:10",
-			"map"=>"required"
+			
 			);
 		$validator=Validator::make(Input::all(),$rules);
 		if($validator->passes())
@@ -100,17 +100,7 @@ class VendorController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$rules=array(
-			"name"=>"required|min:3",
-			"address"=>"required|min:5",
-			"email"=>"required|email",
-			"phone"=>"required|min:9",
-			"editor4"=>"required|min:10",
-			"map"=>"required"
-			);
-		$validator=Validator::make(Input::all(),$rules);
-		if($validator->passes())
-		{
+		
 			$vendor=Vendor::find($id);
 			$vendor->name=Input::get('name');
 			$vendor->address=Input::get('address');
@@ -125,14 +115,7 @@ class VendorController extends \BaseController {
         	$vendor->about=Input::get('editor4');
         	$vendor->save();
         	return Redirect::to('admin/vendors')->with('messages',"Edit Vendor thanh cong");
-		}
-		else
-		{
-			$vendor=Vendor::where("id","=",$id)->get()->first();
-			$errors=$validator->messages();
-			return View::make('edit-vendor')
-			->with("errors",$errors)->with("vendor",$vendor);
-		}
+	
 	}
 
 

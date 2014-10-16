@@ -125,10 +125,7 @@
                         required:true,
                         minlength:9
                     },
-                    map:{
-                        required:true
-                        
-                    },
+                  
                     avatar:{
                         required:true,
                         accept:"image/*"
@@ -157,9 +154,7 @@
                         required:"Chưa điền thông tin",
                         minlength:"Yêu cầu nhập trên 9 kí tự"
                     },
-                    map:{
-                        required:"Chưa điền thông tin",
-                    },
+                    
                     avatar:{
                         required:"Chưa upload file",
                         accept:"Không đúng định dạng ảnh"
