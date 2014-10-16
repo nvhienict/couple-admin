@@ -71,14 +71,14 @@
                 </div>
                 <div class="form-group">
                     <label>Map</label>
-                    <input name='map' id='map' placeholder="Enter text" class="form-control">
+                    <input name='map' id='map' placeholder='Copy phần src=" " (<iframe src="Nội dung copy"></iframe>) của Google Map' class="form-control">
                     @foreach ($errors->get('map') as $message)
                     <p class="text-left alert alert-danger">{{$message}}</p>
                     @endforeach
                 </div>
                 <div class="form-group">
                     <label>Video</label>
-                    <input name='video' id='video' placeholder="Enter text" class="form-control">
+                    <input name='video' id='video' placeholder='Copy phần src=" " (<iframe src="Nội dung copy"></iframe>) của Youtube' class="form-control">
                    
                 </div>
 
@@ -114,7 +114,7 @@
                         minlength:5
                     },
                     email:{
-                        required:true,
+                      
                         email:true,
                         remote:{
                                 url:'{{URL::route('check-vendor-email')}}',
@@ -146,7 +146,7 @@
                         minlength:"Yêu cầu nhập trên 5 kí tự"
                     },
                     email:{
-                        required:"Chưa điền thông tin",
+                       
                         email:"Không đúng định dạng email",
                         remote:"Email đã tồn tại"
                     },

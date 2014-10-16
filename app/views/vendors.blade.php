@@ -68,6 +68,7 @@
                     <thead>
                         <tr>
                             <th></th>
+                            <th>Id</th>
                             <th>Name</th>
                             <th>Address</th>
                             <th>Phone</th>
@@ -84,6 +85,7 @@
                                 <input type="checkbox" value="{{$vendor->id}}" class='  compare-title'>
                                 <input type="hidden" name="checkbox-{{$vendor->id}}" value="" >
                             </td>
+                            <td>{{$index+1}}</td>
                             <td>{{$vendor->name}}
                             <ul class="menu list-unstyled" role="menu">
                             	<li><a href="{{URL::route('edit-vendor',array($vendor->id))}}">Edit</a></li>

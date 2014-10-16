@@ -52,12 +52,12 @@
                     <input name='website' value="{{$vendor->website}}" placeholder="Enter text" class="form-control">
                 </div>
                  <div class="form-group">
-                    <label>Map</label>
-                    <input name='map' value="{{$vendor->map}}" placeholder="Enter text" class="form-control">
+                    <label>Map</label>                   
+                    <input name='map' value="{{$vendor->map}}" placeholder='Copy phần src=" " (<iframe src="Nội dung copy"></iframe>) của Google Map' class="form-control">
                 </div>
                  <div class="form-group">
                     <label>Video</label>
-                    <input name='video' value="{{$vendor->video}}" placeholder="Enter text" class="form-control">
+                    <input name='video' value="{{$vendor->video}}" placeholder='Copy phần src=" " (<iframe src="Nội dung copy"></iframe>) của Youtube' class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Category</label>
@@ -118,7 +118,7 @@
                         minlength:5
                     },
                     email:{
-                        required:true,
+                        
                         email:true,
                         remote:{
                                 url:'{{URL::route('edit-check-vendor-email',array($vendor->id))}}',
@@ -145,7 +145,7 @@
                         minlength:"Yêu cầu nhập trên 5 kí tự"
                     },
                     email:{
-                        required:"Chưa điền thông tin",
+                       
                         email:"Không đúng định dạng email",
                         remote:"Email đã tồn tại"
                     },
