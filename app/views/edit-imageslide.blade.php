@@ -27,7 +27,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Photo:</label>
-                    <input name="bigpic_upload" id="bigpic_upload" type="file" >
+                    <input name="bigpic_upload" id="bigpic_upload" type="file" accept="image/*" required>
                     {{'<img class="img-responsive img-thumbnail" src="data:image/jpeg;base64,' . base64_encode($imageslide->bigpic) . '" />'}}
 
                 </div>

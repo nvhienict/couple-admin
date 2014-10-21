@@ -23,7 +23,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Photo:</label>
-                    <input name="bigpic_upload" id="bigpic_upload" type="file" >
+                    <input name="bigpic_upload" id="bigpic_upload" type="file" accept="image/*" required >
 
                 </div>
                  
