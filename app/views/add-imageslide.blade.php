@@ -36,7 +36,7 @@
                 </div>
                  <div class="row form-group">
                     <div class="col-xs-12">
-                       <b style="color:red">Mỗi vendor upload 7 ảnh.</b>
+                       <b style="color:red">Mỗi vendor upload nhiều nhất 7 ảnh.</b>
                     </div>
                 </div>                 
                 
