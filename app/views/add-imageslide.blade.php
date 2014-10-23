@@ -47,7 +47,7 @@
                 $("#bigpic_upload").change(function(){
                    var files = $(this)[0].files;
                     if(files.length > 16){
-                        swal("Chỉ được upload tối đa 14 ảnh!");
+                        swal("Chỉ được upload tối đa 16 ảnh!");
                         $("#bigpic_upload").val("");
                     }else{
                         var fileName = $("#bigpic_upload").val().toLowerCase();
@@ -61,10 +61,10 @@
                                 success:function(data)
                                 {
                                     var obj=JSON.parse(data);
-                                    if(obj.check>=14)
+                                    if(obj.check+files.length>=16)
                                     {
                                         $("#bigpic_upload").val("");
-                                        swal("Chỉ được upload tối đa 14 ảnh!"); 
+                                        swal("Tổng số ảnh của nhà cung cấp "+obj.name_vendor + " lớn 16, vui lòng chọn lại!"); 
                                     }
 
                                 }

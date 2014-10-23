@@ -82,8 +82,9 @@ class ImageSlideController extends \BaseController {
 	public function checkImageSlide()
 	{
 		$id_vendor=Input::get('id_vendor');
+		$name_vendor=Vendor::where('id',$id_vendor)->get()->first()->name;
 		$check=PhotoSlide::where("vendor",$id_vendor)->get()->count();
-		echo json_encode(array('check'=>$check));
+		echo json_encode(array('check'=>$check,'name_vendor'=>$name_vendor));
 		exit;
 	}
 	/**
