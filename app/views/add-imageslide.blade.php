@@ -17,13 +17,13 @@
                     <label for="">Vendor</label>
                     <select name="vendor" id="vendor" class="form-control" >
                         @foreach(Vendor::get() as $vendor)
-                        <option value="{{$vendor->id}}">{{$vendor->name}}</option>
+                        <option id="id_vendor"value="{{$vendor->id}}">{{$vendor->name}}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="">Photo:</label>
-                    <input name="bigpic_upload" id="bigpic_upload" type="file" accept="image/*" required >
+                    <input name="bigpic_upload[]" id="bigpic_upload" type="file"  multiple="true" accept="image/*" required >
 
                 </div>
                  
@@ -36,13 +36,51 @@
                 </div>
                  <div class="row form-group">
                     <div class="col-xs-12">
-                       <b style="color:red">Mỗi vendor upload nhiều nhất 7 ảnh.</b>
+                       <b style="color:red">Mỗi vendor upload nhiều nhất 14 ảnh.</b>
                     </div>
                 </div>                 
                 
             
                 
             </form>
+            <script type="text/javascript">
+                $("#bigpic_upload").change(function(){
+                   var files = $(this)[0].files;
+                    if(files.length > 14){
+                        swal("Chỉ được upload tối đa 14 ảnh!");
+                        $("#bigpic_upload").val("");
+                    }else{
+                        var fileName = $("#bigpic_upload").val().toLowerCase();
+                        if(fileName.lastIndexOf("png")===fileName.length-3 | fileName.lastIndexOf("jpeg")===fileName.length-3 |fileName.lastIndexOf("gif")===fileName.length-3|fileName.lastIndexOf("jpg")===fileName.length-3)
+                         {   $.ajax({
+                                type:"POST",
+                                url:"{{URL::route('check_imageslide')}}",
+                                data:{
+                                    id_vendor:$("#id_vendor").val()
+                                },
+                                success:function(data)
+                                {
+                                    var obj=JSON.parse(data);
+                                    if(obj.check>=14)
+                                    {
+                                        $("#bigpic_upload").val("");
+                                        swal("Chỉ được upload tối đa 14 ảnh!"); 
+                                    }
+
+                                }
+                            });
+                           } 
+                        else
+                        {
+                            $("#bigpic_upload").val("");                        
+                            swal("Vui lòng chọn đúng định dạng file Ảnh!");                                                                                 
+                            
+                        }                                 
+                    }                                                                         
+                                                                                                                
+                });     
+
+            </script>
         </div>
     </div>
 

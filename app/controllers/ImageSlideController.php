@@ -31,11 +31,16 @@ class ImageSlideController extends \BaseController {
 	 */
 	public function post_addImage()
 	{
-		$photoslide=new PhotoSlide();
-		$photoslide->vendor=Input::get('vendor');
-		$photoslide->bigpic=Image::make(Input::file('bigpic_upload')->getRealPath())->resize(700, 300)->encode('jpg',80);
-		$photoslide->smallpic=Image::make(Input::file('bigpic_upload')->getRealPath())->resize(80,80)->encode('jpg',80);
-		$photoslide->save();
+		
+		$files=Input::file('bigpic_upload');	
+		foreach ($files as $file) {
+			$photoslide=new PhotoSlide();
+			$photoslide->vendor=Input::get('vendor');
+			$photoslide->bigpic=Image::make($file->getRealPath())->resize(700, 300)->encode('jpg',80);
+			$photoslide->smallpic=Image::make($file->getRealPath())->resize(80,80)->encode('jpg',80);
+			$photoslide->save();
+		}
+			
 		return Redirect::route('imageslide');
 
 	}
@@ -49,7 +54,7 @@ class ImageSlideController extends \BaseController {
 	 */
 	public function showImageSlide()
 	{	
-		$imageslides=PhotoSlide::where('id','>',0)->paginate(7);;
+		$imageslides=PhotoSlide::where('id','>',0)->orderBy('vendor','ASC')->paginate(10);;
 		return View::make('imageslide')->with('imageslides',$imageslides);
 	}
 	public function showAdd()
@@ -74,7 +79,13 @@ class ImageSlideController extends \BaseController {
 		return View::make('edit-imageslide')->with('imageslide',$imageslide);
 	}
 
-
+	public function checkImageSlide()
+	{
+		$id_vendor=Input::get('id_vendor');
+		$check=PhotoSlide::where("vendor",$id_vendor)->get()->count();
+		echo json_encode(array('check'=>$check));
+		exit;
+	}
 	/**
 	 * Update the specified resource in storage.
 	 *
@@ -99,10 +110,22 @@ class ImageSlideController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function delete($id)
+	public function sentIdImage()
 	{
+		$id_image=Input::get('id_image');
+		$id_vendor=PhotoSlide::where('id',$id_image)->get()->first()->vendor;
+		$name_vendor=Vendor::where('id',$id_vendor)->get()->first()->name;
+		$number_image=Input::get('number_image');
+		echo json_encode(array('name_vendor'=>$name_vendor, 'number_image'=>$number_image));
+		exit;
+	}
+	public function delete()
+	{	
+		$id=Input::get('id_image');
 		PhotoSlide::find($id)->delete();
-		return Redirect::route('imageslide');
+		echo json_encode(array('id'=>$id));
+		exit;
+		
 	}
 	public function delSelectImages()
 	{

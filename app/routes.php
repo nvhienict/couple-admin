@@ -196,8 +196,9 @@ Route::group(array("prefix" => "admin"),function()
 	Route::get('imnageslide/edit/{id}',array('as'=>'edit','uses'=>'ImageSlideController@edit'));
 	Route::get('imageslide/update',array('as'=>'imageslide/update', 'uses'=>'ImageSlideController@showUpdate'));
 	Route::post('imageslide/update/{id}',array('as'=>'update','uses'=>'ImageSlideController@update'));
-	Route::get('imageslide/delete/{id}',array('as'=>'delete','uses'=>'ImageSlideController@delete'));
+	Route::post('imageslide/delete/',array('as'=>'imageslide/delete','uses'=>'ImageSlideController@delete'));
 	Route::post('delSelectImages',array('as'=>'delSelectImages','uses'=>'ImageSlideController@delSelectImages'));
-	
+	Route::post('check_imageslide',array('as'=>'check_imageslide','uses'=>'ImageSlideController@checkImageSlide'));
+	Route::post('sent_id_image',array('as'=>'sent_id_image','uses'=>'ImageSlideController@sentIdImage'));
 });
 

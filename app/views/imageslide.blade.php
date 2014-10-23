@@ -44,39 +44,65 @@
                                 <th></th>
                                 <th>Id</th>
                                 <th>Vendor</th>
-                                <th>BigPhoto</th>
-                                <th>SmallPhoto</th>
+                                <th>Photo</th>
+                                
                             </tr>
                             
                         </thead>
                          <tbody>
                         @if(!empty($imageslides))
                         @foreach($imageslides as $i=>$imageslide)
-                            <tr>
+                            <tr class="imageslide{{$imageslide->id}}">
                                 <td style="width:20px;">                                
                                     <input type="checkbox" class="checkbox" value="{{$imageslide->id}}">
                                     <input type="hidden" name="chk-{{$imageslide->id}}" value="" >
                                     
                                 </td>
-                                <td style="width:50px;">{{$i+1}}</td>
-                                <td>{{PhotoSlide::find($imageslide->id)->vendor()->get()->first()->name}}
+                                <td style="width:50px;">{{$i+1}}
+                                    <input type="hidden" name="number_image{{$imageslide->id}}" id="number_image{{$imageslide->id}}" class="form-control" value="{{$i+1}}">
+                                </td>
+                                <td>{{PhotoSlide::find($imageslide->id)->vendor()->get()->first()->name}}                                     
                                     <div class="menu-hidden " >
                                         <a  href="{{URL::route('edit',array($imageslide->id))}}">Edit</a>
-                                        <a  href="{{URL::route('delete',array($imageslide->id))}}">Delete</a>
+                                        <a  href=""data-toggle="modal" data-target="#modalDeleteImage" data-backdrop="static" onclick="sent_id_image({{$imageslide->id}})">Delete</a>
                                     </div>
                                     <script type="text/javascript">
-                                    $(".confirm").click(function(){
-                                        if(confirm("Are you sure you want to delete this?")){
-                                            return true;
+                                        function sent_id_image(id)
+                                        {
+                                            $('.modal_delete_image').val(id);
+                                            $.ajax({
+                                                type:"POST",
+                                                url:"{{URL::route('sent_id_image')}}",
+                                                data:{
+                                                    id_image:id, number_image:$('#number_image'+id).val()
+                                                },
+                                                success:function(data)
+                                                {
+                                                    var obj=JSON.parse(data);
+                                                    var str="Bạn có muốn xóa ảnh "+obj.number_image+" của "+obj.name_vendor+"?";
+                                                    $('.message_delete_image').text(str);
+                                                }
+                                            });                                     
                                         }
-                                        else{
-                                            return false;
+                                        function delete_image()
+                                        {
+                                            $.ajax({
+                                                type:"POST",
+                                                url:"{{URL::route('imageslide/delete')}}",
+                                                data:{
+                                                    id_image:$('.modal_delete_image').val()
+                                                },
+                                                success:function(data)
+                                                {
+                                                    var obj = JSON.parse(data);
+                                                    $('.imageslide'+obj.id).remove();
+                                                }
+                                            });
                                         }
-                                    });
                                     </script>
                                 </td>
-                                <td>Big photo {{$i+1}}</td>
-                                <td>Small photo {{$i+1}}</td>
+                                <td> Ảnh {{$i+1}}</td>
+                                
                                 
                                 
                     
@@ -92,6 +118,22 @@
                     
                 </form>
                 <div class="per_page">{{$imageslides->links()}}</div>
+                <!-- /.modal -->
+                <div class="modal fade" id="modalDeleteImage">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      
+                      <div class="modal-body">
+                        <h4 style="color:red;" class="text-center message_delete_image"></h4>
+                        <input type="hidden" class="modal_delete_image" value="">
+                      </div>
+                      <div class="modal-footer" style="text-align:center;">
+                        <button onclick="delete_image()" data-dismiss="modal" type="button" class="btn btn-primary">Có</button>
+                        <button data-dismiss="modal" type="button" class="btn btn-primary" data-dismiss="modal">Không</button>
+                      </div>
+                    </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
             </div>
             <script type="text/javascript">
         $(document).ready(function(){

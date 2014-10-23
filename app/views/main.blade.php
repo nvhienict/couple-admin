@@ -20,6 +20,8 @@
     <link href="{{Asset('assets/font-awesome-4.1.0/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
 
     <link href="{{Asset('assets/css/style.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{Asset('assets/css/sweet-alert.css')}}" rel="stylesheet">
+    <script src="{{Asset('assets/js/sweet-alert.min.js')}}"></script>
 
     <script src="{{Asset('assets/js/jquery-1.11.0.js')}}"></script>
 
