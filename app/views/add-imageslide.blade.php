@@ -36,7 +36,7 @@
                 </div>
                  <div class="row form-group">
                     <div class="col-xs-12">
-                       <b style="color:red">Mỗi vendor upload nhiều nhất 14 ảnh.</b>
+                       <b style="color:red">Mỗi vendor upload nhiều nhất 16 ảnh.</b>
                     </div>
                 </div>                 
                 
@@ -46,7 +46,7 @@
             <script type="text/javascript">
                 $("#bigpic_upload").change(function(){
                    var files = $(this)[0].files;
-                    if(files.length > 14){
+                    if(files.length > 16){
                         swal("Chỉ được upload tối đa 14 ảnh!");
                         $("#bigpic_upload").val("");
                     }else{
