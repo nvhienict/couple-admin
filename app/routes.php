@@ -16,7 +16,7 @@ Route::group(array("prefix" => "admin"),function()
 
 	// ****** Admin Login *****
 	Route::filter("check_login", function(){
-		if(!Session::has("email"))
+		if(!Session::has("admin"))
 			return Redirect::to("admin/login");
 	});
 

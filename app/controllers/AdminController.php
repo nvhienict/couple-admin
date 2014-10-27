@@ -96,7 +96,7 @@ class AdminController extends \BaseController {
 				),$remember);
 		if($auth)
 		{
-			Session::put("email",Input::get('inputEmail'));
+			Session::put("admin",Input::get('inputEmail'));
 			return Redirect::to("admin/main");
 		}	 
 		
@@ -104,7 +104,7 @@ class AdminController extends \BaseController {
 	}
 	public function get_logout()
 	{
-		Session::flush();
+		Session::forget('admin');
 		return Redirect::route("login");
 	}
 	public function search(){
@@ -117,7 +117,7 @@ class AdminController extends \BaseController {
 	// Giang ----User
 	public function get_users()
 	{
-		$msg=Session::get('msg');
+		$msg = Session::get('msg');
 		$users = User::paginate(10);
 		return View::make("users")->with("users", $users)->with('msg',$msg);
 	}
