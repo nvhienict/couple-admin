@@ -208,7 +208,7 @@ class AdminController extends \BaseController {
 		VendorComment::where('user',$id)->delete();
 
 		User::where("id", "=", $id)->delete();
-		Session::flush();
+		// Session::flush();
 
 		$msg="Delete User Success!";
 		return Redirect::route("users")->with('msg',$msg);
