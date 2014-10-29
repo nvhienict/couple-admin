@@ -98,6 +98,7 @@
                     <p class="text-left alert alert-danger">{{$message}}</p>
                     @endforeach
                 </div>
+                <button type="reset" class="btn btn-default">Reset</button>
                 <button class="btn btn-default" type="submit">Edit Vendor</button>
                 
             </form>
