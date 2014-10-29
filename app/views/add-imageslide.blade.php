@@ -23,7 +23,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Photo:</label>
-                    <input name="bigpic_upload[]" id="bigpic_upload" type="file"  multiple="true" accept="image/*" required >
+                    <input name="bigpic_upload[]" id="bigpic_upload" type="file"  multiple="true" accept="image/*" data-max-size="2097152" required >
 
                 </div>
                  
@@ -46,6 +46,8 @@
             <script type="text/javascript">
                 $("#bigpic_upload").change(function(){
                    var files = $(this)[0].files;
+                   var fileInput = $('#bigpic_upload');
+                   var maxSize = fileInput.data('max-size');    
                     if(files.length > 16){
                         swal("Chỉ được upload tối đa 16 ảnh!");
                         $("#bigpic_upload").val("");
@@ -66,7 +68,19 @@
                                         $("#bigpic_upload").val("");
                                         swal("Tổng số ảnh của nhà cung cấp "+obj.name_vendor + " lớn 16, vui lòng chọn lại!"); 
                                     }
-
+                                    else
+                                    {
+                                        for (var j=0; j<files.length; j++) 
+                                        {                                                          
+                                        var fileSize = files[j].size; // in bytes
+                                            if(fileSize>maxSize){
+                                                swal("Dung lượng của mỗi bức ảnh phải nhỏ hơn 2MB(mega byte), vui lòng chọn lại!"); 
+                                                $("#bigpic_upload").val("");
+                                                
+                                            }
+                                                                                                                                                       
+                                        }       
+                                    }
                                 }
                             });
                            } 
