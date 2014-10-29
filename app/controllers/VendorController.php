@@ -31,18 +31,6 @@ class VendorController extends \BaseController {
 	 */
 	public function store()
 	{
-		$rules=array(
-			"name"=>"required|min:3",
-			"address"=>"required|min:5",
-			"email"=>"required|email",
-			"phone"=>"required|min:9",
-			"avatar"=>"required|image",
-			"editor4"=>"required|min:10",
-			
-			);
-		$validator=Validator::make(Input::all(),$rules);
-		if($validator->passes())
-		{
 			$vendor=new Vendor();
 			$vendor->name=Input::get('name');
 			$vendor->address=Input::get('address');
@@ -57,13 +45,7 @@ class VendorController extends \BaseController {
         	$vendor->about=Input::get('editor4');
         	$vendor->save();
         	return Redirect::to('admin/vendors')->with('messages',"Tao Vendor thanh cong");
-		}
-		else
-		{
-			$errors=$validator->messages();
-			return View::make('add-vendor')
-			->with("errors",$errors);
-		}
+		
 	}
 
 
