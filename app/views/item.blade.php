@@ -49,31 +49,31 @@
 
                                 </td>
                                 <td>
-                                    <a onclick="clcate1({{$category->id}})" class="{{$category->id}}_cate_show_hide ">{{round($category->range1,2)}}</a><span class="{{$category->id}}_percent_show_hide">%</span>                                    
+                                    <a onclick="clcate1({{$category->id}})" class="{{$category->id}}_cate_show_hide ">{{round($category->range1,2)}}</a><span class="{{$category->id}}_percent_show_hide"></span>                                    
                                     <input onkeyup="key_range1(event,{{$category->id}})" onchange="v_fChangecate1({{$category->id}})" ondblclick="dbcate1({{$category->id}})" type="text" style="width:150px;display:none;" class="{{$category->id}}_cate_slidingDiv" name="range1" value="{{round($category->range1,2)}}">                                    
                                     <input type="hidden" name="{{$category->id}}" value="{{$category->id}}">
                                     <p class="{{$category->id}}_mgss_cate_1"style="display:none;color:red;">Must Enter Range1!</p>
                                 </td>
                                 <td>
-                                    <a onclick="clcate2({{$category->id}})"class="{{$category->id}}_cate_show_hide1 ">{{round($category->range2,2)}}</a><span class="{{$category->id}}_percent_show_hide1">%</span>                                    
+                                    <a onclick="clcate2({{$category->id}})"class="{{$category->id}}_cate_show_hide1 ">{{round($category->range2,2)}}</a><span class="{{$category->id}}_percent_show_hide1"></span>                                    
                                     <input onkeyup="key_range2(event,{{$category->id}})" onchange="v_fChangecate2({{$category->id}})" ondblclick="dbcate2({{$category->id}})" type="text" style="width:150px;display:none;" class="{{$category->id}}_cate_slidingDiv1" name="range2" value="{{round($category->range2,2)}}">
                                     <input type="hidden" name="{{$category->id}}" value="{{$category->id}}">
                                     <p class="{{$category->id}}_mgss_cate_2"style="display:none;color:red;">Must Enter Range2!</p>
                                 </td>
                                 <td>
-                                    <a onclick="clcate3({{$category->id}})"class="{{$category->id}}_cate_show_hide2 ">{{round($category->range3,2)}}</a><span class="{{$category->id}}_percent_show_hide2">%</span>                                    
+                                    <a onclick="clcate3({{$category->id}})"class="{{$category->id}}_cate_show_hide2 ">{{round($category->range3,2)}}</a><span class="{{$category->id}}_percent_show_hide2"></span>                                    
                                     <input onkeyup="key_range3(event,{{$category->id}})" onchange="v_fChangecate3({{$category->id}})" ondblclick="dbcate3({{$category->id}})" type="text" style="width:150px;display:none;" class="{{$category->id}}_cate_slidingDiv2" name="range3" value="{{round($category->range3,2)}}">
                                     <input type="hidden" name="{{$category->id}}" value="{{$category->id}}">
                                     <p class="{{$category->id}}_mgss_cate_3"style="display:none;color:red;">Must Enter Range3!</p>
                                 </td>
                                 <td>
-                                    <a onclick="clcate4({{$category->id}})"class="{{$category->id}}_cate_show_hide3 ">{{round($category->range4,2)}}</a><span class="{{$category->id}}_percent_show_hide3">%</span>                                    
+                                    <a onclick="clcate4({{$category->id}})"class="{{$category->id}}_cate_show_hide3 ">{{round($category->range4,2)}}</a><span class="{{$category->id}}_percent_show_hide3"></span>                                    
                                     <input onkeyup="key_range4(event,{{$category->id}})" onchange="v_fChangecate4({{$category->id}})" ondblclick="dbcate4({{$category->id}})"type="text" style="width:150px;display:none;" class="{{$category->id}}_cate_slidingDiv3" name="range4" value="{{round($category->range4,2)}}">
                                     <input type="hidden" name="{{$category->id}}" value="{{$category->id}}">
                                     <p class="{{$category->id}}_mgss_cate_4"style="display:none;color:red;">Must Enter Range4!</p>
                                 </td>
                                 <td>
-                                    <a onclick="clcate5({{$category->id}})"class="{{$category->id}}_cate_show_hide4 ">{{round($category->range5,2)}}</a><span class="{{$category->id}}_percent_show_hide4">%</span>                                    
+                                    <a onclick="clcate5({{$category->id}})"class="{{$category->id}}_cate_show_hide4 ">{{round($category->range5,2)}}</a><span class="{{$category->id}}_percent_show_hide4"></span>                                    
                                     <input onkeyup="key_range5(event,{{$category->id}})" onchange="v_fChangecate5({{$category->id}})" ondblclick="dbcate5({{$category->id}})" type="text" style="width:150px;display:none;" class="{{$category->id}}_cate_slidingDiv4" name="range5" value="{{round($category->range5,2)}}">
                                     <input type="hidden" name="{{$category->id}}" value="{{$category->id}}">
                                     <p class="{{$category->id}}_mgss_cate_5"style="display:none;color:red;">Must Enter Range5!</p>
@@ -420,7 +420,7 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <a onclick="cl1({{$budget->id}})" class="{{$budget->id}}_show_hide1 ">{{round($budget->range1,2)}}</a><span class="{{$budget->id}}_percent_item_show_hide1">%</span>                                                                                                                          
+                                            <a onclick="cl1({{$budget->id}})" class="{{$budget->id}}_show_hide1 ">{{round($budget->range1,2)}}</a><span class="{{$budget->id}}_percent_item_show_hide1"></span>                                                                                                                          
                                             <input onkeyup="key_item_range1(event,{{$budget->id}})" onchange="v_fChange1({{$budget->id}})" ondblclick="db1({{$budget->id}})"type="text" style="width:150px;display:none;" class="{{$budget->id}}_slidingDiv1" name="range1" value="{{round($budget->range1,2)}}">
                                             <input type="hidden" name="{{$budget->id}}" value="{{$budget->id}}">
                                             <p class="{{$budget->id}}_mgss_item_2"style="display:none;color:red;">Must Enter Range1!</p>
@@ -428,7 +428,7 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <a onclick="cl2({{$budget->id}})" class="{{$budget->id}}_show_hide2 ">{{round($budget->range2,2)}}</a><span class="{{$budget->id}}_percent_item_show_hide2">%</span>                                                                                                                           
+                                            <a onclick="cl2({{$budget->id}})" class="{{$budget->id}}_show_hide2 ">{{round($budget->range2,2)}}</a><span class="{{$budget->id}}_percent_item_show_hide2"></span>                                                                                                                           
                                            <input onkeyup="key_item_range2(event,{{$budget->id}})" onchange="v_fChange2({{$budget->id}})" ondblclick="db2({{$budget->id}})" type="text" style="width:150px;display:none;" class="{{$budget->id}}_slidingDiv2" name="range2" value="{{round($budget->range2,2)}}">
                                            <input type="hidden" name="{{$budget->id}}" value="{{$budget->id}}">  
                                            <p class="{{$budget->id}}_mgss_item_3"style="display:none;color:red;">Must Enter Range2!</p>
@@ -437,7 +437,7 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <a onclick="cl3({{$budget->id}})" class="{{$budget->id}}_show_hide3 ">{{round($budget->range3,2)}}</a><span class="{{$budget->id}}_percent_item_show_hide3">%</span>                                                                                  
+                                            <a onclick="cl3({{$budget->id}})" class="{{$budget->id}}_show_hide3 ">{{round($budget->range3,2)}}</a><span class="{{$budget->id}}_percent_item_show_hide3"></span>                                                                                  
                                             <input onkeyup="key_item_range3(event,{{$budget->id}})" onchange="v_fChange3({{$budget->id}})" ondblclick="db3({{$budget->id}})" type="text" style="width:150px;display:none;" class="{{$budget->id}}_slidingDiv3" name="range3" value="{{round($budget->range3,2)}}">
                                             <input type="hidden" name="{{$budget->id}}" value="{{$budget->id}}">
                                             <p class="{{$budget->id}}_mgss_item_4"style="display:none;color:red;">Must Enter Range3!</p>
@@ -445,7 +445,7 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <a onclick="cl4({{$budget->id}})" class="{{$budget->id}}_show_hide4 ">{{round($budget->range4,2)}}</a><span class="{{$budget->id}}_percent_item_show_hide4">%</span>                                                                                  
+                                            <a onclick="cl4({{$budget->id}})" class="{{$budget->id}}_show_hide4 ">{{round($budget->range4,2)}}</a><span class="{{$budget->id}}_percent_item_show_hide4"></span>                                                                                  
                                             <input onkeyup="key_item_range4(event,{{$budget->id}})" onchange="v_fChange4({{$budget->id}})" ondblclick="db4({{$budget->id}})" type="text" style="width:150px;display:none;" class="{{$budget->id}}_slidingDiv4" name="range4" value="{{round($budget->range4,2)}}">
                                             <input type="hidden" name="{{$budget->id}}" value="{{$budget->id}}">
                                             <p class="{{$budget->id}}_mgss_item_5"style="display:none;color:red;">Must Enter Range4!</p>
@@ -453,7 +453,7 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <a onclick="cl5({{$budget->id}})" class="{{$budget->id}}_show_hide5 ">{{round($budget->range5,2)}}</a><span class="{{$budget->id}}_percent_item_show_hide5">%</span>                                                                                  
+                                            <a onclick="cl5({{$budget->id}})" class="{{$budget->id}}_show_hide5 ">{{round($budget->range5,2)}}</a><span class="{{$budget->id}}_percent_item_show_hide5"></span>                                                                                  
                                             <input onkeyup="key_item_range5(event,{{$budget->id}})" onchange="v_fChange5({{$budget->id}})" ondblclick="db5({{$budget->id}})" type="text" style="width:150px;display:none;" class="{{$budget->id}}_slidingDiv5" name="range5" value="{{round($budget->range5,2)}}">
                                             <input type="hidden" value="{{$budget->id}}">
                                             <p class="{{$budget->id}}_mgss_item_6"style="display:none;color:red;">Must Enter Range5!</p>

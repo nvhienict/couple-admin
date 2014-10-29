@@ -153,4 +153,10 @@ class TaskController extends \BaseController {
 		$msg="Delete User Success!";
 		return Redirect::route("task");
 	} //end function
+	public function searchTask()
+	{
+		$name=Input::get('search_name');
+		$tasks=Task::where('title', 'LIKE', "%$name%")->paginate(100000000000);
+		return View::make('task')->with('tasks',$tasks);
+	}
 }

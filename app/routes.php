@@ -145,6 +145,7 @@ Route::group(array("prefix" => "admin"),function()
 	Route::post('task/update/{id}', array('as'=>'task/update','uses'=>'TaskController@updateTask'));
 	Route::get('task/delete/{id}', array('as'=>'task/delete','uses'=>'TaskController@deleteTask'));
 	Route::post('delSelectTask',array("as"=>"delSelectTask", "uses"=>"TaskController@delSelectTask"));
+	Route::post('search-task',array('as'=>'search-task',"uses"=>"TaskController@searchTask"));
 
 	/****Item*****/
 	Route::get('item',array('before'=>'check_login','as'=>'item','uses'=>'ItemController@show'));

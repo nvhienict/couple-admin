@@ -9,7 +9,7 @@
         <h1>Task</h1>
     </div>
     <div class="col-xs-10 col-md-6 col-lg-4 search">
-        <form id="search-vendor" role="form" action="" method="post">
+        <form id="search-vendor" role="form" action="{{URL::route('search-task')}}" method="post">
             <div class="input-group">
               <input type="text" name="search_name" class="form-control">
               <span class="input-group-btn">
