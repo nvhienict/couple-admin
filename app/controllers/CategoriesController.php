@@ -197,7 +197,7 @@ class CategoriesController extends \BaseController {
 	}
 	public function search(){
 		$name=Input::get('search_name');
-		$category=Category::where('name', 'LIKE', "%$name%")->paginate(10000000);
+		$category=Category::where('name', 'LIKE', "%$name%")->paginate(5);
 		return View::make('categories')->with('results',$category);
 	}
 

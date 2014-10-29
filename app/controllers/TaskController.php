@@ -156,7 +156,7 @@ class TaskController extends \BaseController {
 	public function searchTask()
 	{
 		$name=Input::get('search_name');
-		$tasks=Task::where('title', 'LIKE', "%$name%")->paginate(100000000000);
+		$tasks=Task::where('title', 'LIKE', "%$name%")->paginate(5);
 		return View::make('task')->with('tasks',$tasks);
 	}
 }
