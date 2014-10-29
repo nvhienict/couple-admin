@@ -58,8 +58,11 @@
 				rules:{
 					title:{
 						required:true,
-						minlength:3
-						
+						minlength:3,
+						remote:{
+                                url:'{{URL::route('edit-check-task',array($task->id))}}',
+                                type:"POST"
+                            }
                   		},
                   	description:{
 						required:true,
@@ -82,7 +85,7 @@
 					title:{
 						required:"Please, enter name of title!",
 						minlength:"Length than 3 word!",
-
+						remote:"Title is exist!"
 						},
 					
 					description:{

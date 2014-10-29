@@ -57,7 +57,7 @@ class TaskController extends \BaseController {
 	public function showTask()
 	{
 		$tasks=Task::where('id','>',0)->paginate(10);
-		Return View::make('task')->with('tasks',$tasks);
+		return View::make('task')->with('tasks',$tasks);
 	}
 	public function showAdd()
 	{
@@ -80,9 +80,8 @@ class TaskController extends \BaseController {
 		return View::make('edit-task')->with("task",$task);
 	}
 
-	/*public function edit_checkTitle($id)
-	{
-		if(Input::get('title')==Task::where('id',$id)->get()->first()->name){
+	public function editCheckTask($id){		
+		if(Input::get('title')==Task::where("id",$id)->get()->first()->title){
 			return "true";
 		}
 		else{
@@ -91,7 +90,7 @@ class TaskController extends \BaseController {
 			}
 			else return "false";
 		} 
-	}/
+	}
 
 	/**
 	 * Update the specified resource in storage.
