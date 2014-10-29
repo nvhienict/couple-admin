@@ -91,7 +91,7 @@ class CategoriesController extends \BaseController {
 		$name = Input::get('NameCategory');
 		$descreption=Input::get('editor4');
 		if($validator->passes()){
-			Category::where('id',$id)->update(array('name' => $name,'description'=>$descreption));
+			Category::where('id',$id)->update(array('name' => $name,'description'=>$descreption,'slug'=>Str::slug($name)));
 		return Redirect::to("admin/categories")->with('message','Đã lưu thành công');
 		}
 		else
@@ -119,7 +119,7 @@ class CategoriesController extends \BaseController {
 			);
 		$validator=Validator::make(Input::all(),$rules);
 		if($validator->passes()){
-		Category::insert(array('name' => $name,'description'=>$description));
+		Category::insert(array('name' => $name,'description'=>$description,'slug'=>Str::slug($name)));
 		return Redirect::to("admin/categories")->with('message','Đã thêm thành công');
 		}
 		else

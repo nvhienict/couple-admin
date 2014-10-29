@@ -43,6 +43,7 @@ class VendorController extends \BaseController {
 			$vendor->location=Input::get('location');
 			$vendor->avatar=Image::make(Input::file('avatar')->getRealPath())->encode('jpg',80);
         	$vendor->about=Input::get('editor4');
+        	$vendor->slug=Str::slug(Input::get('name'));
         	$vendor->save();
         	return Redirect::to('admin/vendors')->with('messages',"Tao Vendor thanh cong");
 		
@@ -95,6 +96,7 @@ class VendorController extends \BaseController {
 			$vendor->location=Input::get('location');
 			if(Input::hasFile('avatar')) $vendor->avatar=Image::make(Input::file('avatar')->getRealPath())->encode('jpg',80);
         	$vendor->about=Input::get('editor4');
+        	 $vendor->slug=Str::slug(Input::get('name'));
         	$vendor->save();
         	return Redirect::to('admin/vendors')->with('messages',"Edit Vendor thanh cong");
 	

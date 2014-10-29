@@ -60,6 +60,7 @@ class SongController extends \BaseController {
 		$songs->genre=$genre;
 		$songs->link=$link;
 		$songs->lyric=$lyric;
+		$songs->slug=Str::slug($name);
 		$songs->save();
 
 		$msg = Lang::get('messages.create_success');
@@ -154,6 +155,7 @@ class SongController extends \BaseController {
 										'artist'=>$artist,
 										'genre'=>$genre,
 										'link'=>$link,
+										'slug'=>Str::slug($name),
 										'lyric'=>$lyric)
 									);
 
