@@ -84,11 +84,11 @@
 
                 <div class="form-group">
                     <label>Avatar</label>
-                    <input name="avatar" id='avatar' type="file">
+                    <input name="avatar" id='avatar' type="file" accept="image/*" data-max-size="2097152" required >
                     @foreach ($errors->get('avatar') as $message)
                     <p class="text-left alert alert-danger">{{$message}}</p>
                     @endforeach
-                </div>
+                 </div>
                  <div class="form-group">
                     <label>About Us</label>
                     <textarea name="editor4" class="ckeditor form-control" cols="80" id="editor4" rows="10" tabindex="1"></textarea>
@@ -96,9 +96,38 @@
                     <p class="text-left alert alert-danger">{{$message}}</p>
                     @endforeach
                 </div>
+                <button type="reset" class="btn btn-default">Reset</button>
                 <button class="btn btn-default" type="submit">Create Vendor</button>
             </form>
             <script type="text/javascript">
+                $("#avatar").change(function(){
+                           var files = $(this)[0].files;
+                           var fileInput = $('#avatar');
+                           var maxSize = fileInput.data('max-size'); 
+                            var fileName = $("#avatar").val().toLowerCase();
+                                if(fileName.lastIndexOf("png")===fileName.length-3 | fileName.lastIndexOf("jpeg")===fileName.length-3 |fileName.lastIndexOf("gif")===fileName.length-3|fileName.lastIndexOf("jpg")===fileName.length-3)
+                                {                                                                                    
+                                    var fileSize = files[0].size; // in bytes
+                                        if(fileSize>maxSize){
+                                            swal("Dung lượng của mỗi bức ảnh phải nhỏ hơn 2MB(mega byte), vui lòng chọn lại!"); 
+                                            $("#avatar").val("");
+                                            
+                                        }
+                                                                                                                                                   
+                                         
+                                       
+                                   } 
+                                else
+                                {
+                                    $("#avatar").val("");                        
+                                    swal("Vui lòng chọn đúng định dạng file Ảnh!");                                                                                 
+                                    
+                                }                                 
+                                                                                                    
+                                                                                                                        
+                        });     
+
+
                 $('#register-vendor').validate({
                 rules:{
                     name:{
@@ -124,12 +153,7 @@
                     phone:{
                         required:true,
                         minlength:9
-                    },
-                  
-                    avatar:{
-                        required:true,
-                        accept:"image/*"
-                    },
+                    },                                      
                     editor4:{
                         required:true,
                         minlength:10
@@ -153,12 +177,7 @@
                     phone:{
                         required:"Chưa điền thông tin",
                         minlength:"Yêu cầu nhập trên 9 kí tự"
-                    },
-                    
-                    avatar:{
-                        required:"Chưa upload file",
-                        accept:"Không đúng định dạng ảnh"
-                    },
+                    },                    
                     editor4:{
                         required:"Chưa điền thông tin",
                         minlength:"Yêu cầu nhập trên 10 kí tự"
@@ -166,6 +185,7 @@
                 }
             })
             </script>
+            
 		</div>
 		<div class="col-xs-4"></div>
 	</div>
