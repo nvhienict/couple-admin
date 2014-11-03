@@ -229,7 +229,7 @@ class AdminController extends \BaseController {
 			foreach (User::get() as $user){
 				if($user->id==$key){
 					User::where("id", "=", $user->id)->delete();
-					Session::flush();
+					// Session::flush();
 				}
 			} // end foreach
 		} //end foreach
