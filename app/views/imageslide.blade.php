@@ -61,7 +61,7 @@
                                 <td style="width:50px;">{{$i+1}}
                                     <input type="hidden" name="number_image{{$imageslide->id}}" id="number_image{{$imageslide->id}}" class="form-control" value="{{$i+1}}">
                                 </td>
-                                <td>{{PhotoSlide::find($imageslide->id)->vendor()->get()->first()->name}}                                     
+                                <td>{{Vendor::where('id',$imageslide->vendor)->get()->first()->name}}                                     
                                     <div class="menu-hidden " >
                                         <a  href="{{URL::route('edit',array($imageslide->id))}}">Edit</a>
                                         <a  href=""data-toggle="modal" data-target="#modalDeleteImage" data-backdrop="static" onclick="sent_id_image({{$imageslide->id}})">Delete</a>
