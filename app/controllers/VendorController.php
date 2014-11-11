@@ -111,16 +111,32 @@ class VendorController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		Vendor::find($id)->delete();
-		return Redirect::to('admin/vendors')->with('messages',"Xoa vendor thanh cong");
+		$counts=PhotoSlide::where('vendor',$id)->get()->count();		
+		if($counts>0)
+		{
+			ImageSlideController::deleteImageVendor($id);
+			return Redirect::to('admin/vendors')->with('messages',"Xoa vendor thanh cong");
+		}
+		else
+		{
+			Vendor::find($id)->delete();
+			return Redirect::to('admin/vendors')->with('messages',"Xoa vendor thanh cong");
+
+		}
+		
+
+		
 	}
 	public function delete_vendors(){
 		foreach(Vendor::get() as $vendor){
-			if(Input::get('checkbox-'.$vendor->id)==$vendor->id){
-				Vendor::find($vendor->id)->delete();
+			if(Input::get('checkbox-'.$vendor->id)==$vendor->id){				
+				ImageSlideController::deleteImageVendor($vendor->id);					
+				Vendor::find($vendor->id)->delete();					
+				
 			}
 		}
 		return Redirect::to('admin/vendors')->with('messages',"Xoa vendor thanh cong");
+		
 	}
 	public function check_vendor(){
 		return (Vendor::where("name",Input::get('name'))->count()==0? "true": "false");
