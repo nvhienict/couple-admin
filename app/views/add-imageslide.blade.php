@@ -15,9 +15,10 @@
               
                 <div class="form-group">
                     <label for="">Vendor</label>
-                    <select name="vendor" id="vendor" class="form-control" >
+                    <input type="hidden" name="input_id_vendor" id="input_id_vendor" class="form-control" value="">
+                    <select name="vendor"  id="vendor" class="form-control" >
                         @foreach(Vendor::get() as $vendor)
-                        <option id="id_vendor"value="{{$vendor->id}}">{{$vendor->name}}</option>
+                        <option value="{{$vendor->id}}">{{$vendor->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -44,6 +45,10 @@
                 
             </form>
             <script type="text/javascript">
+                $( "#vendor" ).change(function() {
+                    var str=$(this).val();                  
+                    $("#input_id_vendor").val(str);
+                });
                 $("#bigpic_upload").change(function(){
                    var files = $(this)[0].files;
                    var fileInput = $('#bigpic_upload');
@@ -58,7 +63,7 @@
                                 type:"POST",
                                 url:"{{URL::route('check_imageslide')}}",
                                 data:{
-                                    id_vendor:$("#id_vendor").val()
+                                    id_vendor:$("#input_id_vendor").val()
                                 },
                                 success:function(data)
                                 {
