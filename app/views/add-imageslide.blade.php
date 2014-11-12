@@ -24,7 +24,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Photo:</label>
-                    <input name="bigpic_upload[]" id="bigpic_upload" type="file"  multiple="true" accept="image/*" data-max-size="2097152" required >
+                    <input name="bigpic_upload[]" id="bigpic_upload" type="file"  multiple="true" accept="image/*" data-max-size="1048576" required >
 
                 </div>
                  
@@ -79,7 +79,7 @@
                                         {                                                          
                                         var fileSize = files[j].size; // in bytes
                                             if(fileSize>maxSize){
-                                                swal("Dung lượng của mỗi bức ảnh phải nhỏ hơn 2MB(mega byte), vui lòng chọn lại!"); 
+                                                swal("Dung lượng của mỗi bức ảnh phải nhỏ hơn 1MB(mega byte), vui lòng chọn lại!"); 
                                                 $("#bigpic_upload").val("");
                                                 
                                             }
