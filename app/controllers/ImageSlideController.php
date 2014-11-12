@@ -27,6 +27,10 @@ class ImageSlideController extends \BaseController {
 	{
 		PhotoSlide::where('vendor',$id)->delete();
 	}
+	public static function deleteImageVendorLocation($id_vendor)
+	{
+		PhotoSlide::where('vendor',$id_vendor)->delete();
+	}
 	/**
 	 * Store a newly created resource in storage.
 	 *

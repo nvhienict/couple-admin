@@ -78,25 +78,43 @@ class LocationController extends BaseController {
 	}
 	public function deleteLocation($id)
 	{
-		Location::find($id)->delete();
+		$check=Vendor::where('location',$id)->get()->count();
+		if($check>0)
+		{
+			$id_vendor=Vendor::where('location',$id)->get()->first()->id;		
+			ImageSlideController::deleteImageVendorLocation($id_vendor);
+			VendorController::deleteVendorLocation($id);		
+			Location::find($id)->delete();
+		}	
+		else{
+			Location::find($id)->delete();
+		}
+		
+		
 
 		return Redirect::to("admin/location");
 	}
 	public function delSelect(){
-		$ids=array();
-		foreach(Location::get() as $location){
-			if(Input::get('chk-'.$location->id)==$location->id){
-				$ids[]=Input::get('chk-'.$location->id);
-			} //end if
-		} //end foreach
 
-		foreach ($ids as $id=>$key){
-			foreach (Location::get() as $location){
-				if($location->id==$key){
-					Location::where("id", "=", $location->id)->delete();
+		foreach(Location::get() as $location){
+			if(Input::get('chk-'.$location->id)==$location->id)
+			{
+
+				$check=Vendor::where('location',$location->id)->get()->count();
+				if($check>0)
+				{			
+					$id_vendor=Vendor::where('location',$location->id)->get()->first()->id;		
+					ImageSlideController::deleteImageVendorLocation($id_vendor);
+					VendorController::deleteVendorLocation($location->id);					
+					Location::find($location->id)->delete();
 				}
-			} // end foreach
-		} //end foreach
+				else
+				{
+					Location::find($location->id)->delete();
+				}						
+				
+			}
+		}
 		
 		$msg="Delete User Success!";
 		return Redirect::route("location");

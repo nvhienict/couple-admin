@@ -61,7 +61,10 @@ class VendorController extends \BaseController {
 		//
 	}
 
-
+	public static function deleteVendorLocation($id)
+	{
+		Vendor::where('location',$id)->delete();
+	}
 	/**
 	 * Show the form for editing the specified resource.
 	 *
@@ -115,6 +118,7 @@ class VendorController extends \BaseController {
 		if($counts>0)
 		{
 			ImageSlideController::deleteImageVendor($id);
+			Vendor::find($id)->delete();
 			return Redirect::to('admin/vendors')->with('messages',"Xoa vendor thanh cong");
 		}
 		else
