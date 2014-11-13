@@ -65,6 +65,10 @@ class VendorController extends \BaseController {
 	{
 		Vendor::where('location',$id)->delete();
 	}
+	public static function deleteVendorCategory($id)
+	{
+		Vendor::where('category',$id)->delete();
+	}
 	/**
 	 * Show the form for editing the specified resource.
 	 *

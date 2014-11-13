@@ -129,27 +129,53 @@ class CategoriesController extends \BaseController {
 		}
 	}
 	public function DeleteCategory($id){
-		Category::find($id)->delete();
+		$check=Vendor::where('category',$id)->get()->count();
+		if($check>0)
+		{
+			$delete_vendors=Vendor::where('category',$id)->get();
+			foreach ($delete_vendors as $delete_vendor) 
+			{
+				$id_vendor=$delete_vendor->id;
+				ImageSlideController::deleteImageVendorLocation($id_vendor);
+			}		
+			
+			VendorController::deleteVendorCategory($id);		
+			Category::find($id)->delete();
+		}	
+		else{
+			Category::find($id)->delete();
+		}
+		
 		return Redirect::to("admin/categories")->with('message','Đã xoá thành công');
 	}
 	public function check_Categories(){
 		return (Category::where("name",Input::get('NameCategory'))->count()==0? "true": "false");
 	}
 	public function dels_category(){
-		$ids=array();
 		foreach(Category::get() as $category){
-			if(Input::get('chk-'.$category->id)==$category->id){
-				$ids[]=Input::get('chk-'.$category->id);
-			} //end if
-		} //end foreach
-
-		foreach ($ids as $id=>$key){
-			foreach (Category::get() as $category){
-				if($category->id==$key){
-					Category::where("id", "=", $category->id)->delete();
+			if(Input::get('chk-'.$category->id)==$category->id)
+			{
+				$check=Vendor::where('category',$category->id)->get()->count();
+				if($check>0)
+				{
+					$delete_vendors=Vendor::where('category',$category->id)->get();
+					foreach ($delete_vendors as $delete_vendor) 
+					{
+						$id_vendor=$delete_vendor->id;
+						ImageSlideController::deleteImageVendorLocation($id_vendor);
+					}		
+					
+					VendorController::deleteVendorCategory($category->id);		
+					Category::find($category->id)->delete();
+				}	
+				else
+				{
+					Category::find($category->id)->delete();
 				}
-			} // end foreach
-		} //end foreach
+			}
+		}
+
+		
 		
 		$msg="Delete Categry Success!";
 		return Redirect::route("categories")->with('message',$msg);
