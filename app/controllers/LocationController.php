@@ -108,12 +108,14 @@ class LocationController extends BaseController {
 				$check=Vendor::where('location',$location->id)->get()->count();
 				if($check>0)
 				{			
-					$delete_vendors=Vendor::where('location',$id)->get();
+					$delete_vendors=Vendor::where('location',$location->id)->get();
 					foreach ($delete_vendors as $delete_vendor) 
 					{
 						$id_vendor=$delete_vendor->id;
 						ImageSlideController::deleteImageVendorLocation($id_vendor);
-					}		
+					}	
+					VendorController::deleteVendorLocation($location->id);	
+					Location::find($location->id)->delete();	
 				}
 				else
 				{
