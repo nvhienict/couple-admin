@@ -81,8 +81,13 @@ class LocationController extends BaseController {
 		$check=Vendor::where('location',$id)->get()->count();
 		if($check>0)
 		{
-			$id_vendor=Vendor::where('location',$id)->get()->first()->id;		
-			ImageSlideController::deleteImageVendorLocation($id_vendor);
+			$delete_vendors=Vendor::where('location',$id)->get();
+			foreach ($delete_vendors as $delete_vendor) 
+			{
+				$id_vendor=$delete_vendor->id;
+				ImageSlideController::deleteImageVendorLocation($id_vendor);
+			}		
+			
 			VendorController::deleteVendorLocation($id);		
 			Location::find($id)->delete();
 		}	
@@ -103,10 +108,12 @@ class LocationController extends BaseController {
 				$check=Vendor::where('location',$location->id)->get()->count();
 				if($check>0)
 				{			
-					$id_vendor=Vendor::where('location',$location->id)->get()->first()->id;		
-					ImageSlideController::deleteImageVendorLocation($id_vendor);
-					VendorController::deleteVendorLocation($location->id);					
-					Location::find($location->id)->delete();
+					$delete_vendors=Vendor::where('location',$id)->get();
+					foreach ($delete_vendors as $delete_vendor) 
+					{
+						$id_vendor=$delete_vendor->id;
+						ImageSlideController::deleteImageVendorLocation($id_vendor);
+					}		
 				}
 				else
 				{
