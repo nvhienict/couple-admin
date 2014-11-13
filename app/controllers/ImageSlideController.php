@@ -61,7 +61,7 @@ class ImageSlideController extends \BaseController {
 	 */
 	public function showImageSlide()
 	{	
-		$imageslides=PhotoSlide::where('id','>',0)->orderBy('vendor','ASC')->paginate(10);;
+		$imageslides=PhotoSlide::where('id','>',0)->orderBy('vendor','ASC')->paginate(10);
 		return View::make('imageslide')->with('imageslides',$imageslides);
 	}
 	public function showAdd()
@@ -154,6 +154,29 @@ class ImageSlideController extends \BaseController {
 		
 		$msg="Delete User Success!";
 		return Redirect::route("imageslide");
+	}
+	public function search(){
+		$name=Input::get('search_name');
+		$counts=Vendor::where('name', 'LIKE', "%$name%")->get()->count();
+		if($counts>0)
+		{
+			$vendors=Vendor::where('name', 'LIKE', "%$name%")->get();		
+			foreach ($vendors as $vendor) 
+			{
+				$id_vendors[]=$vendor->id;
+			}
+		
+			$imageslides=PhotoSlide::whereIn('vendor',$id_vendors)->get();
+			return View::make('search_image')->with('imageslides',$imageslides);
+		}
+		else
+		{
+			return View::make('search_image');
+		}
+		
+	
+				
+		
 	}
 
 }

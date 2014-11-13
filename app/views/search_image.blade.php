@@ -107,7 +107,8 @@
                                 
                     
                             </tr>
-                        @endforeach()                        
+                        @endforeach()
+                       
                         @endif
                                        
                     </tbody>
@@ -116,7 +117,7 @@
                     </table>
                     
                 </form>
-                <div class="per_page">{{$imageslides->links()}}</div>
+                
                 <!-- /.modal -->
                 <div class="modal fade" id="modalDeleteImage">
                   <div class="modal-dialog">

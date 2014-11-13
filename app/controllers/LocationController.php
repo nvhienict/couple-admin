@@ -130,7 +130,7 @@ class LocationController extends BaseController {
 	} //end function
 	public function search(){
 		$name=Input::get('search_name');
-		$locations=Location::where('name', 'LIKE', "%$name%")->paginate(5);
-		return View::make('location')->with('results',$locations);
+		$locations=Location::where('name', 'LIKE', "%$name%")->get();
+		return View::make('search_location')->with('results',$locations);
 	}
 }

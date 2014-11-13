@@ -234,5 +234,10 @@ class SongController extends \BaseController {
 		$song_comments = SongComment::orderBy('id','DESC')->paginate(10);
 		return View::make('song_comments')->with('song_comments', $song_comments)->with('msg',$msg);
 	}
+	public function search(){
+		$name=Input::get('search_name');
+		$songs=Song::where('name', 'LIKE', "%$name%")->get();
+		return View::make('search_song')->with('songs',$songs);
+	}
 
 }

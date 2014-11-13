@@ -223,8 +223,8 @@ class CategoriesController extends \BaseController {
 	}
 	public function search(){
 		$name=Input::get('search_name');
-		$category=Category::where('name', 'LIKE', "%$name%")->paginate(5);
-		return View::make('categories')->with('results',$category);
+		$category=Category::where('name', 'LIKE', "%$name%")->get();
+		return View::make('search_categories')->with('results',$category);
 	}
 
 	}

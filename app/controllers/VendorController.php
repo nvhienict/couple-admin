@@ -9,7 +9,7 @@ class VendorController extends \BaseController {
 	 */
 	public function index()
 	{
-		return View::make('vendors')->with("vendors",Vendor::paginate(5));
+		return View::make('vendors')->with("vendors",Vendor::paginate(10));
 	}
 
 
@@ -41,7 +41,7 @@ class VendorController extends \BaseController {
 			$vendor->video=Input::get('video');
 			$vendor->category=Input::get('category');
 			$vendor->location=Input::get('location');
-			$vendor->avatar=Image::make(Input::file('avatar')->getRealPath())->encode('jpg',80);
+			$vendor->avatar=Image::make(Input::file('avatar')->getRealPath())->resize(300, 300)->encode('jpg',80);
         	$vendor->about=Input::get('editor4');
         	$vendor->slug=Str::slug(Input::get('name'));
         	$vendor->save();
@@ -101,7 +101,7 @@ class VendorController extends \BaseController {
 			$vendor->video=Input::get('video');
 			$vendor->category=Input::get('category');
 			$vendor->location=Input::get('location');
-			if(Input::hasFile('avatar')) $vendor->avatar=Image::make(Input::file('avatar')->getRealPath())->encode('jpg',80);
+			if(Input::hasFile('avatar')) $vendor->avatar=Image::make(Input::file('avatar')->getRealPath())->resize(300, 300)->encode('jpg',80);
         	$vendor->about=Input::get('editor4');
         	 $vendor->slug=Str::slug(Input::get('name'));
         	$vendor->save();
@@ -178,8 +178,8 @@ class VendorController extends \BaseController {
 	}
 	public function search(){
 		$name=Input::get('search_name');
-		$vendors=Vendor::where('name', 'LIKE', "%$name%")->paginate(5);
-		return View::make('vendors')->with('vendors',$vendors);
+		$vendors=Vendor::where('name', 'LIKE', "%$name%")->get();
+		return View::make('search_vendors')->with('vendors',$vendors);
 	}
 
 

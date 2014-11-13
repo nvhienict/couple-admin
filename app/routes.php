@@ -188,6 +188,7 @@ Route::group(array("prefix" => "admin"),function()
 
 	// *** Song-comment
 	Route::get('song_comments', array('as'=>'song_comments', 'uses'=>'SongController@comments'));
+	Route::post('search_song',array('as'=>'search_song','uses'=>'SongController@search'));
 
 	
 	//****Image-slide
@@ -201,5 +202,6 @@ Route::group(array("prefix" => "admin"),function()
 	Route::post('delSelectImages',array('as'=>'delSelectImages','uses'=>'ImageSlideController@delSelectImages'));
 	Route::post('check_imageslide',array('as'=>'check_imageslide','uses'=>'ImageSlideController@checkImageSlide'));
 	Route::post('sent_id_image',array('as'=>'sent_id_image','uses'=>'ImageSlideController@sentIdImage'));
+	Route::post('search_image',array('as'=>'search_image','uses'=>'ImageSlideController@search'));
 });
 

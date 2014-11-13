@@ -103,7 +103,7 @@ Songs
 	</tbody>
 </table>
 </form>
-<div class="per_page">{{ $songs->links() }}</div>
+
 
 <!-- Modal Creat Song -->
 <div class="modal fade" id="myModalCreatSong" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
