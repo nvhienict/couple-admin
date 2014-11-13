@@ -41,7 +41,7 @@ class VendorController extends \BaseController {
 			$vendor->video=Input::get('video');
 			$vendor->category=Input::get('category');
 			$vendor->location=Input::get('location');
-			$vendor->avatar=Image::make(Input::file('avatar')->getRealPath())->resize(300, 300)->encode('jpg',80);
+			$vendor->avatar=Image::make(Input::file('avatar')->getRealPath())->encode('jpg',80);
         	$vendor->about=Input::get('editor4');
         	$vendor->slug=Str::slug(Input::get('name'));
         	$vendor->save();
@@ -101,7 +101,7 @@ class VendorController extends \BaseController {
 			$vendor->video=Input::get('video');
 			$vendor->category=Input::get('category');
 			$vendor->location=Input::get('location');
-			if(Input::hasFile('avatar')) $vendor->avatar=Image::make(Input::file('avatar')->getRealPath())->resize(300, 300)->encode('jpg',80);
+			if(Input::hasFile('avatar')) $vendor->avatar=Image::make(Input::file('avatar')->getRealPath())->encode('jpg',80);
         	$vendor->about=Input::get('editor4');
         	 $vendor->slug=Str::slug(Input::get('name'));
         	$vendor->save();
