@@ -31,6 +31,19 @@ class VendorController extends \BaseController {
 	 */
 	public function store()
 	{
+
+			$category=Input::get('category');
+			$category_name = Str::slug(Category::where("id", $category)->get()->first()->name);
+
+			$vendor=Str::slug(Input::get('name'));
+
+			File::makeDirectory(saveimages_path('images_vendor/'.$category_name),$mode = 0775,true,true);
+			$image = Input::file('avatar');
+			$filename = $vendor. '.' .$image->getClientOriginalExtension();
+			$path = saveimages_path('images_vendor/'.$category_name.'/'.$filename);
+			$pathsave = 'images_vendor/'.$category_name.'/'.$filename;
+			Image::make($image->getRealPath())->resize(300, 300)->save($path);
+
 			$vendor=new Vendor();
 			$vendor->name=Input::get('name');
 			$vendor->address=Input::get('address');
@@ -41,8 +54,8 @@ class VendorController extends \BaseController {
 			$vendor->video=Input::get('video');
 			$vendor->category=Input::get('category');
 			$vendor->location=Input::get('location');
-			$vendor->avatar=Image::make(Input::file('avatar')->getRealPath())->resize(300, 300)->encode('jpg',80);
-        	$vendor->about=Input::get('editor4');
+			$vendor->photo=$pathsave;
+        	$vendor->about=strip_tags(Input::get('editor4'));
         	$vendor->slug=Str::slug(Input::get('name'));
         	$vendor->save();
         	return Redirect::to('admin/vendors')->with('messages',"Tao Vendor thanh cong");
@@ -90,7 +103,23 @@ class VendorController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		
+			
+			$category=Input::get('category');
+			$category_name = Str::slug(Category::where("id", $category)->get()->first()->name);
+
+			$vendor=Str::slug(Input::get('name'));
+
+			$photo_vendor = Vendor::where('id', $id)->get()->first()->photo;
+			$path_delete=saveimages_path($photo_vendor);
+			File::delete($path_delete);
+
+			File::makeDirectory(saveimages_path('images_vendor/'.$category_name),$mode = 0775,true,true);
+			$image = Input::file('avatar');
+			$filename = $vendor. '.' .$image->getClientOriginalExtension();
+			$path = saveimages_path('images_vendor/'.$category_name.'/'.$filename);
+			$pathsave = 'images_vendor/'.$category_name.'/'.$filename;
+			Image::make($image->getRealPath())->resize(300, 300)->save($path);
+
 			$vendor=Vendor::find($id);
 			$vendor->name=Input::get('name');
 			$vendor->address=Input::get('address');
@@ -101,9 +130,18 @@ class VendorController extends \BaseController {
 			$vendor->video=Input::get('video');
 			$vendor->category=Input::get('category');
 			$vendor->location=Input::get('location');
-			if(Input::hasFile('avatar')) $vendor->avatar=Image::make(Input::file('avatar')->getRealPath())->resize(300, 300)->encode('jpg',80);
+			
+			if(Input::hasFile('avatar')) 
+			{
+				$vendor->photo=$pathsave;
+			} else {
+				$photo_vendor = Vendor::where('id', $id)->get()->first()->photo;
+				$vendor->photo=$photo_vendor;
+			}
+
+			
         	$vendor->about=Input::get('editor4');
-        	 $vendor->slug=Str::slug(Input::get('name'));
+        	$vendor->slug=Str::slug(Input::get('name'));
         	$vendor->save();
         	return Redirect::to('admin/vendors')->with('messages',"Edit Vendor thanh cong");
 	

@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://localhost/couple-site-db',
+	'url' => 'http://localhost',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return array(
 	|
 	*/
 
-	'locale' => 'en',
+	'locale' => 'vi',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -121,9 +121,10 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
+		'Maatwebsite\Excel\ExcelServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
+		'Artdarek\OAuth\OAuthServiceProvider',
 		'Cviebrock\EloquentSluggable\SluggableServiceProvider'
-
 	),
 
 	/*
@@ -190,7 +191,10 @@ return array(
 		'URL'               => 'Illuminate\Support\Facades\URL',
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
-		'Image' => 'Intervention\Image\Facades\Image'
+		'Excel' => 'Maatwebsite\Excel\Facades\Excel',
+		'Carbon' => 'Carbon\Carbon',
+		'Image' => 'Intervention\Image\Facades\Image',
+		'OAuth' => 'Artdarek\OAuth\Facade\OAuth'
 
 	),
 

@@ -86,7 +86,7 @@
                 <div class="form-group">
                     <label>Avatar</label>
                     <input name="avatar" id='avatar' type="file">
-                    {{'<img class="img-responsive img-thumbnail" src="data:image/jpeg;base64,' . base64_encode($vendor->avatar) . '" />'}}
+                    <img src="{{$saveimage_path().'/'.$vendor->photo}}">
                     @foreach ($errors->get('avatar') as $message)
                     <p class="text-left alert alert-danger">{{$message}}</p>
                     @endforeach
