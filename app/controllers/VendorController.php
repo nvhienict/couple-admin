@@ -107,15 +107,20 @@ class VendorController extends \BaseController {
 			$month=date('m');
 
 			$photo_vendor = Vendor::where('id', $id)->get()->first()->photo;
-			$path_delete=storage_path($photo_vendor);
-			File::delete($path_delete);
 
-			File::makeDirectory(storage_path('images/'.$year.'/'.$month),$mode = 0775,true,true);
-			$image = Input::file('avatar');
-			$filename =str_random(10) . '.' .$image->getClientOriginalExtension();
-			$path = storage_path('images/'.$year.'/'.$month.'/'.$filename);
-			$pathsave='images/'.$year.'/'.$month.'/'.$filename;
-			Image::make($image->getRealPath())->resize(300, 300)->save($path);
+			if(Input::hasFile('avatar')) 
+			{
+
+				$path_delete=storage_path($photo_vendor);
+				File::delete($path_delete);
+
+				File::makeDirectory(storage_path('images/'.$year.'/'.$month),$mode = 0775,true,true);
+				$image = Input::file('avatar');
+				$filename =str_random(10) . '.' .$image->getClientOriginalExtension();
+				$path = storage_path('images/'.$year.'/'.$month.'/'.$filename);
+				$pathsave='images/'.$year.'/'.$month.'/'.$filename;
+				Image::make($image->getRealPath())->resize(300, 300)->save($path);
+			}
 
 			$vendor=Vendor::find($id);
 			$vendor->name=Input::get('name');
