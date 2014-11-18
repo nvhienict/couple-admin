@@ -212,12 +212,29 @@ class VendorController extends \BaseController {
 				return "true";
 			}
 			else return "false";
-		} 
+		}
 	}
 	public function search(){
 		$name=Input::get('search_name');
 		$vendors=Vendor::where('name', 'LIKE', "%$name%")->get();
 		return View::make('search_vendors')->with('vendors',$vendors);
+	}
+
+
+	// get images
+	public static function getImagesVendor($image)
+	{
+		$path = storage_path().'/'.$image;
+		
+		// Read image path, convert to base64 encoding
+		$imageData = base64_encode(file_get_contents($path));
+
+		// Format the image SRC:  data:{mime};base64,{data};
+		$src = 'data: '.mime_content_type($path).';base64,'.$imageData;
+
+		// Echo out a sample image
+		echo '<img src="',$src,'">';
+
 	}
 
 
