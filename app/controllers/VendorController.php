@@ -32,16 +32,16 @@ class VendorController extends \BaseController {
 	public function store()
 	{
 
-			$category=Input::get('category');
-			$category_name = Str::slug(Category::where("id", $category)->get()->first()->name);
+			$year=date("Y");
+			$month=date('m');
 
-			$vendor=Str::slug(Input::get('name'));
+			
 
-			File::makeDirectory(storage_path('images_vendor/'.$category_name),$mode = 0775,true,true);
+			File::makeDirectory(storage_path('images/'.$year.'/'.$month),$mode = 0775,true,true);
 			$image = Input::file('avatar');
-			$filename = $vendor. '.' .$image->getClientOriginalExtension();
-			$path = storage_path('images_vendor/'.$category_name.'/'.$filename);
-			$pathsave = 'images_vendor/'.$category_name.'/'.$filename;
+			$filename =str_random(10) . '.' .$image->getClientOriginalExtension();
+			$path = storage_path('images/'.$year.'/'.$month.'/'.$filename);
+			$pathsave='images/'.$year.'/'.$month.'/'.$filename;
 			Image::make($image->getRealPath())->resize(300, 300)->save($path);
 
 			$vendor=new Vendor();
@@ -103,21 +103,18 @@ class VendorController extends \BaseController {
 	 */
 	public function update($id)
 	{
-			
-			$category=Input::get('category');
-			$category_name = Str::slug(Category::where("id", $category)->get()->first()->name);
-
-			$vendor=Str::slug(Input::get('name'));
+			$year=date("Y");
+			$month=date('m');
 
 			$photo_vendor = Vendor::where('id', $id)->get()->first()->photo;
 			$path_delete=storage_path($photo_vendor);
 			File::delete($path_delete);
 
-			File::makeDirectory(storage_path('images_vendor/'.$category_name),$mode = 0775,true,true);
+			File::makeDirectory(storage_path('images/'.$year.'/'.$month),$mode = 0775,true,true);
 			$image = Input::file('avatar');
-			$filename = $vendor. '.' .$image->getClientOriginalExtension();
-			$path = storage_path('images_vendor/'.$category_name.'/'.$filename);
-			$pathsave = 'images_vendor/'.$category_name.'/'.$filename;
+			$filename =str_random(10) . '.' .$image->getClientOriginalExtension();
+			$path = storage_path('images/'.$year.'/'.$month.'/'.$filename);
+			$pathsave='images/'.$year.'/'.$month.'/'.$filename;
 			Image::make($image->getRealPath())->resize(300, 300)->save($path);
 
 			$vendor=Vendor::find($id);
