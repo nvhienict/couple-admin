@@ -86,13 +86,14 @@
                 <div class="form-group">
                     <label>Avatar</label>
                     <input name="avatar" id='avatar' type="file">
-                    <?php
-                         $url = storage_path();
-                    ?>
-                    <img src="{{ $url.'/'.$vendor->photo}}">
+
+                    <!-- display images vendor -->
+                    {{VendorController::getImagesVendor($vendor->photo)}}
+                    
                     @foreach ($errors->get('avatar') as $message)
                     <p class="text-left alert alert-danger">{{$message}}</p>
                     @endforeach
+                    
                 </div>
                 <div class="form-group">
                 <label>About Us</label>
