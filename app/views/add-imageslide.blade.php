@@ -37,7 +37,7 @@
                 </div>
                  <div class="row form-group">
                     <div class="col-xs-12">
-                       <b style="color:red">Mỗi vendor upload nhiều nhất 18 ảnh.</b>
+                       <b style="color:red">Mỗi vendor upload nhiều nhất 9 ảnh.</b>
                     </div>
                 </div>                 
                 
@@ -53,8 +53,8 @@
                    var files = $(this)[0].files;
                    var fileInput = $('#bigpic_upload');
                    var maxSize = fileInput.data('max-size');    
-                    if(files.length > 18){
-                        swal("Chỉ được upload tối đa 18 ảnh!");
+                    if(files.length > 9){
+                        swal("Chỉ được upload tối đa 9 ảnh!");
                         $("#bigpic_upload").val("");
                     }else{
                         var fileName = $("#bigpic_upload").val().toLowerCase();
@@ -68,10 +68,10 @@
                                 success:function(data)
                                 {
                                     var obj=JSON.parse(data);
-                                    if(obj.check+files.length>=18)
+                                    if(obj.check+files.length>=9)
                                     {
                                         $("#bigpic_upload").val("");
-                                        swal("Tổng số ảnh của nhà cung cấp "+obj.name_vendor + " lớn 18, vui lòng chọn lại!"); 
+                                        swal("Tổng số ảnh của nhà cung cấp "+obj.name_vendor + " lớn 9, vui lòng chọn lại!"); 
                                     }
                                     else
                                     {
