@@ -37,10 +37,10 @@ class VendorController extends \BaseController {
 
 			$vendor=Str::slug(Input::get('name'));
 
-			File::makeDirectory(saveimages_path('images_vendor/'.$category_name),$mode = 0775,true,true);
+			File::makeDirectory(storage_path('images_vendor/'.$category_name),$mode = 0775,true,true);
 			$image = Input::file('avatar');
 			$filename = $vendor. '.' .$image->getClientOriginalExtension();
-			$path = saveimages_path('images_vendor/'.$category_name.'/'.$filename);
+			$path = storage_path('images_vendor/'.$category_name.'/'.$filename);
 			$pathsave = 'images_vendor/'.$category_name.'/'.$filename;
 			Image::make($image->getRealPath())->resize(300, 300)->save($path);
 
@@ -110,13 +110,13 @@ class VendorController extends \BaseController {
 			$vendor=Str::slug(Input::get('name'));
 
 			$photo_vendor = Vendor::where('id', $id)->get()->first()->photo;
-			$path_delete=saveimages_path($photo_vendor);
+			$path_delete=storage_path($photo_vendor);
 			File::delete($path_delete);
 
-			File::makeDirectory(saveimages_path('images_vendor/'.$category_name),$mode = 0775,true,true);
+			File::makeDirectory(storage_path('images_vendor/'.$category_name),$mode = 0775,true,true);
 			$image = Input::file('avatar');
 			$filename = $vendor. '.' .$image->getClientOriginalExtension();
-			$path = saveimages_path('images_vendor/'.$category_name.'/'.$filename);
+			$path = storage_path('images_vendor/'.$category_name.'/'.$filename);
 			$pathsave = 'images_vendor/'.$category_name.'/'.$filename;
 			Image::make($image->getRealPath())->resize(300, 300)->save($path);
 

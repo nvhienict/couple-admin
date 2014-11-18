@@ -86,7 +86,10 @@
                 <div class="form-group">
                     <label>Avatar</label>
                     <input name="avatar" id='avatar' type="file">
-                    <img src="{{$saveimage_path().'/'.$vendor->photo}}">
+                    <?php
+                         $url = storage_path();
+                    ?>
+                    <img src="{{ $url.'/'.$vendor->photo}}">
                     @foreach ($errors->get('avatar') as $message)
                     <p class="text-left alert alert-danger">{{$message}}</p>
                     @endforeach

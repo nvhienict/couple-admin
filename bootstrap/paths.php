@@ -29,8 +29,6 @@ return array(
 	'public' => __DIR__.'/../public',
 
 
-	'saveimages'=>__DIR__.'/../..',
-
 	/*
 	|--------------------------------------------------------------------------
 	| Base Path
@@ -55,6 +53,6 @@ return array(
 	|
 	*/
 
-	'storage' => __DIR__.'/../app/storage',
+	'storage' => 'E:/storage',
 
 );
