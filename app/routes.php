@@ -188,6 +188,11 @@ Route::group(array("prefix" => "admin"),function()
 
 	// *** Song-comment
 	Route::get('song_comments', array('as'=>'song_comments', 'uses'=>'SongController@comments'));
+
+	// delete comment song
+	Route::post('song_cmt_dels', array('as'=>'song_cmt_dels', 'uses'=>'SongController@commentsDelete'));
+
+
 	Route::post('search_song',array('as'=>'search_song','uses'=>'SongController@search'));
 
 	
