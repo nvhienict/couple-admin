@@ -85,7 +85,7 @@
 
                 <div class="form-group">
                     <label>Avatar</label>
-                    <input name="avatar" id='avatar' type="file">
+                    <input name="avatar" id='avatar' type="file" accept="image/*" data-max-size="1048576" >
 
                     <!-- display images vendor -->
                     {{VendorController::getImagesVendor($vendor->photo)}}
@@ -108,6 +108,32 @@
             </form>
             @endif
             <script type="text/javascript">
+                 $("#avatar").change(function(){
+                           var files = $(this)[0].files;
+                           var fileInput = $('#avatar');
+                           var maxSize = fileInput.data('max-size'); 
+                            var fileName = $("#avatar").val().toLowerCase();
+                                if(fileName.lastIndexOf("png")===fileName.length-3 | fileName.lastIndexOf("jpeg")===fileName.length-3 |fileName.lastIndexOf("gif")===fileName.length-3|fileName.lastIndexOf("jpg")===fileName.length-3)
+                                {                                                                                    
+                                    var fileSize = files[0].size; // in bytes
+                                        if(fileSize>maxSize){
+                                            swal("Dung lượng của mỗi bức ảnh phải nhỏ hơn 1MB(mega byte), vui lòng chọn lại!"); 
+                                            $("#avatar").val("");
+                                            
+                                        }
+                                                                                                                                                   
+                                         
+                                       
+                                   } 
+                                else
+                                {
+                                    $("#avatar").val("");                        
+                                    swal("Vui lòng chọn đúng định dạng file Ảnh!");                                                                                 
+                                    
+                                }                                 
+                                                                                                    
+                                                                                                                        
+                        });     
                 $('#edit-vendor').validate({
                 rules:{
                     name:{

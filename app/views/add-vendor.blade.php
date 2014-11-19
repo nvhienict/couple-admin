@@ -84,7 +84,7 @@
 
                 <div class="form-group">
                     <label>Avatar</label>
-                    <input name="avatar" id='avatar' type="file" accept="image/*" data-max-size="2097152" required >
+                    <input name="avatar" id='avatar' type="file" accept="image/*" data-max-size="1048576" required >
                     @foreach ($errors->get('avatar') as $message)
                     <p class="text-left alert alert-danger">{{$message}}</p>
                     @endforeach
@@ -109,7 +109,7 @@
                                 {                                                                                    
                                     var fileSize = files[0].size; // in bytes
                                         if(fileSize>maxSize){
-                                            swal("Dung lượng của mỗi bức ảnh phải nhỏ hơn 2MB(mega byte), vui lòng chọn lại!"); 
+                                            swal("Dung lượng của mỗi bức ảnh phải nhỏ hơn 1MB(mega byte), vui lòng chọn lại!"); 
                                             $("#avatar").val("");
                                             
                                         }
