@@ -23,12 +23,12 @@ class SongController extends \BaseController {
 	public function create()
 	{
 		//create song
-		$name=Input::get('name');
-		$category=Input::get('category');
-		$artist=Input::get('artist');
-		$genre=Input::get('genre');
-		$link=Input::get('link');
-		$lyric=Input::get('lyric');
+		$name 		= Input::get('name');
+		$category 	= Input::get('category');
+		$artist 	= Input::get('artist');
+		$genre 		= Input::get('genre');
+		$link 		= Input::get('link');
+		$lyric 		= Input::get('lyric');
 
 		switch ($genre) {
 			case 1:

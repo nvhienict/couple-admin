@@ -86,10 +86,10 @@ class CategoriesController extends \BaseController {
 			"NameCategory"=>"required|min:3",
 			"editor4"=>"required|min:15"
 			);
-		$validator=Validator::make(Input::all(),$rules);
-		$id=Input::get('IdCategory');
-		$name = Input::get('NameCategory');
-		$descreption=Input::get('editor4');
+		$validator 			= Validator::make(Input::all(),$rules);
+		$id 				= Input::get('IdCategory');
+		$name 				= Input::get('NameCategory');
+		$descreption 		= strip_tags(Input::get('editor4'));
 		if($validator->passes()){
 			Category::where('id',$id)->update(array('name' => $name,'description'=>$descreption,'slug'=>Str::slug($name)));
 		return Redirect::to("admin/categories")->with('message','Đã lưu thành công');
@@ -111,12 +111,12 @@ class CategoriesController extends \BaseController {
 
 	}
 	public function NewCategory(){
-		$name = Input::get('NameCategory');
-		$description = Input::get('editor4');
-		$rules=array(
-			"NameCategory"=>"required|min:3",
-			"editor4"=>"required|min:15"
-			);
+		$name 			= Input::get('NameCategory');
+		$description 	= strip_tags(Input::get('editor4'));
+		$rules 			= array(
+							"NameCategory"=>"required|min:3",
+							"editor4"=>"required|min:15"
+							);
 		$validator=Validator::make(Input::all(),$rules);
 		if($validator->passes()){
 		Category::insert(array('name' => $name,'description'=>$description,'slug'=>Str::slug($name)));

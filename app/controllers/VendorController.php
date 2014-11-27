@@ -142,7 +142,7 @@ class VendorController extends \BaseController {
 			}
 
 			
-        	$vendor->about=Input::get('editor4');
+        	$vendor->about=strip_tags(Input::get('editor4'));
         	$vendor->slug=Str::slug(Input::get('name'));
         	$vendor->save();
         	return Redirect::to('admin/vendors')->with('messages',"Edit Vendor thanh cong");
