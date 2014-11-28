@@ -60,24 +60,42 @@ Users
 		<th>Role</th>
 	</thead>
 	<tbody>
-	@foreach($users as $index =>$user)
+	@foreach($users as $index => $user)
 		<tr>
 			<td>
-				<input type="checkbox" value="{{$user->id}}">
-				<input type="hidden" name="chk-{{$user->id}}" value="" >
+				@if ( ($user->role_id)==1 )
+					<i style="color: #C9302C;" class="fa fa-user"></i>
+				@else
+					<input type="checkbox" value="{{$user->id}}">
+					<input type="hidden" name="chk-{{$user->id}}" value="" >
+				@endif
 			</td>
 			<td>{{$index+1}}</td>
-			<td id="email-user">{{$user->email}}
-				<p>
-					{{HTML::linkRoute('users/edit', 'Edit', $user->id)}}
-					 | 
-					<a href="#" data-toggle="modal" data-target="#myModalDeleteUser{{$index}}">Delete</a>
-				</p>
+			<td id="email-user">
+				{{$user->email}}
+				
+				@if ( ($user->role_id)==1 )
+					<p>
+						{{HTML::linkRoute('users/edit', 'Edit', $user->id)}}
+					</p>
+				@else
+					<p>
+						{{HTML::linkRoute('users/edit', 'Edit', $user->id)}}
+						 | 
+						<a href="#" data-toggle="modal" data-target="#myModalDeleteUser{{$index}}">Delete</a>
+					</p>
+				@endif
 			</td>
 			<td>{{$user->firstname}}</td>
 			<td>{{$user->lastname}}</td>
 			<td>{{$user['weddingdate']}}</td>
-			<td>{{$user['role_id']}}</td>
+			<td>
+				@if ( $user['role_id']==1 )
+					Admin
+				@else
+					User
+				@endif
+			</td>
 
 			<!-- Modal Delete User -->
 			<div class="modal fade" id="myModalDeleteUser{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

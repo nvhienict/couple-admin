@@ -117,10 +117,10 @@ Songs
         <form id="form_addsong" action="{{Asset('admin/songs')}}" method="post">
 		    <div class="row form-group">
 		    	<div class="col-xs-2">
-		    		<label for="name">Song name:</label>
+		    		<label for="name">Name:</label>
 		    	</div>
 				<div class="col-xs-6">
-				   	<input type="text" class="form-control" name="name" id="name" placeholder="Song name">
+				   	<input type="text" class="form-control" name="name" id="name" placeholder="Name">
 				</div>
 				<div class="col-xs-4"></div>
 			</div>
@@ -216,8 +216,8 @@ Songs
 		},
 		messages:{
 			name:{
-				required:"Song name not null!",
-				remote:"Song name had!"
+				required:"Name not null!",
+				remote:"Name exists!"
 			},
 			artist:{
 				required:"Artist not null!"
