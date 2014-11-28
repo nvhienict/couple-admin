@@ -41,14 +41,14 @@ Admin > User > Edit | Thuna.vn
 		@endforeach()
 	</tbody>
 	</table>
-<div class="row">
+<!-- <div class="row">
 	<div class="col-xs-6">
 		<input class="form-control" type="password" name="password_old" id="password_old" placeholder="Old Password">
 	</div>
 	<div class="col-xs-6">
 		<input class="form-control" type="password" name="password_new" id="password_new" placeholder="New Password">
 	</div>
-</div>
+</div> -->
 <div class="row">
 	<div class="col-xs-12">
 		Are you ready update this user?

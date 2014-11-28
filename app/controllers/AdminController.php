@@ -244,37 +244,37 @@ class AdminController extends \BaseController {
 		return View::make("users_edit")->with("users", $users);
 	}
 	public function post_edit_users($id){
-		$rules=array(
-			"password_old"=>"required|min:3",
-			"password_new"=>"required|min:3"
-			);
+		// $rules=array(
+		// 	"password_old"=>"required|min:3",
+		// 	"password_new"=>"required|min:3"
+		// 	);
 
 		$email=Input::get('email');
 		$role_id=Input::get('role');
 		$weddingdate=Input::get('weddingdate');
 		$firstname=Input::get('firstname');
 		$lastname=Input::get('lastname');
-		$password_old=Input::get('password_old');
-		$password_new=Hash::make(Input::get('password_new'));
+		// $password_old=Input::get('password_old');
+		// $password_new=Hash::make(Input::get('password_new'));
 
 		$pass=User::where('id', "=", $id)->get()->first()->password;
 
-		if (Hash::check($password_old, $pass)) {
+		// if (Hash::check($password_old, $pass)) {
 		    $user=User::where("id", "=", $id)->update(
 				array("email"=>$email,
 					"role_id"=>$role_id,
 					"weddingdate"=>$weddingdate,
 					"firstname"=>$firstname,
-					"lastname"=>$lastname,
-					"password"=>$password_new));
+					"lastname"=>$lastname));
+					// "password"=>$password_new));
 
 		    $msg="Edit User Success!";
 			return Redirect::route("users")->with('msg',$msg);
-		}
-		else{
-			$msg="Edit User Fails!";
-			return Redirect::route("users")->with('msg',$msg);
-		}
+		// }
+		// else{
+		// 	$msg="Edit User Fails!";
+		// 	return Redirect::route("users")->with('msg',$msg);
+		// }
 	}
 
 
