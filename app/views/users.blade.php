@@ -36,8 +36,11 @@ Users
 		<a href="#" class="btn btn-info" data-toggle="modal" data-target="#myModalCreatUser">Create User</a>
 		<button id="del_user" class="btn btn-danger" type="submit">Delete User</button>
 	</div>
-	<div class="col-xs-8">
-		
+	<div class="col-xs-2 text-center" style="font-weight:bold;">
+		Tổng người dùng: {{$count_user}}
+	</div>
+	<div class="col-xs-2 text-center" style="font-weight:bold;">
+		Đăng kí mới: {{$count_user_day}}
 	</div>
 </div>
 <div class="row">

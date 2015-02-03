@@ -116,10 +116,22 @@ class AdminController extends \BaseController {
 
 	// Giang ----User
 	public function get_users()
-	{
+	{	
+		$count_user_day = 0;
 		$msg = Session::get('msg');
-		$users = User::paginate(10);
-		return View::make("users")->with("users", $users)->with('msg',$msg);
+		$users = User::orderBy('created_at', 'desc')->paginate(10);
+		$day_now = Carbon::today()->toDateString();
+		$arr_users = User::get();
+		$count_user = $arr_users->count();
+		foreach ($arr_users as $arr_user) {
+			$tamp = explode(" ",$arr_user->created_at);
+			if ( $day_now == $tamp[0] ) {
+			 	$count_user_day = $count_user_day + 1;
+			 } 
+		}	
+		return View::make("users")->with("users", $users)->with('msg',$msg)
+														->with('count_user',$count_user)
+														->with('count_user_day',$count_user_day);
 	}
 
 	public function check_email(){
@@ -249,11 +261,12 @@ class AdminController extends \BaseController {
 		// 	"password_new"=>"required|min:3"
 		// 	);
 
-		$email=Input::get('email');
-		$role_id=Input::get('role');
-		$weddingdate=Input::get('weddingdate');
-		$firstname=Input::get('firstname');
-		$lastname=Input::get('lastname');
+		$email = Input::get('email');
+		$role_id = Input::get('role');
+		$weddingdate = Input::get('weddingdate');
+		$firstname = Input::get('firstname');
+		$lastname = Input::get('lastname');
+		$password = Hash::make(Input::get('password'));
 		// $password_old=Input::get('password_old');
 		// $password_new=Hash::make(Input::get('password_new'));
 
@@ -265,7 +278,8 @@ class AdminController extends \BaseController {
 					"role_id"=>$role_id,
 					"weddingdate"=>$weddingdate,
 					"firstname"=>$firstname,
-					"lastname"=>$lastname));
+					"lastname"=>$lastname,
+		    		"password"=>$password));
 					// "password"=>$password_new));
 
 		    $msg="Edit User Success!";

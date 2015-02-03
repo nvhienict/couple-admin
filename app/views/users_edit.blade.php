@@ -14,6 +14,7 @@ Admin > User > Edit | Thuna.vn
 			<th>Weddingdate</th>
 			<th>Firstname</th>
 			<th>Lastname</th>
+			<th>Password</th>
 	</thead>
 	<tbody>
 		@foreach($users as $user)
@@ -37,6 +38,9 @@ Admin > User > Edit | Thuna.vn
 			<td class="danger"><input class="form-control" type="text" name="firstname" id="firstname" value="{{$user->firstname}}"></td>
 			<td class="danger"><input class="form-control" type="text" name="lastname" id="lastname" value="{{$user->lastname}}"></td>
 			<input type="hidden" name="id" value="{{$user->id}}">
+			<td class="danger">
+				<input class="form-control" type="password" name="password" id="password" value="{{$user->password}}">
+			</td>
 		</tr>
 		@endforeach()
 	</tbody>
